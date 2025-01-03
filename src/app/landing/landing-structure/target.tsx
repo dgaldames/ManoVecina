@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export default function Objetivo(){
     return(
-        <main className="bg-neutral-50 py-12 px-6 mb-44">
+        <main className="bg-neutral-50 py-12 px-6 mb-44" id="target">
             <div className="md:max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-28 items-center">
                 {/* Texto */}
                 <div>

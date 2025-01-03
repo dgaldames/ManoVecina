@@ -4,7 +4,7 @@ import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/c
 
 export default function Contacto(){
     return(
-        <main className="bg-neutral-50 py-12 px-6 mb-28">
+        <main className="bg-neutral-50 py-12 px-6 mb-28" id="contacto">
             <div className="grid md:grid-cols-1 max-w-7xl mx-auto">
                 <div className="pb-8">
                     <h1 className="text-gray-800 md:text-5xl text-4xl font-bold pb-6">Contactanos</h1>
@@ -12,7 +12,9 @@ export default function Contacto(){
                 </div>
 
                 <div>    
-                    <form className="space-y-4 max-w-7xl mx-auto p-6 border rounded-md bg-neutral-100 shadow-lg">
+                    <form className="space-y-4 max-w-7xl mx-auto p-6 border rounded-md bg-neutral-100 shadow-lg"
+                            action="https://formsubmit.co/6e9120c171cae3372a22eaedbcbe306b" method="POST"
+                            encType="multipart/form-data">
                         <h2 className="md:text-4xl text-3xl text-gray-800 font-bold text-center mb-6">Contacto</h2>
 
                     <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
@@ -24,6 +26,7 @@ export default function Contacto(){
                             placeholder="Ej. Juan Pérez" 
                             className="w-full border p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 focus:invalid:ring-red-300 focus:invalid:border-red-500 invalid:border-red-500" 
                             required
+                            name="Nombre"
                             />
                         </div>
 
@@ -34,7 +37,8 @@ export default function Contacto(){
                             type="email" 
                             placeholder="ejemplo@correo.com" 
                             className="w-full border p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 focus:invalid:ring-red-300 focus:invalid:border-red-500 invalid:border-red-500" 
-                            required 
+                            required
+                            name="Correo"
                             />
                         </div>
 
@@ -43,7 +47,7 @@ export default function Contacto(){
                             <label htmlFor="motivo" className="block mb-1 font-semibold text-gray-800">
                                 Motivo del Contacto
                             </label>
-                            <Select>
+                            <Select name="Motivo" required>
                                 <SelectTrigger id="motivo" className="text-gray-900 font-semibold text-sm bg-white !py-5 rounded-lg">
                                     <SelectValue placeholder="Selecciona una opción" />
                                 </SelectTrigger>
@@ -71,6 +75,7 @@ export default function Contacto(){
                                 type="file"
                                 accept=".png,.jpg,.jpeg,.pdf"
                                 className="hidden"
+                                name="Archivo"
                                 />
                             </div>
                         </div>
@@ -82,6 +87,7 @@ export default function Contacto(){
                             placeholder="Cuéntanos más.." 
                             rows={3}
                             className="w-full border p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400" 
+                            name="Mensaje"
                             required
                             ></textarea>
                         </div>
@@ -94,6 +100,10 @@ export default function Contacto(){
                                 Enviar mensaje
                             </button>
                         </div>
+
+                        <input type="hidden" name="_next" value="http://localhost:3000" />
+                        <input type="hidden" name="_captcha" value="false" />
+                        
                     </form>
                 </div>
             </div>

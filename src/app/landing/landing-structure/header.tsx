@@ -28,10 +28,10 @@ export default function Header(){
                         <nav>
                         <ul className="flex md:text-xl [&>li>a]:inline-block [&>li>a]:px-8 [&>li>a]:py-2">
                         <li><a href="#" className="rounded-2xl hover:bg-gray-200 hover:text-black ease-out transition duration-200 transform hover:scale-105 ">Inicio</a></li>
-                        <li><a href="#" className="rounded-2xl hover:bg-gray-200 hover:text-black ease-out transition duration-200 transform hover:scale-105">Objetivo</a></li>
-                        <li><a href="#" className="rounded-2xl hover:bg-gray-200 hover:text-black ease-out transition duration-200 transform hover:scale-105">Funcionalidades</a></li>
-                        <li><a href="#" className="rounded-2xl hover:bg-gray-200 hover:text-black ease-out transition duration-200 transform hover:scale-105">FAQ</a></li>
-                        <li><a href="#" className="rounded-2xl hover:bg-gray-200 hover:text-black ease-out transition duration-200 transform hover:scale-105">Contacto</a></li>
+                        <li><a href="#target" className="rounded-2xl hover:bg-gray-200 hover:text-black ease-out transition duration-200 transform hover:scale-105">Objetivo</a></li>
+                        <li><a href="#funcionalidades" className="rounded-2xl hover:bg-gray-200 hover:text-black ease-out transition duration-200 transform hover:scale-105">Funcionalidades</a></li>
+                        <li><a href="#faq" className="rounded-2xl hover:bg-gray-200 hover:text-black ease-out transition duration-200 transform hover:scale-105">FAQ</a></li>
+                        <li><a href="#contacto" className="rounded-2xl hover:bg-gray-200 hover:text-black ease-out transition duration-200 transform hover:scale-105">Contacto</a></li>
                         </ul>
                         </nav>
                     </div>

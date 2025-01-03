@@ -2,7 +2,7 @@ import {Accordion, AccordionContent, AccordionItem, AccordionTrigger, } from "@/
 
 export default function Faq(){
     return(
-        <main className="mb-44 py-12 px-6 bg-neutral-50">
+        <main className="mb-44 py-12 px-6 bg-neutral-50" id="faq">
             <div className="max-w-7xl mx-auto grid md:grid-cols-2 grid-cols-1 md:gap-28 gap-12">
                 <div>
                     <h1 className="md:text-5xl text-4xl font-bold text-gray-800 pb-6">Preguntas Frecuentes</h1>

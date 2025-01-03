@@ -17,6 +17,9 @@ export default {
 			]
 		},
 		extend: {
+			backgroundImage: {
+				'login-background': "url('/login-imgs/background-login.svg')",
+			},
 			colors: {
 				vecino: '#FF6F07',
 				background: 'var(--background)',

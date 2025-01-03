@@ -20,7 +20,7 @@ export default function Inicio(){
             </div>
 
             <div className="flex justify-center mt-6">
-                <span className="md:text-xl text-lg text-gray-900">¿Ya tienes una cuenta? <a href="#" className="underline decoration-1 underline-offset-4 hover:text-vecino hover:decoration-transparent duration-200">Inicia sesión ahora</a></span>
+                <span className="md:text-xl text-lg text-gray-900">¿Ya tienes una cuenta? <a href="/auth/login" className="underline decoration-1 underline-offset-4 hover:text-vecino hover:decoration-transparent duration-200">Inicia sesión ahora</a></span>
             </div>
 
         </main>

@@ -24,20 +24,20 @@ export default function Footer(){
                                 <a className="text-xl text-gray-900 hover:underline decoration-1 underline-offset-4 hover:text-vecino duration-200" href="#">Inicio</a>
                             </li>
                             <li className="py-5 grid items-center place-content-center">
-                                <a className="text-xl text-gray-900 hover:underline decoration-1 underline-offset-4 hover:text-vecino duration-200" href="#">Funcionalides</a>
+                                <a className="text-xl text-gray-900 hover:underline decoration-1 underline-offset-4 hover:text-vecino duration-200" href="#funcionalidades">Funcionalides</a>
                             </li>
                             <li className="py-5 grid items-center place-content-center">
-                                <a className="text-xl text-gray-900 hover:underline decoration-1 underline-offset-4 hover:text-vecino duration-200" href="#">Contacto</a>
+                                <a className="text-xl text-gray-900 hover:underline decoration-1 underline-offset-4 hover:text-vecino duration-200" href="#contacto">Contacto</a>
                             </li>
                         </ul>
                     </div>
                     <div>
                         <ul>
                             <li className="py-5 grid items-center place-content-center">
-                                <a className="text-xl text-gray-900 hover:underline decoration-1 underline-offset-4 hover:text-vecino duration-200" href="#">Objetivo</a>
+                                <a className="text-xl text-gray-900 hover:underline decoration-1 underline-offset-4 hover:text-vecino duration-200" href="#target">Objetivo</a>
                             </li>
                             <li className="py-5 grid items-center place-content-center">
-                                <a className="text-xl text-gray-900 hover:underline decoration-1 underline-offset-4 hover:text-vecino duration-200" href="#">FAQ</a>
+                                <a className="text-xl text-gray-900 hover:underline decoration-1 underline-offset-4 hover:text-vecino duration-200" href="#faq">FAQ</a>
                             </li>
                             <li className="py-5 grid items-center place-content-center">
                                 <a className="text-xl text-gray-900 hover:underline decoration-1 underline-offset-4 hover:text-vecino duration-200" href="#">Terminos y Condiciones</a>

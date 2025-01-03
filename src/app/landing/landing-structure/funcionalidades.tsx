@@ -1,6 +1,6 @@
 export default function Funcionalidades(){
     return(
-        <main className="py-12 px-6 mb-52 bg-neutral-50">
+        <main className="py-12 px-6 mb-52 bg-neutral-50" id="funcionalidades">
             <div className="flex justify-center mb-12">
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900">Funcionalidades</h1>
             </div>
