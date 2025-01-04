@@ -1,7 +1,9 @@
+'use client'
+
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button-login"
 import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
+import { Input } from "@/components/ui/input-login"
 import { Label } from "@/components/ui/label"
 import Image from "next/image"
 
@@ -43,7 +45,7 @@ export function LoginForm({
                 </div>
                 <Input id="password" type="password" required />
               </div>
-              <Button type="submit" className="w-full text-base bg-vecino hover:bg-gray-950">
+              <Button onClick={() =>{window.location.href="/dashboard"}} type="submit" className="w-full text-base bg-vecino hover:bg-gray-950">
                 Iniciar Sesión
               </Button>
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-neutral-200 dark:after:border-neutral-800">
@@ -61,14 +63,14 @@ export function LoginForm({
               </div>
               <div className="text-center text-sm">
                 ¿No tienes una cuenta?{" "}
-                <a href="#" className="underline underline-offset-4 decoration-1 hover:text-vecino hover:decoration-transparent duration-200">
+                <a href="/auth/new-account" className="underline underline-offset-4 decoration-1 hover:text-vecino hover:decoration-transparent duration-200">
                   Registrate
                 </a>
               </div>
             </div>
           </form>
           <div className="relative hidden bg-gray-100 md:block dark:bg-neutral-800">
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div className="absolute inset-0 flex items-center justify-center cursor-pointer" onClick={() => {window.location.href = "/"}}>
               <Image
                 src={'/landing-imgs/header/LogoFinalVersion.png'}
                 alt='Logo ManoVecina'
@@ -80,10 +82,6 @@ export function LoginForm({
           </div>
         </CardContent>
       </Card>
-      <div className="text-balance text-center text-xs text-white [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-vecino hover:[&_a]:decoration-transparent [&_a]:duration-200">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-        and <a href="#">Privacy Policy</a>.
-      </div>
     </div>
   )
 }

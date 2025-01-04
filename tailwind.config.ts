@@ -18,12 +18,22 @@ export default {
 		},
 		extend: {
 			backgroundImage: {
-				'login-background': "url('/login-imgs/background-login.svg')",
+				'login-background': "url('/login-imgs/background-login.svg')"
 			},
 			colors: {
 				vecino: '#FF6F07',
 				background: 'var(--background)',
-				foreground: 'var(--foreground)'
+				foreground: 'var(--foreground)',
+				sidebar: {
+					DEFAULT: 'hsl(var(--sidebar-background))',
+					foreground: 'hsl(var(--sidebar-foreground))',
+					primary: 'hsl(var(--sidebar-primary))',
+					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+					accent: 'hsl(var(--sidebar-accent))',
+					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+					border: 'hsl(var(--sidebar-border))',
+					ring: 'hsl(var(--sidebar-ring))'
+				}
 			},
 			padding: {
 				minimo: '0.1',
@@ -57,6 +67,6 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out'
 			}
 		}
-	},
+    },
 	plugins: [tailwindcssAnimate],
 } satisfies Config;
