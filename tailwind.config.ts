@@ -22,6 +22,7 @@ export default {
 			},
 			colors: {
 				vecino: '#FF6F07',
+				darkbg: '#0a0a0a',
 				background: 'var(--background)',
 				foreground: 'var(--foreground)',
 				sidebar: {
@@ -36,8 +37,12 @@ export default {
 				}
 			},
 			padding: {
+				minimo2: '0.9',
 				minimo: '0.1',
 				medio: '1'
+			},
+			width:{
+				max: '500px'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
