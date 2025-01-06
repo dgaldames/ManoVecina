@@ -33,8 +33,8 @@ export function NavMain({
   }[]
 }) {
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+    <SidebarGroup className="mt-10">
+      <SidebarGroupLabel>Funcionalidades</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible

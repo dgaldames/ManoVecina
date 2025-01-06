@@ -44,6 +44,9 @@ export default {
 			width:{
 				max: '500px'
 			},
+			height: {
+				min: '0.1',
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',

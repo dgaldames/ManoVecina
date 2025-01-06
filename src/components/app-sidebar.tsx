@@ -2,15 +2,15 @@
 
 import * as React from "react"
 import {
-  AudioWaveform,
+/*   AudioWaveform,
   BookOpen,
   Bot,
-  Command,
+  Command, */
   Frame,
   GalleryVerticalEnd,
-  Map,
+/*   Map,
   PieChart,
-  Settings2,
+  Settings2, */
   SquareTerminal,
 } from "lucide-react"
 
@@ -26,6 +26,8 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 
+import { Separator } from "@/components/ui/separator"
+
 // This is sample data.
 const data = {
   user: {
@@ -38,16 +40,6 @@ const data = {
       name: "ManoVecina",
       logo: GalleryVerticalEnd,
       plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
     },
   ],
   navMain: [
@@ -71,87 +63,12 @@ const data = {
         },
       ],
     },
-    {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
   ],
   projects: [
     {
       name: "Design Engineering",
       url: "#",
       icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
     },
   ],
 }
@@ -162,13 +79,18 @@ return (
   <SidebarHeader>
     <NavUser user={data.user} /> 
   </SidebarHeader>
+
+  <Separator orientation="horizontal" className="mr-2 h-min dark:bg-white " />
+
   <SidebarContent>
     <NavMain items={data.navMain} />
     <NavProjects projects={data.projects} />
   </SidebarContent>
+
   <SidebarFooter>
     <TeamSwitcher teams={data.teams} />
   </SidebarFooter>
+
   <SidebarRail />
 </Sidebar>
 )
