@@ -11,7 +11,9 @@ import {
 /*   Map,
   PieChart,
   Settings2, */
-  SquareTerminal,
+  //SquareTerminal,
+  BadgeDollarSign,
+  ReceiptText,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -44,11 +46,11 @@ const data = {
   ],
   navMain: [
     {
-      title: "Playground",
+      title: "Ofrecer Servicios",
       url: "#",
-      icon: SquareTerminal,
+      icon: BadgeDollarSign,
       isActive: true,
-      items: [
+      /* items: [
         {
           title: "History",
           url: "#",
@@ -61,8 +63,13 @@ const data = {
           title: "Settings",
           url: "#",
         },
-      ],
-    },
+      ], */
+    },{
+      title: "Contratar Servicios",
+      url: "#",
+      icon:  ReceiptText,
+      isActive: true,
+    }
   ],
   projects: [
     {
@@ -80,10 +87,13 @@ return (
     <NavUser user={data.user} /> 
   </SidebarHeader>
 
-  <Separator orientation="horizontal" className="mr-2 h-min dark:bg-white " />
+  <Separator orientation="horizontal" className="h-min dark:bg-white " />
 
   <SidebarContent>
-    <NavMain items={data.navMain} />
+    <NavMain items={data.navMain}/>
+
+    <Separator orientation="horizontal" className="h-min dark:bg-white " />
+
     <NavProjects projects={data.projects} />
   </SidebarContent>
 

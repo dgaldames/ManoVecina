@@ -1,10 +1,12 @@
 "use client"
-
-import { ChevronRight, type LucideIcon } from "lucide-react"
+import React from 'react'
+import { 
+  //ChevronRight, 
+  type LucideIcon } from "lucide-react"
 
 import {
   Collapsible,
-  CollapsibleContent,
+/*   CollapsibleContent, */
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import {
@@ -13,9 +15,9 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
+/*   SidebarMenuSub,
   SidebarMenuSubButton,
-  SidebarMenuSubItem,
+  SidebarMenuSubItem, */
 } from "@/components/ui/sidebar"
 
 export function NavMain({
@@ -31,9 +33,11 @@ export function NavMain({
       url: string
     }[]
   }[]
-}) {
+})
+{
+
   return (
-    <SidebarGroup className="mt-10">
+    <SidebarGroup className="mt-5">
       <SidebarGroupLabel>Funcionalidades</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
@@ -44,7 +48,15 @@ export function NavMain({
             className="group/collapsible"
           >
             <SidebarMenuItem>
-              <CollapsibleTrigger asChild>
+            <CollapsibleTrigger asChild>
+                <SidebarMenuButton className="flex w-full items-center justify-start gap-1 rounded-md h-16 text-xl hover:!bg-gray-300" tooltip={item.title}>
+                  {item.icon && <item.icon />}
+                  <span>{item.title}</span>
+                </SidebarMenuButton>
+            </CollapsibleTrigger>
+
+
+              {/*  <CollapsibleTrigger asChild>
                 <SidebarMenuButton tooltip={item.title}>
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
@@ -63,7 +75,7 @@ export function NavMain({
                     </SidebarMenuSubItem>
                   ))}
                 </SidebarMenuSub>
-              </CollapsibleContent>
+              </CollapsibleContent> */}
             </SidebarMenuItem>
           </Collapsible>
         ))}
