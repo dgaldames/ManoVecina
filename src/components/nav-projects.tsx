@@ -1,28 +1,28 @@
 "use client"
 
 import {
-  Folder,
+/*   Folder,
   Forward,
   MoreHorizontal,
-  Trash2,
+  Trash2, */
   type LucideIcon,
 } from "lucide-react"
 
 import {
-  DropdownMenu,
+/*   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger, */
 } from "@/components/ui/dropdown-menu"
 import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuAction,
+  //SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
+  //useSidebar,
 } from "@/components/ui/sidebar"
 
 export function NavProjects({
@@ -34,21 +34,25 @@ export function NavProjects({
     icon: LucideIcon
   }[]
 }) {
-  const { isMobile } = useSidebar()
+  //const { isMobile } = useSidebar()
 
   return (
-    <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Opciones</SidebarGroupLabel>
+    <SidebarGroup className="group-data-[collapsible=icon]:hidden mt-5">
+      <SidebarGroupLabel className="text-sm">Opciones</SidebarGroupLabel>
       <SidebarMenu>
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton asChild>
-              <a href={item.url}>
-                <item.icon />
-                <span>{item.name}</span>
-              </a>
-            </SidebarMenuButton>
-            <DropdownMenu>
+              <SidebarMenuButton className="flex w-full items-center justify-start rounded-md h-8 text-base py-6 hover:!bg-gray-300" asChild>
+                <a href={item.url}>
+                  <item.icon />
+                  <span>{item.name}</span>
+                </a>
+              </SidebarMenuButton>
+
+
+
+
+            {/* <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuAction showOnHover>
                   <MoreHorizontal />
@@ -74,15 +78,15 @@ export function NavProjects({
                   <span>Delete Project</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
-            </DropdownMenu>
+            </DropdownMenu> */}
           </SidebarMenuItem>
         ))}
-        <SidebarMenuItem>
+        {/* <SidebarMenuItem>
           <SidebarMenuButton className="text-sidebar-foreground/70">
             <MoreHorizontal className="text-sidebar-foreground/70" />
             <span>More</span>
           </SidebarMenuButton>
-        </SidebarMenuItem>
+        </SidebarMenuItem> */}
       </SidebarMenu>
     </SidebarGroup>
   )

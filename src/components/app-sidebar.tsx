@@ -6,7 +6,7 @@ import {
   BookOpen,
   Bot,
   Command, */
-  Frame,
+  //Frame,
   GalleryVerticalEnd,
 /*   Map,
   PieChart,
@@ -14,6 +14,10 @@ import {
   //SquareTerminal,
   BadgeDollarSign,
   ReceiptText,
+  Star,
+  Contact,
+  Wrench,
+  LogOut,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -73,10 +77,25 @@ const data = {
   ],
   projects: [
     {
-      name: "Design Engineering",
+      name: "Favoritos",
       url: "#",
-      icon: Frame,
+      icon: Star,
     },
+    {
+      name: "Perfil",
+      url: '#',
+      icon: Contact,
+    },
+    {
+      name:"Ayuda/Soporte",
+      url: "#",
+      icon: Wrench,
+    },
+    {
+      name: "Cerrar Sesión",
+      url: "#",
+      icon: LogOut,
+    }
   ],
 }
 
