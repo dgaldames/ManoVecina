@@ -49,7 +49,7 @@ export function NavMain({
           >
             <SidebarMenuItem>
             <CollapsibleTrigger asChild>
-                <SidebarMenuButton className="flex w-full items-center justify-start gap-1 rounded-md h-16 text-xl hover:!bg-gray-300" tooltip={item.title}>
+                <SidebarMenuButton className="flex w-full items-center justify-start gap-1 rounded-md h-16 text-xl hover:!bg-orange-500 hover:!text-white" tooltip={item.title}>
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
                 </SidebarMenuButton>
