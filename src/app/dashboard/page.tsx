@@ -11,6 +11,7 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator, */
 } from "@/components/ui/breadcrumb"
+import Link from "next/link"
 //import { Separator } from "@/components/ui/separator"
 /* import {
     SidebarInset,
@@ -21,23 +22,23 @@ import {
 export default function Page() {
 
     return (
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+        <div className="dark:bg-darkbg flex flex-1 flex-col gap-4 p-4 pt-0">
             <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                <div className="aspect-video rounded-xl bg-gray-300 dark:bg-neutral-800/50 flex justify-center items-end">
-                    <a href="/dashboard/dashboard-profile" className="text-3xl py-5 px-8 bg-vecino rounded-2xl hover:bg-orange-600">Ver mas</a>
+                <div className="aspect-video rounded-xl bg-gray-300 dark:bg-neutral-800/90 flex justify-center items-end">
+                    <Link href="/dashboard/dashboard-profile" className="text-3xl py-5 px-8 bg-vecino rounded-2xl hover:bg-orange-600">Ver mas</Link>
                 </div>
-                <div className="aspect-video rounded-xl bg-gray-300 dark:bg-neutral-800/50" />
-                <div className="aspect-video rounded-xl bg-gray-300 dark:bg-neutral-800/50" />
+                <div className="aspect-video rounded-xl bg-gray-300 dark:bg-neutral-800/90" />
+                <div className="aspect-video rounded-xl bg-gray-300 dark:bg-neutral-800/90" />
             </div>
             <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                <div className="aspect-video rounded-xl bg-gray-300 dark:bg-neutral-800/50" />
-                <div className="aspect-video rounded-xl bg-gray-300 dark:bg-neutral-800/50" />
-                <div className="aspect-video rounded-xl bg-gray-300 dark:bg-neutral-800/50" />
+                <div className="aspect-video rounded-xl bg-gray-300 dark:bg-neutral-800/90" />
+                <div className="aspect-video rounded-xl bg-gray-300 dark:bg-neutral-800/90" />
+                <div className="aspect-video rounded-xl bg-gray-300 dark:bg-neutral-800/90" />
             </div>
             <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                <div className="aspect-video rounded-xl bg-gray-300 dark:bg-neutral-800/50" />
-                <div className="aspect-video rounded-xl bg-gray-300 dark:bg-neutral-800/50" />
-                <div className="aspect-video rounded-xl bg-gray-300 dark:bg-neutral-800/50" />
+                <div className="aspect-video rounded-xl bg-gray-300 dark:bg-neutral-800/90" />
+                <div className="aspect-video rounded-xl bg-gray-300 dark:bg-neutral-800/90" />
+                <div className="aspect-video rounded-xl bg-gray-300 dark:bg-neutral-800/90" />
             </div>
         </div>
     )
