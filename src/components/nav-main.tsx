@@ -20,6 +20,8 @@ import {
   SidebarMenuSubItem, */
 } from "@/components/ui/sidebar"
 
+import Link from 'next/link'
+
 export function NavMain({
   items,
 }: {
@@ -49,10 +51,12 @@ export function NavMain({
           >
             <SidebarMenuItem>
             <CollapsibleTrigger asChild>
-                <SidebarMenuButton className="flex w-full items-center justify-start gap-1 rounded-md h-16 text-xl hover:!bg-orange-500 hover:!text-white" tooltip={item.title}>
-                  {item.icon && <item.icon />}
-                  <span>{item.title}</span>
-                </SidebarMenuButton>
+            <Link href={item.url} passHref> {/* Con <Link aqui le pasamos la url de /dashboard/dashboard-ofrecer, en app-siderbar.tsx */}
+              <SidebarMenuButton className="flex w-full items-center justify-start gap-1 rounded-md h-16 text-xl hover:!bg-orange-500 hover:!text-white" tooltip={item.title}>
+                {item.icon && <item.icon />}
+                <span>{item.title}</span>
+              </SidebarMenuButton>
+            </Link>
             </CollapsibleTrigger>
 
 

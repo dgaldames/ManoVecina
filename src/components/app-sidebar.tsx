@@ -51,7 +51,7 @@ const data = {
   navMain: [
     {
       title: "Ofrecer Servicios",
-      url: "#",
+      url: "/dashboard/dashboard-ofrecer",
       icon: BadgeDollarSign,
       isActive: true,
       /* items: [

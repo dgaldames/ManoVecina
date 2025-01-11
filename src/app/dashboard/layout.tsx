@@ -98,7 +98,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) 
                         )}
                     </header>
 
-                    <div className="flex-1 bg-gray-100 p-4 dark:bg-darkbg">
+                    <div className="flex-1 bg-gray-100 p-4 dark:bg-gray-900">
                         {children} {/* Aca le paso el contenido de los page.tsx */}
                     </div>
                 </SidebarInset>
