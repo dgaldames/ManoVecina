@@ -70,7 +70,7 @@ const data = {
       ], */
     },{
       title: "Contratar Servicios",
-      url: "#",
+      url: "/dashboard",
       icon:  ReceiptText,
       isActive: true,
     }
@@ -101,7 +101,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 return (
-<Sidebar collapsible="icon" {...props}>
+<Sidebar className="transition-all duration-200 ease-in-out" collapsible="icon" {...props}>
   <SidebarHeader>
     <NavUser user={data.user} /> 
   </SidebarHeader>

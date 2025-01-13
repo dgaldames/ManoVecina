@@ -2,7 +2,10 @@
 
 export default function OfrecerPage(){
     return(
-            <div className="bg-white border p-5 border-gray-300 rounded-lg shadow dark:bg-gray-800 dark:border-gray-900">
+            <div className="bg-white border p-5 border-gray-300 rounded-lg shadow dark:bg-gray-800 dark:border-gray-900 transition-all duration-200 ease-in-out">
+                <div className="flex justify-center">
+                    <h1 className="dark:text-white text-3xl font-semibold mb-7 ">Completa los datos para ofrecer tus servicios</h1>
+                </div>
                 <form>
                     <div className="grid gap-6 mb-6 md:grid-cols-2">
                         <div>

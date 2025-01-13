@@ -43,7 +43,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) 
             <SidebarProvider className={darkMode ? 'dark' : ''}>
             <AppSidebar />
                 <SidebarInset>
-                    <header className="flex justify-between h-28 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+                    <header className="flex justify-between h-28 shrink-0 items-center gap-2 transition-all duration-200 ease-in-out group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 bg-gray-200 dark:bg-gray-900 ">
                         <div className="flex items-center gap-2 pl-4">
                             <SidebarTrigger className="-ml-1 dark:bg-white" />
                             <Separator orientation="vertical" className="mr-2 h-8 dark:bg-white " />
@@ -53,7 +53,9 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) 
                                 <input 
                                 type="text" 
                                 placeholder="Buscar en Vecindario" 
-                                className=" rounded-3xl md:w-96 w-52 border p-2 focus:outline-none focus:ring-1 focus:ring-gray-900 dark:bg-darkbg dark:ring-1 dark:focus:ring-gray-200"/>
+                                className="rounded-3xl md:w-96 w-52 border border-gray-300 p-3 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-800 hover:border-gray-400 transition-all duration-200 ease-in-out bg-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800 dark:placeholder-gray-400 dark:text-gray-200 dark:focus:ring-gray-200">
+                                    
+                                </input>
                             </form>
                         </div>
 
@@ -98,7 +100,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) 
                         )}
                     </header>
 
-                    <div className="flex-1 bg-gray-100 p-4 dark:bg-gray-900">
+                    <div className="flex-1 bg-gray-200 p-4 dark:bg-gray-900 transition-all duration-200 ease-in-out">
                         {children} {/* Aca le paso el contenido de los page.tsx */}
                     </div>
                 </SidebarInset>

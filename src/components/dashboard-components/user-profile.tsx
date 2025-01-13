@@ -16,7 +16,7 @@ export default function UserProfile({
 }:{userName: string, userCell: string, userMail: string, userService: string, userDescription: string, userSchedule: string, userPrice: string, userExperience: string}) {
     
     return (
-        <div className="relative w-full p-5 bg-white border border-gray-300 rounded-lg shadow dark:bg-gray-800 dark:border-gray-900">
+        <div className="relative w-full p-5 bg-white border border-gray-300 rounded-lg shadow dark:bg-gray-800 dark:border-gray-900 transition-all duration-200 ease-in-out">
             {/* Ocupación Principal */}
             <div className="absolute top-8 xl:right-80 lg:right-56 right-52">
                 <Star></Star>
