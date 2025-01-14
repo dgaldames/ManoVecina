@@ -82,7 +82,7 @@ const data = {
       icon: Star,
     },
     {
-      name: "Perfil",
+      name: "Mi Perfil",
       url: '#',
       icon: Contact,
     },
@@ -106,7 +106,7 @@ return (
     <NavUser user={data.user} /> 
   </SidebarHeader>
 
-  <Separator orientation="horizontal" className="h-min dark:bg-white " />
+  <Separator orientation="horizontal" className="h-min2 dark:bg-white " />
 
   <SidebarContent>
     <NavMain items={data.navMain}/>

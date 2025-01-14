@@ -46,6 +46,7 @@ export default {
 			},
 			height: {
 				min: '0.1',
+				min2: '0.5'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

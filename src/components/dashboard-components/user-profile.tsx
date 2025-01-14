@@ -14,7 +14,6 @@ export default function UserProfile({
     userPrice,
     userExperience,
 }:{userName: string, userCell: string, userMail: string, userService: string, userDescription: string, userSchedule: string, userPrice: string, userExperience: string}) {
-    
     return (
         <div className="relative w-full p-5 bg-white border border-gray-300 rounded-lg shadow dark:bg-gray-800 dark:border-gray-900 transition-all duration-200 ease-in-out">
             {/* Ocupación Principal */}
@@ -53,7 +52,7 @@ export default function UserProfile({
         <div className="flex flex-col lg:flex-row gap-5">
             <div className="flex flex-col gap-y-3 w-full lg:w-2/3">
                 <label className="dark:text-white text-lg pl-2">Descripción:</label>
-                <h3 className="dark:text-white text-lg bg-gray-100 dark:bg-gray-900 py-6 px-4 rounded-lg">
+                <h3 id="descripcion" className="dark:text-white text-lg bg-gray-100 dark:bg-gray-900 py-6 px-4 rounded-lg">
                     {userDescription}
                 </h3>
             </div>
