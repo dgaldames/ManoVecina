@@ -1,4 +1,4 @@
-"use client"
+
 
 import * as React from "react"
 import {
@@ -102,25 +102,26 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 return (
 <Sidebar className="transition-all duration-200 ease-in-out" collapsible="icon" {...props}>
-  <SidebarHeader>
-    <NavUser user={data.user} /> 
-  </SidebarHeader>
 
-  <Separator orientation="horizontal" className="h-min2 dark:bg-white " />
+      <SidebarHeader>
+        <NavUser user={data.user} /> 
+      </SidebarHeader>
 
-  <SidebarContent>
-    <NavMain items={data.navMain}/>
+      <Separator orientation="horizontal" className="h-min2 dark:bg-white " />
 
-    <Separator orientation="horizontal" className="h-min dark:bg-white " />
+      <SidebarContent>
+        <NavMain items={data.navMain}/>
 
-    <NavProjects projects={data.projects} />
-  </SidebarContent>
+        <Separator orientation="horizontal" className="h-min dark:bg-white " />
 
-  <SidebarFooter>
-    <TeamSwitcher teams={data.teams} />
-  </SidebarFooter>
+        <NavProjects projects={data.projects} />
+      </SidebarContent>
 
-  <SidebarRail />
+      <SidebarFooter>
+        <TeamSwitcher teams={data.teams} />
+      </SidebarFooter>
+
+      <SidebarRail />
 </Sidebar>
 )
 }

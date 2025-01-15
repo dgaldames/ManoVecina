@@ -74,7 +74,7 @@ export function NewAccountForm({
                 </div>
             </form>
             <div className="relative hidden bg-gray-100 md:block dark:bg-neutral-800">
-                <div className="absolute inset-0 flex items-center justify-center cursor-pointer" onClick={() => {window.location.href = "/"}}>
+                <div className="absolute inset-0 flex items-center justify-center">
                 <Image
                     src={'/landing-imgs/header/LogoFinalVersion.png'}
                     alt='Logo ManoVecina'
