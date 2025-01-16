@@ -88,7 +88,7 @@ const data = {
     },
     {
       name:"Ayuda/Soporte",
-      url: "#",
+      url: "/dashboard/dashboard-soporte",
       icon: Wrench,
     },
     {
