@@ -85,7 +85,7 @@ export default function UserProfile({
             </div>
             <Separator orientation="vertical" className="hidden lg:block h-52 mx-10 bg-slate-500 dark:bg-white" />
             <div className="flex flex-col items-center justify-center gap-3 w-full lg:w-1/3">
-            <Link href="#" className="inline-flex items-center justify-center px-10 py-6 text-3xl font-semibold text-center text-white bg-green-500 rounded-lg ring-1 hover:ring-darkbg dark:hover:ring-white hover:bg-green-600 focus:ring-2 focus:ring-darkbg dark:focus:ring-white focus:outline-none w-full lg:w-auto">
+            <Link href="#" className="transform hover:scale-110 hover:ease-out transition duration-300 inline-flex items-center justify-center px-10 py-6 text-3xl font-semibold text-center text-white bg-green-500 rounded-lg ring-1 hover:ring-darkbg dark:hover:ring-white hover:bg-green-600 focus:ring-2 focus:ring-darkbg dark:focus:ring-white focus:outline-none w-full lg:w-auto">
                 Contactar
                 <svg className="ml-2" width="32px" height="32px" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" clipRule="evenodd" d="M16 31C23.732 31 30 24.732 30 17C30 9.26801 23.732 3 16 3C8.26801 3 2 9.26801 2 17C2 19.5109 2.661 21.8674 3.81847 23.905L2 31L9.31486 29.3038C11.3014 30.3854 13.5789 31 16 31ZM16 28.8462C22.5425 28.8462 27.8462 23.5425 27.8462 17C27.8462 10.4576 22.5425 5.15385 16 5.15385C9.45755 5.15385 4.15385 10.4576 4.15385 17C4.15385 19.5261 4.9445 21.8675 6.29184 23.7902L5.23077 27.7692L9.27993 26.7569C11.1894 28.0746 13.5046 28.8462 16 28.8462Z" fill="#BFC8D0"/>

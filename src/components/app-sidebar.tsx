@@ -14,20 +14,19 @@ import {
   //SquareTerminal,
   BadgeDollarSign,
   ReceiptText,
-  Star,
   Contact,
   Wrench,
   LogOut,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
+//import { NavProjects } from "@/components/nav-projects"
 import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+//import { TeamSwitcher } from "@/components/team-switcher"
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
+// SidebarFooter,
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
@@ -73,29 +72,22 @@ const data = {
       url: "/dashboard",
       icon:  ReceiptText,
       isActive: true,
-    }
-  ],
-  projects: [
-    {
-      name: "Favoritos",
+    },{
+      title: "Mi Perfil",
       url: "#",
-      icon: Star,
-    },
-    {
-      name: "Mi Perfil",
-      url: '#',
       icon: Contact,
     },
     {
-      name:"Ayuda/Soporte",
+      title: "Ayuda/Soporte",
       url: "/dashboard/dashboard-soporte",
       icon: Wrench,
-    },
-    {
-      name: "Cerrar Sesión",
+    },{
+      title: "Cerrar Sesión",
       url: "#",
       icon: LogOut,
     }
+  ],
+    projects: [
   ],
 }
 
@@ -114,12 +106,12 @@ return (
 
         <Separator orientation="horizontal" className="h-min dark:bg-white " />
 
-        <NavProjects projects={data.projects} />
+        {/*<NavProjects projects={data.projects} />*/}
       </SidebarContent>
 
-      <SidebarFooter>
+      {/* <SidebarFooter>
         <TeamSwitcher teams={data.teams} />
-      </SidebarFooter>
+      </SidebarFooter> */}
 
       <SidebarRail />
 </Sidebar>

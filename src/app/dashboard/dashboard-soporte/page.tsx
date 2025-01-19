@@ -4,7 +4,7 @@ import {Accordion, AccordionContent, AccordionItem, AccordionTrigger, } from "@/
 
 export default function SupportPage() {
     return (
-        <main className="bg-neutral-50 py-12 px-6 mb-28 rounded-xl dark:bg-gray-800" id="contacto-soporte">
+        <main className="bg-neutral-50 py-12 px-6 mb-5 rounded-xl dark:bg-gray-800" id="contacto-soporte">
             <div className="grid md:grid-cols-1 max-w-7xl mx-auto">
                 <div className="pb-8">
                     <h1 className="text-gray-800 md:text-5xl text-4xl font-bold pb-6 dark:text-white">Soporte</h1>
@@ -110,7 +110,7 @@ export default function SupportPage() {
 
             <Separator orientation="horizontal" className="h-min bg-slate-500 dark:bg-white my-10" />
 
-            <main className="mb-44 py-12 px-6 bg-neutral-100 rounded-xl dark:bg-gray-900 shadow-lg" id="faq-soporte">
+            <main className="mb-10 py-12 px-6 bg-neutral-100 rounded-xl dark:bg-gray-900 shadow-lg" id="faq-soporte">
                 <div className="max-w-7xl mx-auto grid md:grid-cols-2 grid-cols-1 md:gap-28 gap-12">
                     <div>
                         <h1 className="md:text-5xl text-4xl font-bold text-gray-800 dark:text-white pb-6">Preguntas Frecuentes</h1>

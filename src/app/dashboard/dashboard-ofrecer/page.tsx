@@ -120,7 +120,7 @@ export default function OfrecerPage(){
                                         {formData.experiencia.length}/250 caracteres
                                             </p>
                     </div> 
-                    <button type="submit" className="text-white bg-vecino rounded-lg hover:bg-orange-600 focus:ring-2  dark:focus:ring-white focus:ring-darkbg focus:outline-none text-lg w-full lg:w-auto px-5 py-2.5 text-center">Publicar mis Servicios</button>
+                    <button type="submit" className="text-white bg-vecino rounded-lg hover:bg-orange-600 focus:ring-2  dark:focus:ring-white focus:ring-darkbg focus:outline-none text-lg w-full lg:w-auto px-5 py-2.5 text-center transform hover:scale-105 hover:ease-out transition duration-300">Publicar mis Servicios</button>
                 </form>
             </div>
     )
