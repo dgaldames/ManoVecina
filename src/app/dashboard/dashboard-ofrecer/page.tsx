@@ -37,11 +37,11 @@ export default function OfrecerPage(){
                 <form>
                     <div className="grid gap-6 mb-6 md:grid-cols-2">
                         <div className="mb-0">
-                            <label htmlFor="nombre" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
+                            <label htmlFor="nombre" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre (Este nombre se utilizará para dar a conocer sus servicios, puede ser un apodo)</label>
                             <input type="text" id="nombre" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John Titor" required />
                         </div>
                         <div>
-                            <label htmlFor="telefono" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefono</label>
+                            <label htmlFor="telefono" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Teléfono</label>
                             <input value={formData.telefono} onChange={handleChange} type="tel" id="telefono" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="912345678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required />
                             <p
                                 className={`mt-1 text-sm ml-1 ${
@@ -55,7 +55,7 @@ export default function OfrecerPage(){
                             </p>
                         </div>
                         <div>
-                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo</label>
+                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo de Contacto</label>
                             <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="john.titor@gmail.com" required />
                         </div> 
                         <div>
@@ -96,7 +96,7 @@ export default function OfrecerPage(){
                         </div>
                     </div>
                     <div className="mb-6">
-                        <label htmlFor="descripcion" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripcion su Servicio</label>
+                        <label htmlFor="descripcion" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción su Servicio</label>
                         <input value={formData.descripcion} onChange={handleChange} type="text" id="descripcion" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Me especializo en la poda de arbustos y tala de arboles..." required />
                         <p className = {`text-sm mt-1 ml-1 ${formData.descripcion.length === 250 ? "text-vecino"
                                                 : formData.descripcion.length > 250

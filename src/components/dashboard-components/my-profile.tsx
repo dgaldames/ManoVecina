@@ -3,7 +3,7 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 
 
-export default function UserProfile({
+export default function MyProfilePage({
     userName,
     userCell,
     userMail,
@@ -15,11 +15,14 @@ export default function UserProfile({
 }:{userName: string, userCell: string, userMail: string, userService: string, userDescription: string, userSchedule: string, userPrice: string, userExperience: string}) {
     return (
         <div className="relative w-full p-5 bg-white border border-gray-300 rounded-lg shadow dark:bg-gray-800 dark:border-gray-900 transition-all duration-200 ease-in-out">
+            <div className="flex flex-col items-center pb-7 pt-2">
+                <span className="lg:text-2xl text-xl dark:text-white bg-gray-300 dark:bg-darkbg p-4 rounded-xl">Asi es como ven tu perfil los vecinos. Si deseas editar algo, <Link href="/dashboard/dashboard-ofrecer" className="underline decoration-1 underline-offset-4 hover:text-vecino hover:decoration-transparent duration-200">haz click aqui</Link></span>
+            </div>
             {/* Ocupación Principal */}
-            <div className="absolute flex top-3 right-5 dark:bg-gray-900 bg-gray-100 px-4 py-4 rounded-lg">
+            <div className="absolute flex top-15 right-5 dark:bg-gray-900 bg-gray-100 px-4 py-4 rounded-lg">
                 <h3 className="font-medium dark:text-white xl:text-3xl lg:text-xl text-lg">{userService}</h3>
             </div>
-            <div className="flex flex-col lg:flex-row items-center lg:items-start gap-5 xl:mt-0 mt-14">
+            <div className="flex flex-col lg:flex-row items-center lg:items-start gap-5 xl:mt-0 mt-20">
                 <Image
                 className="w-32 h-32 lg:w-48 lg:h-48 mb-3 rounded-full shadow-lg"
                 alt="Bonnie image"

@@ -55,13 +55,13 @@ export default function Header(){
                                 <ul className="flex flex-col gap-4 mt-4">
                                     <li className="py-4 flex justify-center"><a href="#" className="text-2xl font-semibold">Inicio</a></li>
                                     <div className="p-medio bg-vecino"></div>
-                                    <li className="py-4 flex justify-center"><a href="#" className="text-2xl font-semibold">Objetivo</a></li>
+                                    <li className="py-4 flex justify-center"><a href="#target" className="text-2xl font-semibold">Objetivo</a></li>
                                     <div className="p-medio bg-vecino"></div>
-                                    <li className="py-4 flex justify-center"><a href="#" className="text-2xl font-semibold">Funcionalidades</a></li>
+                                    <li className="py-4 flex justify-center"><a href="#funcionalidades" className="text-2xl font-semibold">Funcionalidades</a></li>
                                     <div className="p-medio bg-vecino"></div>
-                                    <li className="py-4 flex justify-center"><a href="#" className="text-2xl font-semibold">FAQ</a></li>
+                                    <li className="py-4 flex justify-center"><a href="#faq" className="text-2xl font-semibold">FAQ</a></li>
                                     <div className="p-medio bg-vecino"></div>
-                                    <li className="py-4 flex justify-center"><a href="#" className="text-2xl font-semibold">Contacto</a></li>
+                                    <li className="py-4 flex justify-center"><a href="#contacto" className="text-2xl font-semibold">Contacto</a></li>
                                     <div className="p-medio bg-vecino"></div>
                                 </ul>
                             <DrawerClose className="mt-4 py-6">

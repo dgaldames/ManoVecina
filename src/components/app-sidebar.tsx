@@ -7,7 +7,7 @@ import {
   Bot,
   Command, */
   //Frame,
-  GalleryVerticalEnd,
+ //GalleryVerticalEnd,
 /*   Map,
   PieChart,
   Settings2, */
@@ -37,16 +37,15 @@ import { Separator } from "@/components/ui/separator"
 const data = {
   user: {
     name: "Diego",
-    email: "galdamesdiego98@gmail.com",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "/dashboard-imgs/kurisu.png",
   },
-  teams: [
+  /* teams: [
     {
       name: "ManoVecina",
       logo: GalleryVerticalEnd,
       plan: "Enterprise",
     },
-  ],
+  ], */
   navMain: [
     {
       title: "Ofrecer Servicios",
@@ -74,7 +73,7 @@ const data = {
       isActive: true,
     },{
       title: "Mi Perfil",
-      url: "#",
+      url: "/dashboard/dashboard-my-profile",
       icon: Contact,
     },
     {
