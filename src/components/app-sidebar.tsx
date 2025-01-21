@@ -105,14 +105,9 @@ return (
 
         <Separator orientation="horizontal" className="h-min dark:bg-white " />
 
-        {/*<NavProjects projects={data.projects} />*/}
       </SidebarContent>
 
-      {/* <SidebarFooter>
-        <TeamSwitcher teams={data.teams} />
-      </SidebarFooter> */}
-
-      <SidebarRail />
+      <SidebarRail /> 
 </Sidebar>
 )
 }

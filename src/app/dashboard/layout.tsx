@@ -21,19 +21,11 @@ import {
 import { useState } from "react"
 
 
+
+
 const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     
-    
         const [darkMode, setDarkMode] = useState(false)
-    
-        /* useEffect(() => {
-            
-            if(darkMode === true){
-                document.querySelector('html')?.classList.add('dark')
-            }else{
-                document.querySelector('html')?.classList.remove('dark')
-            }
-        },[darkMode]) */
 
         const toggleDarkMode = () =>{
             setDarkMode(!darkMode)
