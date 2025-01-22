@@ -54,7 +54,7 @@ export function NavUser({
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-base leading-tight">
-                <span className="truncate font-semibold">{user.name}</span>
+                <a href="/dashboard/dashboard-my-profile"><span className="truncate font-semibold">{user.name}</span></a>
               </div>
               {/* <ChevronsUpDown className="ml-auto size-4" /> */}
             </SidebarMenuButton>
