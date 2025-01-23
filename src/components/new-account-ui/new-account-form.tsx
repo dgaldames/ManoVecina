@@ -5,17 +5,51 @@ import { Button } from "@/components/ui/button-login"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input-login"
 import { Label } from "@/components/ui/label"
+import { createClient } from "@/app/utils/supabase/supabase-client"
+import { useState } from "react"
+import Swal from "sweetalert2"
 import Image from "next/image"
 
 export function NewAccountForm({
     className,
     ...props
-    }: React.ComponentProps<"div">) {
+    }: React.ComponentProps<"div">){
+
+        const [email, setEmail] = useState('')
+        const [password, setPassword] = useState('')
+        const [name, setName] = useState('')
+        const [error, setError] = useState<string | null>(null)
+
+        const supabase = createClient()
+
+        const handleSignUp = async (e: React.FormEvent) => {
+            e.preventDefault()
+            setError(null)
+
+            const { error } = await supabase.auth.signUp({
+                email,
+                password,
+                options:{
+                    data: { name },
+                },
+            })
+
+            if(error){
+                setError(error.message)
+            }else{
+                Swal.fire({
+                    title: "Godines",
+                        text: "Tu eres el skibidi toilet",
+                        icon: "success"
+                    });
+            }
+        }
+
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
         <Card className="overflow-hidden">
             <CardContent className="grid p-0 md:grid-cols-2">
-            <form className="p-6 md:p-8">
+            <form onSubmit={handleSignUp} className="p-6 md:p-8">
                 <div className="flex flex-col gap-6">
                     <div className="flex flex-col items-center text-center">
                         <h1 className="text-2xl font-bold py-3">Bienvenido!</h1>
@@ -26,7 +60,8 @@ export function NewAccountForm({
                     <div className="grid gap-2">
                         <Label htmlFor="email">Correo</Label>
                         <Input
-                        className=""
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         id="email"
                         type="email"
                         placeholder="ejemplo@gmail.com"
@@ -36,7 +71,8 @@ export function NewAccountForm({
                     <div className="grid gap-2">
                         <Label htmlFor="name">Nombre</Label>
                         <Input
-                        className=""
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                         id="name"
                         type="text"
                         placeholder="Juan Perez"
@@ -47,11 +83,17 @@ export function NewAccountForm({
                         <div className="flex items-center">
                         <Label htmlFor="password">Contraseña</Label>
                         </div>
-                        <Input id="password" type="password" required />
+                        <Input 
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        id="password" 
+                        type="password" 
+                        required />
                     </div>
                     <Button type="submit" className="w-full text-base bg-vecino hover:bg-gray-950">
                         Registrarme
                     </Button>
+                    {error && <p>{error}</p>}
                     <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-neutral-200 dark:after:border-neutral-800">
                         <span className="relative z-10 bg-white px-2 text-neutral-500 dark:bg-neutral-950 dark:text-neutral-400">
                         Continuar con

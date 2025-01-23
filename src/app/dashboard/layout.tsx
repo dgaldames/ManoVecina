@@ -1,23 +1,11 @@
 'use client'
+
+
 import React from "react";
-
-
+//import { createClient } from "../utils/supabase/supabase-client";
 import { AppSidebar } from "@/components/app-sidebar"
-import {
-    /* Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbPage,
-    BreadcrumbSeparator, */
-} from "@/components/ui/breadcrumb"
 import { Separator } from "@/components/ui/separator"
-import {
-    SidebarInset,
-    SidebarProvider,
-    SidebarTrigger,
-} from "@/components/ui/sidebar"
-
+import {SidebarInset, SidebarProvider, SidebarTrigger,} from "@/components/ui/sidebar"
 import { useState } from "react"
 
 
@@ -25,6 +13,8 @@ import { useState } from "react"
 
 const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     
+        //const supabase = createClient()
+
         const [darkMode, setDarkMode] = useState(false)
 
         const toggleDarkMode = () =>{
