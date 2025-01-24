@@ -7,43 +7,46 @@ import { Input } from "@/components/ui/input-login"
 import { Label } from "@/components/ui/label"
 import { createClient } from "@/app/utils/supabase/supabase-client"
 import { useState } from "react"
+import { useRouter } from "next/navigation" // Cambiamos a next/navigation para redirección
 import Swal from "sweetalert2"
 import Image from "next/image"
 
 export function NewAccountForm({
     className,
     ...props
-    }: React.ComponentProps<"div">){
+    }: React.ComponentProps<"div">) {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [name, setName] = useState("")
+    const [error, setError] = useState<string | null>(null)
 
-        const [email, setEmail] = useState('')
-        const [password, setPassword] = useState('')
-        const [name, setName] = useState('')
-        const [error, setError] = useState<string | null>(null)
+    const supabase = createClient()
+    const router = useRouter() // Hook para redirección
 
-        const supabase = createClient()
+    const handleSignUp = async (e: React.FormEvent) => {
+        e.preventDefault()
+        setError(null)
 
-        const handleSignUp = async (e: React.FormEvent) => {
-            e.preventDefault()
-            setError(null)
+        const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+            data: { name },
+        },
+        })
 
-            const { error } = await supabase.auth.signUp({
-                email,
-                password,
-                options:{
-                    data: { name },
-                },
-            })
-
-            if(error){
-                setError(error.message)
-            }else{
-                Swal.fire({
-                    title: "Godines",
-                        text: "Tu eres el skibidi toilet",
-                        icon: "success"
-                    });
-            }
+        if (error) {
+        setError(error.message)
+        } else {
+        Swal.fire({
+            title: "Registro exitoso",
+            text: "Tu cuenta ha sido creada correctamente",
+            icon: "success",
+        }).then(() => {
+            router.push("/dashboard") // Redirigir al dashboard
+        })
         }
+    }
 
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
