@@ -37,7 +37,7 @@ import { Separator } from "@/components/ui/separator"
 const data = {
   user: {
     name: "Diego",
-    avatar: "/dashboard-imgs/kurisu.png",
+    /* avatar: "/dashboard-imgs/kurisu.png", */
   },
   /* teams: [
     {

@@ -53,9 +53,17 @@ export default function OfrecerPage(){
                 </div>
                 <form>
                     <div className="grid gap-6 mb-6 md:grid-cols-2">
-                        <div className="mb-0">
-                            <label htmlFor="nombre" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre (Este nombre se utilizará para dar a conocer sus servicios, puede ser un apodo)</label>
-                            <input type="text" id="nombre" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John Titor" required />
+                    <div>
+                            <label htmlFor="nombre_servicio" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre del Servicio</label>
+                            <input value={formData.nombre_servicio} onChange={handleChange} type="text" id="nombre_servicio" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Jardineria General" required />
+                            <p className = {`text-sm mt-1 ml-1 ${formData.nombre_servicio.length === 50 ? "text-vecino"
+                                                : formData.nombre_servicio.length > 50
+                                                ? "text-red-500"
+                                            : "text-gray-600 dark:text-gray-400"
+                                        }`}
+                                    >
+                                        {formData.nombre_servicio.length}/50 caracteres
+                                            </p>
                         </div>
                         <div>
                             <label htmlFor="telefono" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Teléfono</label>
@@ -72,21 +80,18 @@ export default function OfrecerPage(){
                             </p>
                         </div>
                         <div>
-                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo de Contacto</label>
-                            <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="john.titor@gmail.com" required />
-                        </div> 
-                        <div>
-                            <label htmlFor="nombre_servicio" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre del Servicio</label>
-                            <input value={formData.nombre_servicio} onChange={handleChange} type="text" id="nombre_servicio" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Jardineria General" required />
-                            <p className = {`text-sm mt-1 ml-1 ${formData.nombre_servicio.length === 50 ? "text-vecino"
-                                                : formData.nombre_servicio.length > 50
+                            <label htmlFor="disponibilidad" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Disponibilidad Horaria</label>
+                            <input value={formData.disponibilidad} onChange={handleChange} type="text" id="disponibilidad" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Lunes a Viernes de 10:00 a 15:00" required />
+                            <p className = {`text-sm mt-1 ml-1 ${formData.disponibilidad.length === 100 ? "text-vecino"
+                                                : formData.disponibilidad.length > 100
                                                 ? "text-red-500"
                                             : "text-gray-600 dark:text-gray-400"
                                         }`}
                                     >
-                                        {formData.nombre_servicio.length}/50 caracteres
+                                        {formData.disponibilidad.length}/100 caracteres
                                             </p>
                         </div>
+
                         <div>
                             <label htmlFor="tarifa" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tarifa por Servicio</label>
                             <input value={formData.tarifa} onChange={handleChange} type="text" id="tarifa" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="$10.000 - $15.000" required />
@@ -97,18 +102,6 @@ export default function OfrecerPage(){
                                         }`}
                                     >
                                         {formData.tarifa.length}/75 caracteres
-                                            </p>
-                        </div>  
-                        <div>
-                            <label htmlFor="disponibilidad" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Disponibilidad Horaria</label>
-                            <input value={formData.disponibilidad} onChange={handleChange} type="text" id="disponibilidad" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Lunes a Viernes de 10:00 a 15:00" required />
-                            <p className = {`text-sm mt-1 ml-1 ${formData.disponibilidad.length === 100 ? "text-vecino"
-                                                : formData.disponibilidad.length > 100
-                                                ? "text-red-500"
-                                            : "text-gray-600 dark:text-gray-400"
-                                        }`}
-                                    >
-                                        {formData.disponibilidad.length}/100 caracteres
                                             </p>
                         </div>
                     </div>
@@ -126,7 +119,7 @@ export default function OfrecerPage(){
                     </div>
                     <p></p>
                     <div className="mb-6">
-                        <label htmlFor="experiencia" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Experiencia de su Servicio</label>
+                        <label htmlFor="experiencia" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Experiencia de su Servicio (Opcional)</label>
                         <input value={formData.experiencia} onChange={handleChange} type="text" id="experiencia" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cuento con mas de 10 anhos en el rubro..." required />
                         <p className = {`text-sm mt-1 ml-1 ${formData.experiencia.length === 250 ? "text-vecino"
                                                 : formData.experiencia.length > 250
@@ -136,8 +129,23 @@ export default function OfrecerPage(){
                                     >
                                         {formData.experiencia.length}/250 caracteres
                                             </p>
-                    </div> 
-                    <button onClick={handleClick} type="submit" className="text-white bg-vecino rounded-lg hover:bg-orange-600 focus:ring-2  dark:focus:ring-white focus:ring-darkbg focus:outline-none text-lg w-full lg:w-auto px-5 py-2.5 text-center transform hover:scale-105 hover:ease-out transition duration-300">Publicar mis Servicios</button>
+                    </div>
+                    <div className="flex flex-col md:flex-row gap-5">
+                    <label
+                        htmlFor="file-input"
+                        className="text-white bg-vecino rounded-lg hover:bg-orange-600 focus:ring-2  dark:focus:ring-white focus:ring-darkbg focus:outline-none text-lg w-full lg:w-auto px-5 py-2.5 text-center transform hover:scale-105 hover:ease-out transition duration-300 cursor-pointer"
+                        >
+                        Agregar Foto de Perfil
+                        </label>
+                        <input
+                        id="file-input"
+                        type="file"
+                        accept=".png,.jpg,.jpeg,.pdf"
+                        className="hidden"
+                        name="Archivo"
+                        />
+                        <button onClick={handleClick} type="submit" className="text-white bg-vecino rounded-lg hover:bg-orange-600 focus:ring-2  dark:focus:ring-white focus:ring-darkbg focus:outline-none text-lg w-full lg:w-auto px-5 py-2.5 text-center transform hover:scale-105 hover:ease-out transition duration-300">Publicar mis Servicios</button>
+                    </div>
                 </form>
             </div>
     )

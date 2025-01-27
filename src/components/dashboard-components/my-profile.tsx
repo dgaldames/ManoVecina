@@ -6,13 +6,12 @@ import Link from "next/link";
 export default function MyProfilePage({
     userName,
     userCell,
-    userMail,
     userService,
     userDescription,
     userSchedule,
     userPrice,
     userExperience,
-}:{userName: string, userCell: string, userMail: string, userService: string, userDescription: string, userSchedule: string, userPrice: string, userExperience: string}) {
+}:{userName: string, userCell: string, userService: string, userDescription: string, userSchedule: string, userPrice: string, userExperience: string}) {
     return (
         <div className="relative w-full p-5 bg-white border border-gray-300 rounded-lg shadow dark:bg-gray-800 dark:border-gray-900 transition-all duration-200 ease-in-out">
             <div className="flex flex-col items-center pb-7 pt-2">
@@ -39,10 +38,6 @@ export default function MyProfilePage({
                         <label className="dark:text-white text-lg font-semibold">Teléfono:</label>
                         <h3 className="dark:text-white text-lg">{userCell}</h3>
                     </div>
-                    <div className="flex flex-col lg:flex-row items-start gap-1 lg:gap-3">
-                        <label className="dark:text-white text-lg font-semibold">Correo:</label>
-                        <h3 className="dark:text-white text-lg">{userMail}</h3>
-                    </div>
                 </div>
             </div>
 
@@ -50,7 +45,7 @@ export default function MyProfilePage({
 
         <div className="flex flex-col lg:flex-row gap-5">
             <div className="flex flex-col gap-y-3 w-full lg:w-2/3">
-                <label className="dark:text-white text-lg pl-2">Descripción:</label>
+                <label className="dark:text-white text-lg font-semibold pl-2">Descripción:</label>
                 <h3 id="descripcion" className="dark:text-white text-lg bg-gray-100 dark:bg-gray-900 py-6 px-4 rounded-lg">
                     {userDescription}
                 </h3>
@@ -58,14 +53,14 @@ export default function MyProfilePage({
             <Separator orientation="vertical" className="hidden lg:block h-52 mx-10 bg-slate-500 dark:bg-white" />
             <div className="flex flex-col gap-y-3 w-full lg:w-1/3">
                 <div className="flex flex-col gap-y-1">
-                    <label className="dark:text-white text-lg pl-2">Disponibilidad Horaria:</label>
+                    <label className="dark:text-white text-lg font-semibold pl-2">Disponibilidad Horaria:</label>
                     <h3 className="dark:text-white text-lg dark:bg-gray-900 py-4 px-4 rounded-lg bg-gray-100">
                         {userSchedule}
                     </h3>
                 </div>
             <Separator orientation="horizontal" className="h-min bg-slate-500 dark:bg-white lg:block hidden" />
             <div className="flex flex-col gap-y-1">
-                <label className="dark:text-white text-lg pl-2">Tarifas:</label>
+                <label className="dark:text-white text-lg font-semibold pl-2">Tarifas:</label>
                 <h3 className="dark:text-white text-lg dark:bg-gray-900 py-4 px-4 rounded-lg bg-gray-100">
                 Valor por hora: {userPrice}
                 </h3>
@@ -77,7 +72,7 @@ export default function MyProfilePage({
 
         <div className="flex flex-col lg:flex-row gap-5">
             <div className="flex flex-col gap-y-3 w-full lg:w-2/3">
-            <label className="dark:text-white text-lg pl-2">Experiencia:</label>
+            <label className="dark:text-white text-lg pl-2 font-semibold">Experiencia:</label>
             <h3 className="dark:text-white text-lg bg-gray-100 dark:bg-gray-900 py-6 px-4 rounded-lg">
                 {userExperience}
             </h3>

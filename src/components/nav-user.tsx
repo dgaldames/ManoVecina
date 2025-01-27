@@ -10,9 +10,9 @@ import {
 } from "lucide-react"
 
 import {
-  Avatar,
+/*   Avatar,
   AvatarFallback,
-  AvatarImage,
+  AvatarImage, */
 } from "@/components/ui/avatar"
 import {
   DropdownMenu,
@@ -35,7 +35,7 @@ export function NavUser({
 }: {
   user: {
     name: string
-    avatar: string
+    /* avatar: string */
   }
 }) {
   //const { isMobile } = useSidebar()
@@ -49,12 +49,12 @@ export function NavUser({
               size="lg"
               className="my-3 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <Avatar className="h-12 w-12 rounded-lg">
+              {/* <Avatar className="h-12 w-12 rounded-lg">
                 <AvatarImage src={user.avatar} alt={user.name} />
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
-              </Avatar>
-              <div className="grid flex-1 text-left text-base leading-tight">
-                <a href="/dashboard/dashboard-my-profile"><span className="truncate font-semibold">{user.name}</span></a>
+              </Avatar> */}
+              <div className="grid flex-1 text-left text-xl leading-tight">
+                <a href="/dashboard/dashboard-my-profile"><span className="truncate font-semibold">Hola! {" "} {user.name}</span></a>
               </div>
               {/* <ChevronsUpDown className="ml-auto size-4" /> */}
             </SidebarMenuButton>
