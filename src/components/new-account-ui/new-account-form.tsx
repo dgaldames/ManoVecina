@@ -11,14 +11,17 @@ import { useRouter } from "next/navigation" // Cambiamos a next/navigation para 
 import Swal from "sweetalert2"
 import Image from "next/image"
 import SvgGoogle from "../../../public/login-icons/sign-up-google-svg"
+import { Eye, EyeOff } from "lucide-react"
 
 export function NewAccountForm({
     className,
     ...props
     }: React.ComponentProps<"div">) {
+
+    const [showPassword, showSetPassword] = useState(false)
+    
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [name, setName] = useState("")
     const [error, setError] = useState<string | null>(null)
 
     const supabase = createClient()
@@ -73,26 +76,29 @@ export function NewAccountForm({
                         />
                     </div>
                     <div className="grid gap-2">
-                        <Label htmlFor="name">Nombre</Label>
-                        <Input
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        id="name"
-                        type="text"
-                        placeholder="Juan Perez"
-                        required
-                        />
-                    </div>
-                    <div className="grid gap-2">
-                        <div className="flex items-center">
-                        <Label htmlFor="password">Contraseña</Label>
+                        <div className="flex items-center justify-between">
+                            <Label htmlFor="password">Contraseña</Label>
                         </div>
-                        <Input 
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        id="password" 
-                        type="password" 
-                        required />
+                        <div className="relative">
+                            <Input
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                id="password"
+                                type={showPassword ? "text" : "password"}
+                                required
+                                className="pr-10" // Espacio para el ícono
+                            />
+                            
+                            <Button
+                                type="button"
+                                onClick={() => showSetPassword(!showPassword)}
+                                className="absolute right-2 top-1/2 -translate-y-1/2 p-2"
+                                variant="link"
+                                size="icon"
+                                >
+                                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                            </Button>
+                        </div>
                     </div>
                     <Button type="submit" className="w-full text-base bg-vecino hover:bg-gray-950">
                         Registrarme

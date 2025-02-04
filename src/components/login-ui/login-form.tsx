@@ -9,11 +9,14 @@ import { createClient } from "@/app/utils/supabase/supabase-client"
 import { useState } from "react"
 import Image from "next/image"
 import SvgGoogle from "../../../public/login-icons/sign-up-google-svg"
+import { EyeOff, Eye } from "lucide-react"
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+
+  const [showPassword, showSetPassword] = useState(false)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -67,12 +70,26 @@ export function LoginForm({
                     ¿Olvidaste tu contraseña?
                   </a>
                 </div>
+                <div className="relative">
                 <Input
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                id="password" 
-                type="password" 
-                required />
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  id="password" 
+                  type={showPassword ? "text" : "password"}
+                  required
+                  className="pr-10"
+                />
+
+                <Button
+                  type="button"
+                  variant="link"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2"
+                  onClick={() => showSetPassword(!showPassword)}
+                  size="icon"
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </Button>
+                </div>
               </div>
               <Button type="submit" className="w-full text-base bg-vecino hover:bg-gray-950">
                 Iniciar Sesión
@@ -98,7 +115,7 @@ export function LoginForm({
             </div>
           </form>
           <div className="relative hidden bg-gray-100 md:block dark:bg-neutral-800">
-            <div className="absolute inset-0 flex items-center justify-center cursor-pointer" onClick={() => {window.location.href = "/"}}>
+            <div className="absolute inset-0 flex items-center justify-center">
               <Image
                 src={'/landing-imgs/header/LogoFinalVersion.png'}
                 alt='Logo ManoVecina'
