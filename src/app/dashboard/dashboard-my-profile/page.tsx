@@ -6,7 +6,6 @@ export default function MyProfile(){
             <MyProfilePage
                 userName={"Diego Galdames"}
                 userCell="933944228"
-                userMail={"dgaldames@pregrado.ubo.cl"}
                 userService={"Tala de Arboles General"}
                 userDescription="Había una vez una persona que era Skibidi y luego llegó otra que era toilet... Había una vez una persona que era toilet y luego llegó otra que era toilet... Había una vez una persona que era toilet y luego llegó otra que era toilet... Había una vez una persona que era toilet y luego llegó otra que"
                 userSchedule="Lunes a Viernes de 9:00 a 18:00"
