@@ -53,7 +53,11 @@ export default function OfrecerPage(){
                 </div>
                 <form>
                     <div className="grid gap-6 mb-6 md:grid-cols-2">
-                    <div>
+                        <div>
+                            <label htmlFor="nombre" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre (Este nombre se utilizará para dar a conocer sus servicios, puede ser un apodo)</label>
+                            <input type="text" id="nombre" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John Titor" required />
+                        </div>
+                        <div>
                             <label htmlFor="nombre_servicio" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre del Servicio</label>
                             <input value={formData.nombre_servicio} onChange={handleChange} type="text" id="nombre_servicio" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Jardineria General" required />
                             <p className = {`text-sm mt-1 ml-1 ${formData.nombre_servicio.length === 50 ? "text-vecino"

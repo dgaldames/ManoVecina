@@ -34,9 +34,6 @@ export function NewAccountForm({
         const { error } = await supabase.auth.signUp({
         email,
         password,
-        options: {
-            data: { name },
-        },
         })
 
         if (error) {

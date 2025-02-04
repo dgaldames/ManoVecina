@@ -29,6 +29,7 @@ import {
   SidebarMenuItem,
   //useSidebar,
 } from "@/components/ui/sidebar"
+import { useSidebar } from "@/components/ui/sidebar"
 
 export function NavUser({
   user,
@@ -38,7 +39,10 @@ export function NavUser({
     /* avatar: string */
   }
 }) {
-  //const { isMobile } = useSidebar()
+  
+    const { state } = useSidebar()
+
+
 
   return (
     <SidebarMenu>
@@ -54,7 +58,11 @@ export function NavUser({
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar> */}
               <div className="grid flex-1 text-left text-xl leading-tight">
-                <a href="/dashboard/dashboard-my-profile"><span className="truncate font-semibold">Hola! {" "} {user.name}</span></a>
+                <a href="/dashboard/dashboard-my-profile">
+                {state === "expanded" && ( 
+                <span className="truncate font-semibold">Hola! {" "} {user.name}</span>
+              )}
+                </a>
               </div>
               {/* <ChevronsUpDown className="ml-auto size-4" /> */}
             </SidebarMenuButton>
