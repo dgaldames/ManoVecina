@@ -5,13 +5,13 @@ import { Button } from "@/components/ui/button-login"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input-login"
 import { Label } from "@/components/ui/label"
-import { createClient } from "@/app/utils/supabase/supabase-client"
 import { useState } from "react"
-import { useRouter } from "next/navigation" // Cambiamos a next/navigation para redirección
-import Swal from "sweetalert2"
+//import { useRouter } from "next/navigation" // Cambiamos a next/navigation para redirección
+//import Swal from "sweetalert2"
 import Image from "next/image"
 import SvgGoogle from "../../../public/login-icons/sign-up-google-svg"
 import { Eye, EyeOff } from "lucide-react"
+import { signup } from "@/lib/auth-actions"
 
 export function NewAccountForm({
     className,
@@ -20,7 +20,7 @@ export function NewAccountForm({
 
     const [showPassword, showSetPassword] = useState(false)
     
-    const [email, setEmail] = useState("")
+    /* const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState<string | null>(null)
 
@@ -47,13 +47,13 @@ export function NewAccountForm({
             router.push("/dashboard") // Redirigir al dashboard
         })
         }
-    }
+    } */
 
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
         <Card className="overflow-hidden">
             <CardContent className="grid p-0 md:grid-cols-2">
-            <form onSubmit={handleSignUp} className="p-6 md:p-8">
+            <form className="p-6 md:p-8">
                 <div className="flex flex-col gap-6">
                     <div className="flex flex-col items-center text-center">
                         <h1 className="text-2xl font-bold py-3">Bienvenido!</h1>
@@ -64,10 +64,11 @@ export function NewAccountForm({
                     <div className="grid gap-2">
                         <Label htmlFor="email">Correo</Label>
                         <Input
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        /* value={email}
+                        onChange={(e) => setEmail(e.target.value)} */
                         id="email"
                         type="email"
+                        name="email"
                         placeholder="ejemplo@gmail.com"
                         required
                         />
@@ -78,10 +79,11 @@ export function NewAccountForm({
                         </div>
                         <div className="relative">
                             <Input
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                /* value={password}
+                                onChange={(e) => setPassword(e.target.value)} */
                                 id="password"
                                 type={showPassword ? "text" : "password"}
+                                name="password"
                                 required
                                 className="pr-10" // Espacio para el ícono
                             />
@@ -96,11 +98,16 @@ export function NewAccountForm({
                                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                             </Button>
                         </div>
+
                     </div>
-                    <Button type="submit" className="w-full text-base bg-vecino hover:bg-gray-950">
+                    <Button 
+                        type="submit" 
+                        className="w-full text-base bg-vecino hover:bg-gray-950"
+                        formAction={signup}>
                         Registrarme
                     </Button>
-                    {error && <p>{error}</p>}
+                    {/* {error && <p>{error}</p>} */}
+
                     <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-neutral-200 dark:after:border-neutral-800">
                         <span className="relative z-10 bg-white px-2 text-neutral-500 dark:bg-neutral-950 dark:text-neutral-400">
                         Continuar con

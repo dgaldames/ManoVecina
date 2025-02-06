@@ -5,11 +5,13 @@ import { Button } from "@/components/ui/button-login"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input-login"
 import { Label } from "@/components/ui/label"
-import { createClient } from "@/app/utils/supabase/supabase-client"
+//import { createClient } from "@/app/utils/supabase/supabase-client"
 import { useState } from "react"
 import Image from "next/image"
-import SvgGoogle from "../../../public/login-icons/sign-up-google-svg"
+import SignInWithGoogleButton from "./sign-in-with-google-btn"
 import { EyeOff, Eye } from "lucide-react"
+import { login } from "@/lib/auth-actions"
+import Link from "next/link"
 
 export function LoginForm({
   className,
@@ -18,7 +20,7 @@ export function LoginForm({
 
   const [showPassword, showSetPassword] = useState(false)
 
-  const [email, setEmail] = useState('')
+  /* const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
 
@@ -35,13 +37,13 @@ export function LoginForm({
     }else
       console.log(`Logeado con el nombre de ${email}`)
       window.location.href="/dashboard"
-    }
+    } */
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden">
         <CardContent className="grid p-0 md:grid-cols-2">
-          <form onSubmit={handleLogin} className="p-6 md:p-8">
+          <form className="p-6 md:p-8">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-bold py-3">Bienvenido de Vuelta!</h1>
@@ -52,10 +54,11 @@ export function LoginForm({
               <div className="grid gap-2">
                 <Label htmlFor="email">Correo</Label>
                 <Input
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  /* value={email}
+                  onChange={(e) => setEmail(e.target.value)} */
                   id="email"
                   type="email"
+                  name="email"
                   placeholder="ejemplo@gmail.com"
                   required
                 />
@@ -72,10 +75,11 @@ export function LoginForm({
                 </div>
                 <div className="relative">
                 <Input
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  /* value={password}
+                  onChange={(e) => setPassword(e.target.value)} */
                   id="password" 
                   type={showPassword ? "text" : "password"}
+                  name="password"
                   required
                   className="pr-10"
                 />
@@ -91,26 +95,25 @@ export function LoginForm({
                 </Button>
                 </div>
               </div>
-              <Button type="submit" className="w-full text-base bg-vecino hover:bg-gray-950">
+              <Button type="submit" formAction={login} className="w-full text-base bg-vecino hover:bg-gray-950">
                 Iniciar Sesión
               </Button>
-              {error && <p>{error}</p>}
+              {/* {error && <p>{error}</p>} */}
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-neutral-200 dark:after:border-neutral-800">
                 <span className="relative z-10 bg-white px-2 text-neutral-500 dark:bg-neutral-950 dark:text-neutral-400">
                   Continuar con
                 </span>
               </div>
+
               <div className="grid grid-cols-1 gap-4">
-                <Button variant="outline" className="w-full">
-                  <SvgGoogle />
-                  <span className="sr-only">Iniciar sesión con Google</span>
-                </Button>
+                <SignInWithGoogleButton/>
               </div>
+
               <div className="text-center text-sm">
                 ¿No tienes una cuenta?{" "}
-                <a href="/auth/new-account" className="underline underline-offset-4 decoration-1 hover:text-vecino hover:decoration-transparent duration-200">
+                <Link href="/auth/new-account" className="underline underline-offset-4 decoration-1 hover:text-vecino hover:decoration-transparent duration-200">
                   Registrate
-                </a>
+                </Link>
               </div>
             </div>
           </form>

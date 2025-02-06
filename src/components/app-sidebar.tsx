@@ -16,7 +16,6 @@ import {
   ReceiptText,
   Contact,
   Wrench,
-  LogOut,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -32,6 +31,8 @@ import {
 } from "@/components/ui/sidebar"
 
 import { Separator } from "@/components/ui/separator"
+import LogoutButton from "./logout-button"
+import UserGreetText from "./saludo-user"
 
 // This is sample data.
 const data = {
@@ -80,11 +81,11 @@ const data = {
       title: "Ayuda/Soporte",
       url: "/dashboard/dashboard-soporte",
       icon: Wrench,
-    },{
+    },/* {
       title: "Cerrar Sesión",
       url: "#",
       icon: LogOut,
-    }
+    } */
   ],
     projects: [
   ],
@@ -95,13 +96,16 @@ return (
 <Sidebar className="transition-all duration-200 ease-in-out" collapsible="icon" {...props}>
 
       <SidebarHeader>
-        <NavUser user={data.user} /> 
+        <NavUser user={data.user} />
+        <UserGreetText/>
       </SidebarHeader>
 
       <Separator orientation="horizontal" className="h-min2 dark:bg-white " />
 
       <SidebarContent>
         <NavMain items={data.navMain}/>
+        <Separator orientation="horizontal" className="h-min dark:bg-white " />
+        <LogoutButton/>
 
         <Separator orientation="horizontal" className="h-min dark:bg-white " />
 
