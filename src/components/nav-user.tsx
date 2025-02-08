@@ -1,13 +1,5 @@
 "use client"
 
-import {
-/*   BadgeCheck,
-  Bell,
-  ChevronsUpDown,
-  CreditCard,
-  LogOut,
-  Sparkles, */
-} from "lucide-react"
 
 import {
 /*   Avatar,
@@ -30,9 +22,10 @@ import {
   //useSidebar,
 } from "@/components/ui/sidebar"
 import { useSidebar } from "@/components/ui/sidebar"
+import UserGreetText from "./saludo-user"
 
 export function NavUser({
-  user,
+  //user,
 }: {
   user: {
     name: string
@@ -57,10 +50,10 @@ export function NavUser({
                 <AvatarImage src={user.avatar} alt={user.name} />
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar> */}
-              <div className="grid flex-1 text-left text-xl leading-tight">
+              <div className="grid flex-1 text-left text-xs leading-tight ">
                 <a href="/dashboard/dashboard-my-profile">
                 {state === "expanded" && ( 
-                <span className="truncate font-semibold">Hola! {" "} {user.name}</span>
+                <span className="truncate font-medium"><UserGreetText/></span>
               )}
                 </a>
               </div>

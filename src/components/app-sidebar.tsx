@@ -32,7 +32,6 @@ import {
 
 import { Separator } from "@/components/ui/separator"
 import LogoutButton from "./logout-button"
-import UserGreetText from "./saludo-user"
 
 // This is sample data.
 const data = {
@@ -97,7 +96,6 @@ return (
 
       <SidebarHeader>
         <NavUser user={data.user} />
-        <UserGreetText/>
       </SidebarHeader>
 
       <Separator orientation="horizontal" className="h-min2 dark:bg-white " />

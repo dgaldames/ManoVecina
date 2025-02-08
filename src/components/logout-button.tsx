@@ -4,10 +4,13 @@ import { Button } from "./ui/button";
 import { signout } from "@/lib/auth-actions"; 
 import { createClient } from "@/utils/supabase/client";
 import { LogOut } from "lucide-react";
+import { useSidebar } from "./ui/sidebar";
 
 const LogoutButton = () => {
     const [user, setUser] = useState<{ id: string; email: string } | null>(null);
     const supabase = createClient();
+
+    const { state } = useSidebar()
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -28,11 +31,11 @@ const LogoutButton = () => {
                     signout(); // Cierra sesión
                     setUser(null); // Actualiza el estado del usuario a null
                 }}
-                className="flex w-full items-center justify-start gap-1 rounded-md h-16 px-2 dark:bg-gray-900 dark:text-white text-xl text-gray-700 bg-gray-50 hover:!bg-orange-500 hover:!text-white"
+                className="group/collapsible flex w-full items-center justify-start gap-1 rounded-md h-16 px-2 dark:bg-gray-900 dark:text-white text-xl text-gray-700 bg-gray-50 hover:!bg-orange-500 hover:!text-white"
             >
                 <LogOut/>
-                Cerrar Sesión
-            </Button>
+                {state === "expanded" && <span>Cerrar Sesion</span>}
+                </Button>
         </div>
     );
 };

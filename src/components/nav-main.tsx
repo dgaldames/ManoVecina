@@ -43,7 +43,7 @@ export function NavMain({
       <SidebarGroupLabel className="text-sm">Funcionalidades</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
-          <Collapsible
+          <Collapsible /* Creo que esta es la clave */
             key={item.title}
             asChild
             defaultOpen={item.isActive}
