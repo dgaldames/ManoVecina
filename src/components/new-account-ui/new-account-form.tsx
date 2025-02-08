@@ -39,13 +39,13 @@ export function NewAccountForm({
         if (error) {
         setError(error.message)
         } else {
-        Swal.fire({
-            title: "Registro exitoso",
-            text: "Tu cuenta ha sido creada correctamente",
-            icon: "success",
-        }).then(() => {
-            router.push("/dashboard") // Redirigir al dashboard
-        })
+            Swal.fire({
+                title: "Registro exitoso",
+                text: "Tu cuenta ha sido creada correctamente",
+                icon: "success",
+            }).then(() => {
+                router.push("/dashboard") // Redirigir al dashboard
+            })
         }
     } */
 

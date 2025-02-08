@@ -12,6 +12,7 @@ import SignInWithGoogleButton from "./sign-in-with-google-btn"
 import { EyeOff, Eye } from "lucide-react"
 import { login } from "@/lib/auth-actions"
 import Link from "next/link"
+import Swal from "sweetalert2"
 
 export function LoginForm({
   className,
@@ -20,30 +21,38 @@ export function LoginForm({
 
   const [showPassword, showSetPassword] = useState(false)
 
-  /* const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState<string | null>(null)
+  async function handleAlert(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const result = await login(formData);
 
-  const supabase = createClient()
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError(null)
-
-    const { error } = await supabase.auth.signInWithPassword({ email, password})
-
-    if(error){
-      setError(error.message)
-    }else
-      console.log(`Logeado con el nombre de ${email}`)
-      window.location.href="/dashboard"
-    } */
+    if (result.error) {
+        await Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Las credenciales no son validas :( Intenta de nuevo!',
+            confirmButtonColor: '#ff6c04',
+        });
+        return
+    }else if(result.error === null){
+      await Swal.fire({
+          icon: 'success',
+          title: 'Bienvenido!',
+          text: 'Ya puedes comenzar a contratar u ofrecer tus servicios!',
+          showConfirmButton: true,
+          confirmButtonColor: '#ff6c04',
+          willClose: () => {
+              window.location.href = '/dashboard';
+          }
+      });
+  }
+}
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden">
         <CardContent className="grid p-0 md:grid-cols-2">
-          <form className="p-6 md:p-8">
+          <form className="p-6 md:p-8" onSubmit={handleAlert}>
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-bold py-3">Bienvenido de Vuelta!</h1>
@@ -95,7 +104,7 @@ export function LoginForm({
                 </Button>
                 </div>
               </div>
-              <Button type="submit" formAction={login} className="w-full text-base bg-vecino hover:bg-gray-950">
+              <Button type="submit" /* formAction={login} */   className="w-full text-base bg-vecino hover:bg-gray-950">
                 Iniciar Sesión
               </Button>
               {/* {error && <p>{error}</p>} */}
