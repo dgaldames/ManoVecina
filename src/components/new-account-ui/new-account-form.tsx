@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input-login"
 import { Label } from "@/components/ui/label"
 import { useState } from "react"
 //import { useRouter } from "next/navigation" // Cambiamos a next/navigation para redirección
-//import Swal from "sweetalert2"
+import Swal from "sweetalert2"
 import Image from "next/image"
 import SvgGoogle from "../../../public/login-icons/sign-up-google-svg"
 import { Eye, EyeOff } from "lucide-react"
@@ -20,40 +20,36 @@ export function NewAccountForm({
 
     const [showPassword, showSetPassword] = useState(false)
     
-    /* const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [error, setError] = useState<string | null>(null)
-
-    const supabase = createClient()
-    const router = useRouter() // Hook para redirección
-
-    const handleSignUp = async (e: React.FormEvent) => {
-        e.preventDefault()
-        setError(null)
-
-        const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        })
-
-        if (error) {
-        setError(error.message)
-        } else {
-            Swal.fire({
-                title: "Registro exitoso",
-                text: "Tu cuenta ha sido creada correctamente",
-                icon: "success",
-            }).then(() => {
-                router.push("/dashboard") // Redirigir al dashboard
-            })
+    async function handleAlert(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const result = await signup(formData);
+    
+        if (result.error) {
+            await Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Ha ocurrido un problema al registrarte :( Intenta de nuevo!',
+                confirmButtonColor: '#ff6c04',
+            });
+            return
+        }else if(result.error === null){
+            await Swal.fire({
+                icon: 'success',
+                title: 'Haz sido registrado exitosamente!',
+                text: 'Por favor, haz click en el enlace que hemos enviado a tu correo para verificar tu cuenta.',
+                showConfirmButton: true,
+                confirmButtonText: 'Voy para allá!',
+                confirmButtonColor: '#ff6c04',
+            });
         }
-    } */
+    }
 
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
         <Card className="overflow-hidden">
             <CardContent className="grid p-0 md:grid-cols-2">
-            <form className="p-6 md:p-8">
+            <form className="p-6 md:p-8" onSubmit={handleAlert}>
                 <div className="flex flex-col gap-6">
                     <div className="flex flex-col items-center text-center">
                         <h1 className="text-2xl font-bold py-3">Bienvenido!</h1>
@@ -103,7 +99,7 @@ export function NewAccountForm({
                     <Button 
                         type="submit" 
                         className="w-full text-base bg-vecino hover:bg-gray-950"
-                        formAction={signup}>
+                        /* formAction={signup} */>
                         Registrarme
                     </Button>
                     {/* {error && <p>{error}</p>} */}
