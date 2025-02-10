@@ -45,6 +45,9 @@ export function NewAccountForm({
         }
     }
 
+    //TODO 
+    //Agregar validación de mas seguridad a la contraseña
+
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
         <Card className="overflow-hidden">
