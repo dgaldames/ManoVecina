@@ -54,11 +54,15 @@ export async function signout() {
     redirect("/");
 }
 
+//TODO REVISAR EL INICIO DE SESIÓN CON GOOGLE
+//TODO VER LO DE LAS COOKIES DEL VIDEO DEL INDIO
+
 export async function signInWithGoogle() {
     const supabase = await createClient();
     const { data, error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
+            redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/dashboard`,
             queryParams: {
             access_type: "offline",
             prompt: "consent",
@@ -66,10 +70,10 @@ export async function signInWithGoogle() {
         },
         });
     
-        if (error) {
+    if (error) {
         console.log(error);
         redirect("/error");
-        }
-    
-        redirect(data.url);
+    }
+
+    redirect(data.url)
 }

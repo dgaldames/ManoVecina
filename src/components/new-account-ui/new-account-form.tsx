@@ -9,7 +9,7 @@ import { useState } from "react"
 //import { useRouter } from "next/navigation" // Cambiamos a next/navigation para redirección
 import Swal from "sweetalert2"
 import Image from "next/image"
-import SvgGoogle from "../../../public/login-icons/sign-up-google-svg"
+import SignInWithGoogleButton from "../login-ui/sign-in-with-google-btn"
 import { Eye, EyeOff } from "lucide-react"
 import { signup } from "@/lib/auth-actions"
 
@@ -113,10 +113,7 @@ export function NewAccountForm({
                         </span>
                     </div>
                     <div className="grid grid-cols-1 gap-4">
-                        <Button variant="outline" className="w-full">
-                            <SvgGoogle />
-                        <span className="sr-only">Iniciar sesión con Google</span>
-                        </Button>
+                        <SignInWithGoogleButton/>
                     </div>
                     <div className="text-center text-sm">
                         ¿Ya tienes una cuenta?{" "}
