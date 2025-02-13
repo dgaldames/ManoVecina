@@ -20,6 +20,32 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
 
   const [showPassword, showSetPassword] = useState(false)
+  const [password, setPassword] = useState('');
+  const [passwordStrength, setPasswordStrength] = useState('');
+
+  const checkPasswordStrength = (password: string) => {
+    const lengthCriteria = password.length >= 8;
+    const numberCriteria = /\d/.test(password);
+    const lowercaseCriteria = /[a-z]/.test(password);
+    /*const uppercaseCriteria = /[A-Z]/.test(password);
+    const specialCharacterCriteria = /[!@#$%^&*(),.?":{}|<>]/.test(password); */
+
+    if (lengthCriteria && numberCriteria  && lowercaseCriteria /* && uppercaseCriteria && specialCharacterCriteria */) {
+      setPasswordStrength('Fuerte');
+    } else if (lengthCriteria && numberCriteria/* && (numberCriteria || lowercaseCriteria || uppercaseCriteria) */) {
+      setPasswordStrength('ModeradaN');
+    }else if(lengthCriteria  && lowercaseCriteria){
+      setPasswordStrength('ModeradaL');
+    }
+    else {
+      setPasswordStrength('Débil');
+    }
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+    checkPasswordStrength(e.target.value);
+  };
 
   async function handleAlert(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -83,25 +109,32 @@ export function LoginForm({
                   </a>
                 </div>
                 <div className="relative">
-                <Input
-                  /* value={password}
-                  onChange={(e) => setPassword(e.target.value)} */
-                  id="password" 
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  required
-                  className="pr-10"
-                />
-
-                <Button
-                  type="button"
-                  variant="link"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2"
-                  onClick={() => showSetPassword(!showPassword)}
-                  size="icon"
-                >
-                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                </Button>
+                  <Input
+                    value={password}
+                    onChange={handlePasswordChange}
+                    id="password"
+                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    required
+                    className="pr-10"
+                  />
+                  <Button
+                    type="button"
+                    variant="link"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2"
+                    onClick={() => showSetPassword(!showPassword)}
+                    size="icon"
+                  >
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </Button>
+                </div>
+                <div className="mt-1">
+                  <small className={`text-xs ${passwordStrength === 'Débil' ? 'text-red-600' : passwordStrength === 'ModeradaN' ? 'text-yellow-600' : passwordStrength === 'ModeradaL' ? 'text-yellow-600' : 'text-green-600'}`}>
+                    {passwordStrength === 'Débil' && 'La contraseña es débil, usa más letras y combina con números '}
+                    {passwordStrength === 'ModeradaL' && 'La contraseña es moderada, combina con números'}
+                    {passwordStrength === 'ModeradaN' && 'La contraseña es moderada, combina con letras'}
+                    {passwordStrength === 'Fuerte' && 'La contraseña es fuerte.'}
+                  </small>
                 </div>
               </div>
               <Button type="submit" /* formAction={login} */   className="w-full text-base bg-vecino hover:bg-gray-950">
