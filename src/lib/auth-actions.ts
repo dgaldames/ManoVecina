@@ -54,22 +54,19 @@ export async function signout() {
     redirect("/");
 }
 
-//TODO REVISAR EL INICIO DE SESIÓN CON GOOGLE
-//TODO VER LO DE LAS COOKIES DEL VIDEO DEL INDIO
-
 export async function signInWithGoogle() {
     const supabase = await createClient();
     const { data, error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-            redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/dashboard`,
-            queryParams: {
+            redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/dashboard`,  //Logre que lo reconociera con este formato
+            queryParams: {                                                //Y creo que algo de aca me genera las cookies pero no se que
             access_type: "offline",
             prompt: "consent",
             },
         },
         });
-    
+    //TODO QUIZAS HACER UNA PAGINA DE ERROR PARA ESTO
     if (error) {
         console.log(error);
         redirect("/error");
