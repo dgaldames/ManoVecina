@@ -52,6 +52,7 @@ export function NewAccountForm({
         const result = await signup(formData);
     
         if (result.error) {
+            //console.log(result.error);
             await Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -72,7 +73,7 @@ export function NewAccountForm({
     }
 
     //TODO 
-    //Agregar validación de mas seguridad a la contraseña
+    //REVISAR EN SUPABASE PORQUE CUANDO SE REGISTRA CON CORREO, LOS CAMPOS SE VEN NULL EN 'profiles'
 
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
