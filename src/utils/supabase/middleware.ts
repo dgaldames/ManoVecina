@@ -36,7 +36,8 @@ export async function updateSession(request: NextRequest) {
     const {
         data: { user },
     } = await supabase.auth.getUser()
-
+    //TODO
+    //HACER QUE ESTAS SEAN RUTAS PROTEGIDAS
     if (
         !user &&
         !request.nextUrl.pathname.startsWith('/login') &&

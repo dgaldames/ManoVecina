@@ -66,7 +66,6 @@ export async function signInWithGoogle() {
             },
         },
         });
-    //TODO QUIZAS HACER UNA PAGINA DE ERROR PARA ESTO
     if (error) {
         console.log(error);
         redirect("/error");

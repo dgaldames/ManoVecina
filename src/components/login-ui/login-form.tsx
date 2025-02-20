@@ -27,12 +27,10 @@ export function LoginForm({
     const lengthCriteria = password.length >= 8;
     const numberCriteria = /\d/.test(password);
     const lowercaseCriteria = /[a-z]/.test(password);
-    /*const uppercaseCriteria = /[A-Z]/.test(password);
-    const specialCharacterCriteria = /[!@#$%^&*(),.?":{}|<>]/.test(password); */
 
-    if (lengthCriteria && numberCriteria  && lowercaseCriteria /* && uppercaseCriteria && specialCharacterCriteria */) {
+    if (lengthCriteria && numberCriteria  && lowercaseCriteria) {
       setPasswordStrength('Fuerte');
-    } else if (lengthCriteria && numberCriteria/* && (numberCriteria || lowercaseCriteria || uppercaseCriteria) */) {
+    } else if (lengthCriteria && numberCriteria) {
       setPasswordStrength('ModeradaN');
     }else if(lengthCriteria  && lowercaseCriteria){
       setPasswordStrength('ModeradaL');
@@ -73,6 +71,8 @@ export function LoginForm({
       });
   }
 }
+//TODO PONER EL EFECTO DE LOADING
+//PONER QUE NO PUEDA PULSAR EN RESETEAR A MENOS QUE LA CONTRASENA SEA FUERTE
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>

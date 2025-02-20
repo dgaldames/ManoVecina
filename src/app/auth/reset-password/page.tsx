@@ -1,17 +1,44 @@
 'use client'
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { redirect } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { resetPassword } from "@/lib/auth-actions";
+import { EyeOff, Eye } from "lucide-react"
 import Swal from "sweetalert2";
 
 export default function ResetPasswordPage() {
     const searchParams = useSearchParams();
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
+    const [password, setPassword] = useState('');
+    const [passwordStrength, setPasswordStrength] = useState<string>('');
+
+    const checkPasswordStrength = (password: string) => {
+        const lengthCriteria = password.length >= 8;
+        const numberCriteria = /\d/.test(password);
+        const lowercaseCriteria = /[a-z]/.test(password);
+        /*const uppercaseCriteria = /[A-Z]/.test(password);
+        const specialCharacterCriteria = /[!@#$%^&*(),.?":{}|<>]/.test(password); */
+    
+        if (lengthCriteria && numberCriteria  && lowercaseCriteria /* && uppercaseCriteria && specialCharacterCriteria */) {
+            setPasswordStrength('Fuerte');
+        }else if (lengthCriteria && numberCriteria/* && (numberCriteria || lowercaseCriteria || uppercaseCriteria) */) {
+            setPasswordStrength('ModeradaN');
+        }else if(lengthCriteria  && lowercaseCriteria){
+            setPasswordStrength('ModeradaL');
+        }else {
+            setPasswordStrength('Débil');
+        }
+    };
+
+    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(e.target.value)
+        checkPasswordStrength(e.target.value);
+    }
 
     const handleResetPassword = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -45,6 +72,7 @@ export default function ResetPasswordPage() {
 
     //TODO
     //PONERLE MAS SEGURIDAD A LA NUEVA CONTRASENA
+    //PONER QUE NO PUEDA PULSAR EN RESETEAR A MENOS QUE LA CONTRASENA SEA FUERTE
 
     return (
         <div className="flex min-h-screen items-center justify-center bg-gray-900 text-white">
@@ -57,13 +85,33 @@ export default function ResetPasswordPage() {
                         <label htmlFor="password" className="text-sm text-gray-300">
                             Ingresa tu nueva contraseña
                         </label>
-                        <Input
-                            id="password"
-                            type="password"
-                            placeholder="Nueva contraseña"
-                            name="password"
-                            className="bg-gray-700 border-gray-600 text-white"
-                        />
+                        <div className="relative">
+                            <Input
+                                value={password}
+                                onChange={handlePasswordChange}
+                                id="password"
+                                type={showPassword ? "text" : "password"}
+                                placeholder="Nueva contraseña"
+                                name="password"
+                                required
+                                className="bg-gray-700 border-gray-600 text-white"
+                            />
+                            <button
+                                type="button"
+                                className="absolute right-2 top-1/2 -translate-y-1/2 p-2"
+                                onClick={() => setShowPassword(!showPassword)}
+                                >
+                                {showPassword ? <EyeOff size={20} color="white" /> :  <Eye size={20} color="white" />}
+                            </button>
+                        </div>
+                        <div className="mt-1">
+                            <small className={`text-sm ${passwordStrength === 'Débil' ? 'text-red-600' : passwordStrength === 'ModeradaN' ? 'text-yellow-600' : passwordStrength === 'ModeradaL' ? 'text-yellow-600' : 'text-green-600'}`}>
+                                {passwordStrength === 'Débil' && 'La contraseña es débil, usa al menos 8 caracteres'}
+                                {passwordStrength === 'ModeradaL' && 'La contraseña es moderada, combina con números'}
+                                {passwordStrength === 'ModeradaN' && 'La contraseña es moderada, combina con letras'}
+                                {passwordStrength === 'Fuerte' && 'La contraseña es fuerte.'}
+                            </small>
+                        </div>
                         <button
                             type="submit"
                             className="mt-4 w-full rounded-lg bg-orange-500 p-3 text-lg text-white font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:bg-orange-600 disabled:opacity-50"
@@ -71,7 +119,8 @@ export default function ResetPasswordPage() {
                             >
                             {loading ? "Reseteando..." : "Resetear contraseña"}
                         </button>
-                        {error && <p className="text-red-500">{error}</p>}
+                        {error && <p className="text-red-500">{error}</p>} {//TODO: Quitar esto en un momento dado}
+                        }
                     </form>
                 </CardContent>
             </Card>

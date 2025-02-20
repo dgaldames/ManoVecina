@@ -75,6 +75,10 @@ export function NewAccountForm({
     //TODO 
     //REVISAR EN SUPABASE PORQUE CUANDO SE REGISTRA CON CORREO, LOS CAMPOS SE VEN NULL EN 'profiles'
 
+    
+    //PONER EL EFECTO DEL LOADING
+    //PONER QUE NO PUEDA PULSAR EN RESETEAR A MENOS QUE LA CONTRASENA SEA FUERTE
+
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
         <Card className="overflow-hidden">
