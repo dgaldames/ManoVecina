@@ -51,9 +51,9 @@ return (
             <h1 className="text-3xl font-bold">🔑 Recuperar Contraseña</h1>
             <p className="mt-2 text-gray-300">Ingresa tu correo y te enviaremos un enlace para restablecer tu contraseña.</p>
 
-            <div className="relative mt-6 h-40 w-40">
+            <div className="relative mt-6 h-40 w-40 my-5">
                 <Image
-                src="/forgot-password.gif" // Asegúrate de tener un GIF en public/
+                src="/forgot-pass-img-gifs/shh.gif" // Asegúrate de tener un GIF en public/
                 alt="Recuperar contraseña"
                 layout="fill"
                 objectFit="contain"
