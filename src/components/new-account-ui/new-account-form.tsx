@@ -21,22 +21,20 @@ export function NewAccountForm({
     const [showPassword, showSetPassword] = useState(false)
     const [password, setPassword] = useState('');
     const [passwordStrength, setPasswordStrength] = useState('');
+    const [loading, setLoading] = useState(false); 
     
     const checkPasswordStrength = (password: string) => {
         const lengthCriteria = password.length >= 8;
         const numberCriteria = /\d/.test(password);
         const lowercaseCriteria = /[a-z]/.test(password);
-        /*const uppercaseCriteria = /[A-Z]/.test(password);
-        const specialCharacterCriteria = /[!@#$%^&*(),.?":{}|<>]/.test(password); */
     
-        if (lengthCriteria && numberCriteria  && lowercaseCriteria /* && uppercaseCriteria && specialCharacterCriteria */) {
+        if (lengthCriteria && numberCriteria  && lowercaseCriteria) {
                 setPasswordStrength('Fuerte');
-            } else if (lengthCriteria && numberCriteria/* && (numberCriteria || lowercaseCriteria || uppercaseCriteria) */) {
+            } else if (lengthCriteria && numberCriteria) {
                 setPasswordStrength('ModeradaN');
             }else if(lengthCriteria  && lowercaseCriteria){
                 setPasswordStrength('ModeradaL');
-            }
-            else {
+            }else {
                 setPasswordStrength('Débil');
             }
         };
@@ -48,17 +46,29 @@ export function NewAccountForm({
 
     async function handleAlert(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
+
+        if(passwordStrength !== 'Fuerte'){
+            await Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Prueba con una contraseña más segura!',
+                confirmButtonColor: '#ff6c04',
+            });
+            return
+        }
+
+        setLoading(true)
         const formData = new FormData(event.currentTarget);
         const result = await signup(formData);
     
         if (result.error) {
-            //console.log(result.error);
             await Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Ha ocurrido un problema al registrarte :( Intenta de nuevo!',
                 confirmButtonColor: '#ff6c04',
             });
+            setLoading(false);
             return
         }else if(result.error === null){
             await Swal.fire({
@@ -70,14 +80,11 @@ export function NewAccountForm({
                 confirmButtonColor: '#ff6c04',
             });
         }
+        setLoading(false);
     }
 
     //TODO 
     //REVISAR EN SUPABASE PORQUE CUANDO SE REGISTRA CON CORREO, LOS CAMPOS SE VEN NULL EN 'profiles'
-
-    
-    //PONER EL EFECTO DEL LOADING
-    //PONER QUE NO PUEDA PULSAR EN RESETEAR A MENOS QUE LA CONTRASENA SEA FUERTE
 
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -139,9 +146,9 @@ export function NewAccountForm({
                     </div>
                     <Button 
                         type="submit" 
-                        className="w-full text-base bg-vecino hover:bg-gray-950"
-                        /* formAction={signup} */>
-                        Registrarme
+                        className="w-full text-lg bg-vecino hover:bg-orange-700"
+                        disabled={loading}>
+                        {loading ? "Registrando..." : "Registrarme"}
                     </Button>
                     {/* {error && <p>{error}</p>} */}
 

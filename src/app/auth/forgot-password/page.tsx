@@ -71,7 +71,7 @@ return (
                 />
                 <button
                     type="submit"
-                    className="mt-4 w-full rounded-lg bg-orange-500 p-3 text-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:bg-orange-600 disabled:opacity-50"
+                    className="mt-4 w-full rounded-lg bg-vecino p-3 text-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:bg-orange-700 disabled:opacity-50"
                     disabled={loading}
                     >
                     {loading ? "Enviando..." : "Enviar enlace"}

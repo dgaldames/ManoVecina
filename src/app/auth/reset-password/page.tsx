@@ -42,9 +42,18 @@ export default function ResetPasswordPage() {
 
     const handleResetPassword = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        setLoading(true);
         setError(null);
 
+        if(passwordStrength !== 'Fuerte'){
+            await Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Prueba con una contraseña más segura!',
+                confirmButtonColor: '#ff6c04',
+            });
+            return
+        }
+        setLoading(true);
         const formData = new FormData(event.currentTarget);
         const result = await resetPassword(formData, searchParams.get("code") as string);
 
@@ -65,14 +74,14 @@ export default function ResetPasswordPage() {
                 title: "Error",
                 text: "Hubo un problema al restablecer tu contraseña. Inténtalo nuevamente.",
             });
+            setLoading(false);
+            return
         }
-        
-        setLoading(false);
     };
 
     //TODO
-    //PONERLE MAS SEGURIDAD A LA NUEVA CONTRASENA
-    //PONER QUE NO PUEDA PULSAR EN RESETEAR A MENOS QUE LA CONTRASENA SEA FUERTE
+    //HAY UN ERROR AL PONER OTRO CORREO QUE NO SEA EL DE LA CUENTA
+    
 
     return (
         <div className="flex min-h-screen items-center justify-center bg-gray-900 text-white">

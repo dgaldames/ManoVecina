@@ -21,9 +21,10 @@ export function LoginForm({
 
   const [showPassword, showSetPassword] = useState(false)
   const [password, setPassword] = useState('');
-  const [passwordStrength, setPasswordStrength] = useState('');
+  //const [passwordStrength, setPasswordStrength] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const checkPasswordStrength = (password: string) => {
+  /* const checkPasswordStrength = (password: string) => {
     const lengthCriteria = password.length >= 8;
     const numberCriteria = /\d/.test(password);
     const lowercaseCriteria = /[a-z]/.test(password);
@@ -38,15 +39,16 @@ export function LoginForm({
     else {
       setPasswordStrength('Débil');
     }
-  };
+  }; */
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    checkPasswordStrength(e.target.value);
+    //checkPasswordStrength(e.target.value);
   };
 
   async function handleAlert(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setLoading(true)
     const formData = new FormData(event.currentTarget);
     const result = await login(formData);
 
@@ -57,6 +59,7 @@ export function LoginForm({
             text: 'Las credenciales no son validas :( Intenta de nuevo!',
             confirmButtonColor: '#ff6c04',
         });
+        setLoading(false);
         return
     }else if(result.error === null){
       await Swal.fire({
@@ -70,9 +73,8 @@ export function LoginForm({
           }
       });
   }
+  setLoading(false);
 }
-//TODO PONER EL EFECTO DE LOADING
-//PONER QUE NO PUEDA PULSAR EN RESETEAR A MENOS QUE LA CONTRASENA SEA FUERTE
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -128,17 +130,20 @@ export function LoginForm({
                     {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                   </Button>
                 </div>
-                <div className="mt-1">
+                {/* <div className="mt-1">
                   <small className={`text-xs ${passwordStrength === 'Débil' ? 'text-red-600' : passwordStrength === 'ModeradaN' ? 'text-yellow-600' : passwordStrength === 'ModeradaL' ? 'text-yellow-600' : 'text-green-600'}`}>
                     {passwordStrength === 'Débil' && 'La contraseña es débil, usa más letras y combina con números '}
                     {passwordStrength === 'ModeradaL' && 'La contraseña es moderada, combina con números'}
                     {passwordStrength === 'ModeradaN' && 'La contraseña es moderada, combina con letras'}
                     {passwordStrength === 'Fuerte' && 'La contraseña es fuerte.'}
                   </small>
-                </div>
+                </div> */}
               </div>
-              <Button type="submit" /* formAction={login} */   className="w-full text-base bg-vecino hover:bg-gray-950">
-                Iniciar Sesión
+              <Button type="submit"
+                      className="w-full text-lg bg-vecino hover:bg-orange-700"
+                      disabled={loading}
+                      >
+                {loading ? "Cargando..." : "Iniciar Sesión"} 
               </Button>
               {/* {error && <p>{error}</p>} */}
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-neutral-200 dark:after:border-neutral-800">
