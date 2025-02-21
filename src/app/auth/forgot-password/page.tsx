@@ -44,8 +44,6 @@ export default function ForgotPasswordPage() {
     }
 };
 
-//PONER BIEN LA IMAGEN DE LA PAGINA
-
 return (
         <div className="flex h-screen w-full flex-col items-center justify-center bg-gray-900 text-white">
             <h1 className="text-3xl font-bold">🔑 Recuperar Contraseña</h1>

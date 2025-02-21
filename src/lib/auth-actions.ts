@@ -21,6 +21,11 @@ export async function login(formData: FormData) {
     }
     revalidatePath('/', 'layout')
     return {error: null}
+    
+    //TODO 
+    //Sincronizar la autenticación de usuario con la tabla de perfiles
+    //49:30
+
     }
 
 export async function signup(formData: FormData) {

@@ -15,7 +15,7 @@ export async function updateSession(request: NextRequest) {
             return request.cookies.getAll()
             },
             setAll(cookiesToSet) {
-            cookiesToSet.forEach(({ name, value, options }) => request.cookies.set(name, value))
+            cookiesToSet.forEach(({ name, value, /* options */ }) => request.cookies.set(name, value))
             supabaseResponse = NextResponse.next({
                 request,
             })
@@ -38,16 +38,29 @@ export async function updateSession(request: NextRequest) {
     } = await supabase.auth.getUser()
     //TODO
     //HACER QUE ESTAS SEAN RUTAS PROTEGIDAS
+    //AUN SIN CONSEGUIRLO
+
+    console.log('user', user)
+
+    if(!user && request.nextUrl.pathname.startsWith('/dashboard')){
+        const url = request.nextUrl.clone() //Se crea una nueva a partir de la solicitud original 
+        url.pathname = '/login'             //Y se manda al /login
+        return NextResponse.redirect(url)
+    }
+
     if (
         !user &&
-        !request.nextUrl.pathname.startsWith('/login') &&
+        !request.nextUrl.pathname.includes('/login') &&
+        !request.nextUrl.pathname.includes('/new-account') &&
+        !request.nextUrl.pathname.includes('/forgot-password') &&
+        !request.nextUrl.pathname.includes('/reset-password') &&
         !request.nextUrl.pathname.startsWith('/auth')
     ) {
         // no user, potentially respond by redirecting the user to the login page
         const url = request.nextUrl.clone()
         url.pathname = '/login'
         return NextResponse.redirect(url)
-    }
+    } 
 
     // IMPORTANT: You *must* return the supabaseResponse object as it is.
     // If you're creating a new response object with NextResponse.next() make sure to:

@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button-login"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input-login"
 import { Label } from "@/components/ui/label"
-//import { createClient } from "@/app/utils/supabase/supabase-client"
 import { useState } from "react"
 import Image from "next/image"
 import SignInWithGoogleButton from "./sign-in-with-google-btn"
@@ -21,29 +20,10 @@ export function LoginForm({
 
   const [showPassword, showSetPassword] = useState(false)
   const [password, setPassword] = useState('');
-  //const [passwordStrength, setPasswordStrength] = useState('');
   const [loading, setLoading] = useState(false);
-
-  /* const checkPasswordStrength = (password: string) => {
-    const lengthCriteria = password.length >= 8;
-    const numberCriteria = /\d/.test(password);
-    const lowercaseCriteria = /[a-z]/.test(password);
-
-    if (lengthCriteria && numberCriteria  && lowercaseCriteria) {
-      setPasswordStrength('Fuerte');
-    } else if (lengthCriteria && numberCriteria) {
-      setPasswordStrength('ModeradaN');
-    }else if(lengthCriteria  && lowercaseCriteria){
-      setPasswordStrength('ModeradaL');
-    }
-    else {
-      setPasswordStrength('Débil');
-    }
-  }; */
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    //checkPasswordStrength(e.target.value);
   };
 
   async function handleAlert(event: React.FormEvent<HTMLFormElement>) {
@@ -91,8 +71,6 @@ export function LoginForm({
               <div className="grid gap-2">
                 <Label htmlFor="email">Correo</Label>
                 <Input
-                  /* value={email}
-                  onChange={(e) => setEmail(e.target.value)} */
                   id="email"
                   type="email"
                   name="email"
@@ -130,14 +108,6 @@ export function LoginForm({
                     {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                   </Button>
                 </div>
-                {/* <div className="mt-1">
-                  <small className={`text-xs ${passwordStrength === 'Débil' ? 'text-red-600' : passwordStrength === 'ModeradaN' ? 'text-yellow-600' : passwordStrength === 'ModeradaL' ? 'text-yellow-600' : 'text-green-600'}`}>
-                    {passwordStrength === 'Débil' && 'La contraseña es débil, usa más letras y combina con números '}
-                    {passwordStrength === 'ModeradaL' && 'La contraseña es moderada, combina con números'}
-                    {passwordStrength === 'ModeradaN' && 'La contraseña es moderada, combina con letras'}
-                    {passwordStrength === 'Fuerte' && 'La contraseña es fuerte.'}
-                  </small>
-                </div> */}
               </div>
               <Button type="submit"
                       className="w-full text-lg bg-vecino hover:bg-orange-700"
@@ -145,7 +115,6 @@ export function LoginForm({
                       >
                 {loading ? "Cargando..." : "Iniciar Sesión"} 
               </Button>
-              {/* {error && <p>{error}</p>} */}
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-neutral-200 dark:after:border-neutral-800">
                 <span className="relative z-10 bg-white px-2 text-neutral-500 dark:bg-neutral-950 dark:text-neutral-400">
                   Continuar con
