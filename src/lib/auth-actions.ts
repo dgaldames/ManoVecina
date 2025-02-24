@@ -7,8 +7,6 @@ import { createClient } from '@/utils/supabase/server'
 export async function login(formData: FormData) {
     const supabase = await createClient()
 
-    // type-casting here for convenience
-    // in practice, you should validate your inputs
     const data = {
         email: formData.get('email') as string,
         password: formData.get('password') as string,
@@ -19,20 +17,36 @@ export async function login(formData: FormData) {
     if (error) {
         return {error}
     }
+
+    const {data : existingUser} = await supabase.from('profiles') 
+    .select('*')
+    .eq('email', data.email)
+    .limit(1)
+    .single()
+
+    if(!existingUser){
+        const { error: insertError } = await supabase.from('profiles') //AQUI METEMOS AL USUARIO EN LA TABLA 'profiles'
+        .insert({
+            email: data.email
+        })
+        if(insertError){
+            console.log(insertError)
+            return { error: insertError,user: null }
+        }
+    }
+
+
     revalidatePath('/', 'layout')
     return {error: null}
-    
-    //TODO 
-    //Sincronizar la autenticación de usuario con la tabla de perfiles
-    //49:30
 
     }
 
-export async function signup(formData: FormData) {
+    //TODO 
+    //ERA POR UNA FUNCTION TRIGGER QUE SE CREO SOLA
+
+/* export async function signup(formData: FormData) {
     const supabase = await createClient()
 
-    // type-casting here for convenience
-    // in practice, you should validate your inputs
     const data = {
         email: formData.get('email') as string,
         password: formData.get('password') as string,
@@ -46,7 +60,39 @@ export async function signup(formData: FormData) {
 
     revalidatePath('/', 'layout')
     return{error:null}
-}
+} */
+
+    export async function signup(formData: FormData){
+        const supabase = await createClient()
+        const credentials = {
+            email: formData.get('email') as string,
+            password: formData.get('password') as string,
+        };
+        const { error, data } = await supabase.auth.signUp({
+            email: credentials.email,
+            password: credentials.password,
+            options: {
+                data:{
+                    username: credentials.email
+                }
+            }
+        })
+        
+        if(error){
+            return{
+                status: error.message,
+                user: null
+            }
+        }else if(data.user?.identities?.length === 0){
+            return{
+                status: 'Ya existe un usuario con este correo',
+                user: null
+            }
+        }
+        
+        revalidatePath('/', 'layout')
+        return{error:null}
+    }
 
 export async function signout() {
     const supabase = await createClient();

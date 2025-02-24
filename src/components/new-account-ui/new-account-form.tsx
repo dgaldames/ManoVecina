@@ -85,7 +85,9 @@ export function NewAccountForm({
 
     //TODO 
     //REVISAR EN SUPABASE PORQUE CUANDO SE REGISTRA CON CORREO, LOS CAMPOS SE VEN NULL EN 'profiles'
-
+    //PONER LA FOTO EN EL CORREO DE VERIFICACION
+    //HARE QUE CUANDO SE REGISTRE LO MANDE AL LOGIN EN VEZ DE AL DASHBOARD, YA QUE EN EL LOGIN TENGO LA INSERCION
+    //A LA BBDD
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
         <Card className="overflow-hidden">
