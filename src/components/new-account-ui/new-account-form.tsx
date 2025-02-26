@@ -21,7 +21,7 @@ export function NewAccountForm({
     const [showPassword, showSetPassword] = useState(false)
     const [password, setPassword] = useState('');
     const [passwordStrength, setPasswordStrength] = useState('');
-    const [loading, setLoading] = useState(false); 
+    const [loading, setLoading] = useState(false);
     
     const checkPasswordStrength = (password: string) => {
         const lengthCriteria = password.length >= 8;
@@ -84,109 +84,117 @@ export function NewAccountForm({
     }
 
     //TODO 
-    //REVISAR EN SUPABASE PORQUE CUANDO SE REGISTRA CON CORREO, LOS CAMPOS SE VEN NULL EN 'profiles'
-    //PONER LA FOTO EN EL CORREO DE VERIFICACION
-    //HARE QUE CUANDO SE REGISTRE LO MANDE AL LOGIN EN VEZ DE AL DASHBOARD, YA QUE EN EL LOGIN TENGO LA INSERCION
-    //A LA BBDD
+    //VER LA POSIBILIDAD DE PONER LA FOTO EN EL CORREO DE VERIFICACION
     return (
-        <div className={cn("flex flex-col gap-6", className)} {...props}>
-        <Card className="overflow-hidden">
-            <CardContent className="grid p-0 md:grid-cols-2">
-            <form className="p-6 md:p-8" onSubmit={handleAlert}>
-                <div className="flex flex-col gap-6">
-                    <div className="flex flex-col items-center text-center">
-                        <h1 className="text-2xl font-bold py-3">Bienvenido!</h1>
-                        <p className="text-balance text-neutral-500 dark:text-neutral-400">
-                        Registra tu cuenta para comenzar
-                        </p>
-                    </div>
-                    <div className="grid gap-2">
-                        <Label htmlFor="email">Correo</Label>
-                        <Input
-                        /* value={email}
-                        onChange={(e) => setEmail(e.target.value)} */
-                        id="email"
-                        type="email"
-                        name="email"
-                        placeholder="ejemplo@gmail.com"
-                        required
-                        />
-                    </div>
-                    <div className="grid gap-2">
-                        <div className="flex items-center justify-between">
-                            <Label htmlFor="password">Contraseña</Label>
-                        </div>
-                        <div className="relative">
-                            <Input
-                                value={password}
-                                onChange={handlePasswordChange}
-                                id="password"
-                                type={showPassword ? 'text' : 'password'}
-                                name="password"
+        <div>
+            <div className="text-center mb-3 p-4 bg-gray-900/40 rounded-xl shadow-lg">
+                <h1 className="md:text-3xl text-2xl font-bold text-orange-500">
+                    📣 Crea tu cuenta y únete a la comunidad
+                </h1>
+                <p className="text-gray-300 mt-2">
+                    Un par de pasos y ya serás parte de esto.
+                </p>
+            </div>
+
+            <div className={cn("flex flex-col gap-6", className)} {...props}>
+                <Card className="overflow-hidden">
+                    <CardContent className="grid p-0 md:grid-cols-2">
+                    <form className="p-6 md:p-8" onSubmit={handleAlert}>
+                        <div className="flex flex-col gap-6">
+                            <div className="flex flex-col items-center text-center">
+                                <h1 className="text-2xl font-bold py-3">Bienvenido!</h1>
+                                <p className="text-balance text-neutral-500 dark:text-neutral-400">
+                                Registra tu cuenta para comenzar
+                                </p>
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="email">Correo</Label>
+                                <Input
+                                /* value={email}
+                                onChange={(e) => setEmail(e.target.value)} */
+                                id="email"
+                                type="email"
+                                name="email"
+                                placeholder="ejemplo@gmail.com"
                                 required
-                                className="pr-10"
-                            />
-                            <Button
-                                type="button"
-                                variant="link"
-                                className="absolute right-2 top-1/2 -translate-y-1/2 p-2"
-                                onClick={() => showSetPassword(!showPassword)}
-                                size="icon"
-                            >
-                                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                                />
+                            </div>
+                            <div className="grid gap-2">
+                                <div className="flex items-center justify-between">
+                                    <Label htmlFor="password">Contraseña</Label>
+                                </div>
+                                <div className="relative">
+                                    <Input
+                                        value={password}
+                                        onChange={handlePasswordChange}
+                                        id="password"
+                                        type={showPassword ? 'text' : 'password'}
+                                        name="password"
+                                        required
+                                        className="pr-10"
+                                    />
+                                    <Button
+                                        type="button"
+                                        variant="link"
+                                        className="absolute right-2 top-1/2 -translate-y-1/2 p-2"
+                                        onClick={() => showSetPassword(!showPassword)}
+                                        size="icon"
+                                    >
+                                        {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                                    </Button>
+                            </div>
+                            <div className="mt-1">
+                                <small className={`text-xs ${passwordStrength === 'Débil' ? 'text-red-600' : passwordStrength === 'ModeradaN' ? 'text-yellow-600' : passwordStrength === 'ModeradaL' ? 'text-yellow-600' : 'text-green-600'}`}>
+                                    {passwordStrength === 'Débil' && 'La contraseña es débil, usa más letras y combina con números '}
+                                    {passwordStrength === 'ModeradaL' && 'La contraseña es moderada, combina con números'}
+                                    {passwordStrength === 'ModeradaN' && 'La contraseña es moderada, combina con letras'}
+                                    {passwordStrength === 'Fuerte' && 'La contraseña es fuerte.'}
+                                </small>
+                            </div>
+
+                            </div>
+                            <Button 
+                                type="submit" 
+                                className="w-full text-lg bg-vecino hover:bg-orange-700"
+                                disabled={loading}>
+                                {loading ? "Registrando..." : "Registrarme"}
                             </Button>
-                    </div>
-                    <div className="mt-1">
-                        <small className={`text-xs ${passwordStrength === 'Débil' ? 'text-red-600' : passwordStrength === 'ModeradaN' ? 'text-yellow-600' : passwordStrength === 'ModeradaL' ? 'text-yellow-600' : 'text-green-600'}`}>
-                            {passwordStrength === 'Débil' && 'La contraseña es débil, usa más letras y combina con números '}
-                            {passwordStrength === 'ModeradaL' && 'La contraseña es moderada, combina con números'}
-                            {passwordStrength === 'ModeradaN' && 'La contraseña es moderada, combina con letras'}
-                            {passwordStrength === 'Fuerte' && 'La contraseña es fuerte.'}
-                        </small>
-                    </div>
+                            {/* {error && <p>{error}</p>} */}
 
+                            <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-neutral-200 dark:after:border-neutral-800">
+                                <span className="relative z-10 bg-white px-2 text-neutral-500 dark:bg-neutral-950 dark:text-neutral-400">
+                                Continuar con
+                                </span>
+                            </div>
+                            <div className="grid grid-cols-1 gap-4">
+                                <SignInWithGoogleButton/>
+                            </div>
+                            <div className="text-center text-sm">
+                                ¿Ya tienes una cuenta?{" "}
+                                <a href="/auth/login" className="underline underline-offset-4 decoration-1 hover:text-vecino hover:decoration-transparent duration-200">
+                                Iniciar sesión
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                    <div className="relative hidden bg-gray-100 md:block dark:bg-neutral-800">
+                        <div className="absolute inset-0 flex items-center justify-center">
+                        <Image
+                            src={'/landing-imgs/header/LogoFinalVersion.png'}
+                            alt='Logo ManoVecina'
+                            width={270}
+                            height={220}
+                            priority
+                            />
+                        </div>
                     </div>
-                    <Button 
-                        type="submit" 
-                        className="w-full text-lg bg-vecino hover:bg-orange-700"
-                        disabled={loading}>
-                        {loading ? "Registrando..." : "Registrarme"}
-                    </Button>
-                    {/* {error && <p>{error}</p>} */}
-
-                    <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-neutral-200 dark:after:border-neutral-800">
-                        <span className="relative z-10 bg-white px-2 text-neutral-500 dark:bg-neutral-950 dark:text-neutral-400">
-                        Continuar con
-                        </span>
-                    </div>
-                    <div className="grid grid-cols-1 gap-4">
-                        <SignInWithGoogleButton/>
-                    </div>
-                    <div className="text-center text-sm">
-                        ¿Ya tienes una cuenta?{" "}
-                        <a href="/auth/login" className="underline underline-offset-4 decoration-1 hover:text-vecino hover:decoration-transparent duration-200">
-                        Iniciar sesión
-                        </a>
-                    </div>
-                </div>
-            </form>
-            <div className="relative hidden bg-gray-100 md:block dark:bg-neutral-800">
-                <div className="absolute inset-0 flex items-center justify-center">
-                <Image
-                    src={'/landing-imgs/header/LogoFinalVersion.png'}
-                    alt='Logo ManoVecina'
-                    width={270}
-                    height={220}
-                    priority
-                    />
+                    </CardContent>
+                </Card>
+                <div className="text-balance text-center text-xs text-white [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-vecino hover:[&_a]:decoration-transparent [&_a]:duration-200">
+                    Al registrarte, estas de acuerdo con nuestros <a href="#">Terminos y condiciones</a>{" "}
+                    and <a href="#">Politica y privacidad</a>.
                 </div>
             </div>
-            </CardContent>
-        </Card>
-        <div className="text-balance text-center text-xs text-white [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-vecino hover:[&_a]:decoration-transparent [&_a]:duration-200">
-            Al registrarte, estas de acuerdo con nuestros <a href="#">Terminos y condiciones</a>{" "}
-            and <a href="#">Politica y privacidad</a>.
-        </div>
         </div>
     )
 }

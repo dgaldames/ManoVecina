@@ -78,10 +78,11 @@ return (
 
             <button
                 onClick={() => (window.location.href = "/auth/login")}
-                className="mt-6 text-gray-400 transition-all hover:text-white"
+                className="mt-6 text-gray-300 transition-all hover:text-white"
             >
                 🔙 Volver al inicio de sesión
             </button>
+            <p className="mt-6 text-gray-300">Una vez restablecida tu contraseña, puedes cerrar esta pestaña.</p>
         </div>
     );
 }

@@ -21,12 +21,10 @@ export default function ResetPasswordPage() {
         const lengthCriteria = password.length >= 8;
         const numberCriteria = /\d/.test(password);
         const lowercaseCriteria = /[a-z]/.test(password);
-        /*const uppercaseCriteria = /[A-Z]/.test(password);
-        const specialCharacterCriteria = /[!@#$%^&*(),.?":{}|<>]/.test(password); */
     
-        if (lengthCriteria && numberCriteria  && lowercaseCriteria /* && uppercaseCriteria && specialCharacterCriteria */) {
+        if (lengthCriteria && numberCriteria  && lowercaseCriteria) {
             setPasswordStrength('Fuerte');
-        }else if (lengthCriteria && numberCriteria/* && (numberCriteria || lowercaseCriteria || uppercaseCriteria) */) {
+        }else if (lengthCriteria && numberCriteria) {
             setPasswordStrength('ModeradaN');
         }else if(lengthCriteria  && lowercaseCriteria){
             setPasswordStrength('ModeradaL');
@@ -80,9 +78,7 @@ export default function ResetPasswordPage() {
     };
 
     //TODO
-    //HAY UN ERROR AL PONER OTRO CORREO QUE NO SEA EL DE LA CUENTA
-    
-
+    //EL ERROR AL PONER OTRA CUENTA AL PARECER ERA POR QUE EL CORREO NO ESTABA INSERTADO CORRECTAMENTE EN LA BBDD
     return (
         <div className="flex min-h-screen items-center justify-center bg-gray-900 text-white">
             <Card className="w-full max-w-md bg-gray-800 shadow-xl">
