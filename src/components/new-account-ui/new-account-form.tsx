@@ -60,7 +60,18 @@ export function NewAccountForm({
         setLoading(true)
         const formData = new FormData(event.currentTarget);
         const result = await signup(formData);
-    
+        
+        if(result.status === "Ya existe un usuario con este correo"){
+            await Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Ya existe un usuario con este correo, intenta con otro!',
+                confirmButtonColor: '#ff6c04',
+            });
+            setLoading(false);
+            return
+        }
+
         if (result.error) {
             await Swal.fire({
                 icon: 'error',
