@@ -37,11 +37,11 @@ export async function updateSession(request: NextRequest) {
         data: { user },
     } = await supabase.auth.getUser()
 
-    console.log('user', user)
+    //console.log('user', user)
 
     if(!user && request.nextUrl.pathname.startsWith('/dashboard')){
         const url = request.nextUrl.clone() //Se crea una nueva a partir de la solicitud original 
-        console.log('USUARIO', user)                   //USER NULL con google
+        //console.log('USUARIO', user)                   //USER NULL con google
         url.pathname = 'auth/new-account'   //Y se manda al /new-account
         return NextResponse.redirect(url)
     }

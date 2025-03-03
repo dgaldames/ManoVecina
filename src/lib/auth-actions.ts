@@ -38,55 +38,38 @@ export async function login(formData: FormData) {
     revalidatePath('/', 'layout')
     return {error: null}
 }
-/* export async function signup(formData: FormData) {
-    const supabase = await createClient()
 
-    const data = {
+export async function signup(formData: FormData){
+    const supabase = await createClient()
+    const credentials = {
         email: formData.get('email') as string,
         password: formData.get('password') as string,
-    }
-
-    const { error } = await supabase.auth.signUp(data)
-
-    if (error) {
-        return {error}
-    }
-
-    revalidatePath('/', 'layout')
-    return{error:null}
-} */
-
-    export async function signup(formData: FormData){
-        const supabase = await createClient()
-        const credentials = {
-            email: formData.get('email') as string,
-            password: formData.get('password') as string,
-        };
-        const { error, data } = await supabase.auth.signUp({
-            email: credentials.email,
-            password: credentials.password,
-            options: {
-                data:{
-                    username: credentials.email
-                }
-            }
-        })
-        
-        if(error){
-            return{
-                status: error.message,
-                user: null
-            }
-        }else if(data.user?.identities?.length === 0){
-            return{
-                status: 'Ya existe un usuario con este correo',
-                user: null
+    };
+    const { error, data } = await supabase.auth.signUp({
+        email: credentials.email,
+        password: credentials.password,
+        options: {
+            data:{
+                username: credentials.email
             }
         }
-        
-        revalidatePath('/', 'layout')
-        return{error:null}
+    })
+    
+    if(error){
+        return{
+            status: error.message,
+            user: null
+        }
+    }else if(data.user?.identities?.length === 0){
+        return{
+            status: 'Ya existe un usuario con este correo',
+            user: null
+        }
     }
+    
+    revalidatePath('/', 'layout')
+    return{error:null}
+}
 
 export async function signout() {
     const supabase = await createClient();
@@ -123,7 +106,6 @@ export async function signInWithGoogle() {
 //el registro solo llega hasta la autenticacion, mas no hasta la tabla 'profiles'
 //TODO
 //ARREGLARLO EN UN FUTURO.
-
 
 /* export async function afterGoogleLogin(){
     const supabase = await createClient()
@@ -182,4 +164,39 @@ export async function resetPassword(formData: FormData, code: string) {
     }
 
     return { status: 'success' }
+}
+
+export async function insertService(formData: FormData){
+    const supabase = await createClient()
+    //Leemos y validamos los campos
+    const nombre = formData.get('nombre') as string
+    const telefono = formData.get('telefono') as string
+    const nom_serv = formData.get('nom_serv') as string
+    const tarifa = formData.get('tarifa') as string
+    const disponibilidad = formData.get('disponibilidad') as string
+    const descripcion = formData.get('descripcion') as string
+    const experiencia = formData.get('experiencia') as string
+
+    if(!nombre || !telefono || !nom_serv || !tarifa || !disponibilidad || !descripcion){
+        return { status: 'error', message: 'Todos los campos son requeridos' }
+    }
+
+    const newService = {
+        nombre,
+        telefono,
+        nom_serv,
+        tarifa,
+        disponibilidad,
+        descripcion,
+        experiencia
+    }
+
+    const { error } = await supabase
+        .from('servicios_persona')
+        .insert([newService])
+
+    if(error){
+        return { status: error.message}
+    }
+    return { status: 'success'}
 }
