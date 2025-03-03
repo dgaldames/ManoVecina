@@ -14,9 +14,6 @@ import SvgSol from "../../../public/dashboard-icons/sun-svg";
 
 
 const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    
-        //const supabase = createClient()
-
         const [darkMode, setDarkMode] = useState(false)
 
         const toggleDarkMode = () =>{

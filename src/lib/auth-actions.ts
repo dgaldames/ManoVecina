@@ -35,15 +35,9 @@ export async function login(formData: FormData) {
         }
     }
 
-
     revalidatePath('/', 'layout')
     return {error: null}
-
-    }
-
-    //TODO 
-    //ERA POR UNA FUNCTION TRIGGER QUE SE CREO SOLA
-
+}
 /* export async function signup(formData: FormData) {
     const supabase = await createClient()
 
@@ -110,8 +104,8 @@ export async function signInWithGoogle() {
     const { data, error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-            redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/dashboard`,  //Logre que lo reconociera con este formato
-            queryParams: {                                                //Y creo que algo de aca me genera las cookies pero no se que
+            redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/dashboard`,  
+            queryParams: {                                                
             access_type: "offline",
             prompt: "consent",
             },
@@ -124,6 +118,36 @@ export async function signInWithGoogle() {
 
     redirect(data.url)
 }
+
+//finalmente el login con google no funciona debido a que me marca el usuario como null
+//el registro solo llega hasta la autenticacion, mas no hasta la tabla 'profiles'
+//TODO
+//ARREGLARLO EN UN FUTURO.
+
+
+/* export async function afterGoogleLogin(){
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    console.log('user', user)
+
+    if(!user){
+        return { status: 'error' }
+    }
+
+    const { data: existingUser } = await supabase.from('profiles')
+        .select('*')
+        .eq('email', user.email)
+        .limit(1)
+        .single()
+        
+        if(!existingUser){
+            await supabase.from('profiles').
+                insert({ 
+                    id: user.id,
+                    email: user.email
+                })
+        }
+}  */
 
 export async function forgotPassword(formData: FormData) {
     const supabase = await createClient();
