@@ -2,9 +2,13 @@
 import { useState } from "react";
 import  Swal  from "sweetalert2"
 import { insertService } from "@/lib/auth-actions";
+import { redirect } from "next/navigation";
+import { useUser } from "@/app/context";
 
 
 export default function OfrecerPage(){
+
+    const { setUserData } = useUser();
 
     const [formData, setFormData] = useState({
         nombre: "",
@@ -49,13 +53,16 @@ export default function OfrecerPage(){
         const response = await insertService(data);
 
         if (response.status === "success") {
+            //Actualizamos el contexto
+            setUserData(formData);
             Swal.fire({
                 icon: "success",
                 title: "¡Servicio registrado!",
-                text: "Tu servicio ha sido registrado correctamente.",
-                confirmButtonColor: "#3085d6",
+                text: "Su servicio ha sido registrado correctamente. Lo redirigiremos a su perfil",
+                confirmButtonText: "Ok",
+                confirmButtonColor: "#ff6c04",
             });
-            setFormData({ nombre: "", telefono: "", nom_serv: "", tarifa: "", disponibilidad: "", descripcion: "", experiencia: "" });
+            return redirect("/dashboard/dashboard-my-profile")
         } else {
             console.log("Respuesta del servidor:", response);
             Swal.fire({
@@ -160,7 +167,7 @@ export default function OfrecerPage(){
                     <div className="flex flex-col md:flex-row gap-5">
                     <label
                         htmlFor="file-input"
-                        className="text-white bg-vecino rounded-lg hover:bg-orange-600 focus:ring-2  dark:focus:ring-white focus:ring-darkbg focus:outline-none text-lg w-full lg:w-auto px-5 py-2.5 text-center transform hover:scale-105 hover:ease-out transition duration-300 cursor-pointer"
+                        className="text-white bg-vecino rounded-lg hover:bg-orange-700 focus:ring-2  dark:focus:ring-white focus:ring-darkbg focus:outline-none text-lg w-full lg:w-auto px-5 py-2.5 text-center transform hover:scale-105 hover:ease-out transition duration-300 cursor-pointer"
                         >
                         Agregar Foto de Perfil
                         </label>
@@ -171,7 +178,7 @@ export default function OfrecerPage(){
                         className="hidden"
                         name="Archivo"
                         />
-                        <button type="submit" className="text-white bg-vecino rounded-lg hover:bg-orange-600 focus:ring-2  dark:focus:ring-white focus:ring-darkbg focus:outline-none text-lg w-full lg:w-auto px-5 py-2.5 text-center transform hover:scale-105 hover:ease-out transition duration-300"
+                        <button type="submit" className="text-white bg-vecino rounded-lg hover:bg-orange-700 focus:ring-2  dark:focus:ring-white focus:ring-darkbg focus:outline-none text-lg w-full lg:w-auto px-5 py-2.5 text-center transform hover:scale-105 hover:ease-out transition duration-300"
                         disabled={loading}
                         >{loading ? "Publicando sus Servicios" : "Publicar mis Servicios"}</button>
                     </div>

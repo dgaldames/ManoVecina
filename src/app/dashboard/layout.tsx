@@ -9,6 +9,7 @@ import {SidebarInset, SidebarProvider, SidebarTrigger,} from "@/components/ui/si
 import { useState } from "react"
 import SvgLuna from "../../../public/dashboard-icons/moon-svg";
 import SvgSol from "../../../public/dashboard-icons/sun-svg";
+import { UserProvider } from "../context";
 
 
 
@@ -21,6 +22,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) 
         }
     
     return (
+        <UserProvider>
             <SidebarProvider className={darkMode ? 'dark' : ''}>
             <AppSidebar />
                 <SidebarInset>
@@ -60,6 +62,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) 
                     </div>
                 </SidebarInset>
             </SidebarProvider>
+        </UserProvider>
     );
 };
 
