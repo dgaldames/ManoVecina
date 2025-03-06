@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useState, ReactNode, useContext } from "react";
+import React, { createContext, useState, ReactNode, useContext, useEffect } from "react";
 
 type UserData = {
     nombre: string
@@ -23,7 +23,7 @@ type Props = {
 };
 
 export const UserProvider = ({ children }: Props) => {
-    const [userData, setUserDataState] = useState<UserData>({
+    const defaultUserData: UserData = {
         nombre: "",
         telefono: "",
         nom_serv: "",
@@ -31,7 +31,25 @@ export const UserProvider = ({ children }: Props) => {
         disponibilidad: "",
         descripcion: "",
         experiencia: "",
-    });
+    };
+
+    const [userData, setUserDataState] = useState<UserData>(defaultUserData);
+
+    useEffect(() => {
+        const storedData = localStorage.getItem("userData");
+        if(storedData){
+            try{
+                setUserDataState(JSON.parse(storedData));
+            }catch(e){
+                console.error("Error parsing user data", e);
+            }
+        }
+    },[])
+
+    useEffect(() => {
+        localStorage.setItem("userData", JSON.stringify(userData));
+    }, [userData]);
+
 
     const setUserData = (data: Partial<UserData>) => {
         setUserDataState(prev => ({
