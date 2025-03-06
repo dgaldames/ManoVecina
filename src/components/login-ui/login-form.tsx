@@ -27,7 +27,7 @@ export function LoginForm({
   };
 
   async function handleAlert(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+    event.preventDefault(); //Evita que la página se recargue al enviar el formulario.
     setLoading(true)
     const formData = new FormData(event.currentTarget);
     const result = await login(formData);

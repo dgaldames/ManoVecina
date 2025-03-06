@@ -5,31 +5,31 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
 
 export async function login(formData: FormData) {
-    const supabase = await createClient()
+    const supabase = await createClient() //Instancia de Supabase para interactuar con la BBDD.
 
-    const data = {
+    const data = {                        //Obtenemos datos del fomrulario.
         email: formData.get('email') as string,
         password: formData.get('password') as string,
     }
 
-    const { error } = await supabase.auth.signInWithPassword(data)
+    const { error } = await supabase.auth.signInWithPassword(data) //Autenticamos al usuario con los datos obtenidos del formulario.
 
-    if (error) {
+    if (error) { //Si hubo un error lo mostramos.
         return {error}
     }
-
-    const {data : existingUser} = await supabase.from('profiles') 
-    .select('*')
-    .eq('email', data.email)
+    //Revisamos que el usuario exista en la tabla 'profiles'
+    const {data : existingUser} = await supabase.from('profiles') //Hacemos un destructuring para obtener el usuario de la tabla 'profiles'
+    .select('*')                                                  //Ya que el supabase.from me devuelve un objeto
+    .eq('email', data.email)                                      //Con data{} y error.
     .limit(1)
     .single()
 
     if(!existingUser){
-        const { error: insertError } = await supabase.from('profiles') //AQUI METEMOS AL USUARIO EN LA TABLA 'profiles'
+        const { error: insertError } = await supabase.from('profiles') //Si el usuario en null, lo metemos a la tabla.
         .insert({
             email: data.email
         })
-        if(insertError){
+        if(insertError){                                               //Si hubo un error lo mostramos.
             console.log(insertError)
             return { error: insertError,user: null }
         }
@@ -39,7 +39,7 @@ export async function login(formData: FormData) {
     return {error: null}
 }
 
-export async function signup(formData: FormData){
+export async function signup(formData: FormData){ //Si no lo pongo FormData, el formData es de tipo any.
     const supabase = await createClient()
     const credentials = {
         email: formData.get('email') as string,
@@ -168,7 +168,7 @@ export async function resetPassword(formData: FormData, code: string) {
 
 export async function insertService(formData: FormData){
     const supabase = await createClient()
-    //Leemos y validamos los campos
+    //Se extraen los valores del FormData o del formulario.
     const nombre = formData.get('nombre') as string
     const telefono = formData.get('telefono') as string
     const nom_serv = formData.get('nom_serv') as string
@@ -176,11 +176,11 @@ export async function insertService(formData: FormData){
     const disponibilidad = formData.get('disponibilidad') as string
     const descripcion = formData.get('descripcion') as string
     const experiencia = formData.get('experiencia') as string
-
+    //Vemos que no falte ningun campo obligatorio.
     if(!nombre || !telefono || !nom_serv || !tarifa || !disponibilidad || !descripcion){
         return { status: 'error', message: 'Todos los campos son requeridos' }
     }
-
+    //Creamos un objeto con los valores obtenidos del formulario.
     const newService = {
         nombre,
         telefono,
@@ -190,10 +190,10 @@ export async function insertService(formData: FormData){
         descripcion,
         experiencia
     }
-
-    const { error } = await supabase
-        .from('servicios_persona')
-        .insert([newService])
+    //Lo insertamos en la tabla 'servicios_persona'
+    const { error } = await supabase  //Siempre en estas sentencias se devuelve un data y un error, en este caso
+        .from('servicios_persona')    //Nosotros rescatamos el error.
+        .insert([newService])         //Se inserta como un array pq asi lo espera Supabase.
 
     if(error){
         return { status: error.message}
