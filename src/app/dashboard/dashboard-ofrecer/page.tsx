@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import  Swal  from "sweetalert2"
 import { insertService } from "@/lib/auth-actions";
 import { redirect } from "next/navigation";
@@ -8,8 +8,8 @@ import { useUser } from "@/app/context";
 
 export default function OfrecerPage(){
 
-    const { setUserData } = useUser();
-
+    const { setUserData, nombre, telefono, nom_serv, tarifa, disponibilidad, descripcion, experiencia } = useUser();
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         nombre: "",
         telefono: "",
@@ -20,7 +20,19 @@ export default function OfrecerPage(){
         experiencia: "",
     });
 
-    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        if(nom_serv){
+            setFormData({
+                nombre,
+                telefono,
+                nom_serv,
+                tarifa,
+                disponibilidad,
+                descripcion,
+                experiencia,
+            });
+        }
+    }, [nombre, telefono, nom_serv, tarifa, disponibilidad, descripcion, experiencia])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;
@@ -40,6 +52,17 @@ export default function OfrecerPage(){
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        if(nom_serv){
+            Swal.fire({
+                icon:"warning",
+                title:"¡Ya has registrado un servicio!",
+                text:"Ya tienes un servicio registrado. Si deseas modificarlo, ve a la opción de editar.",
+                confirmButtonText:"Ok",
+            })
+            return;
+        }
+
         setLoading(true);
 
         console.log("FormData antes de enviar:", formData); // Verifica si los datos están llenos
@@ -178,6 +201,7 @@ export default function OfrecerPage(){
                         className="hidden"
                         name="Archivo"
                         />
+                        {/* TODO HACER QUE AL PRESIONAR CAMBIE EL COLOR CUANDO EL loading ES true */}
                         <button type="submit" className="text-white bg-vecino rounded-lg hover:bg-orange-700 focus:ring-2  dark:focus:ring-white focus:ring-darkbg focus:outline-none text-lg w-full lg:w-auto px-5 py-2.5 text-center transform hover:scale-105 hover:ease-out transition duration-300"
                         disabled={loading}
                         >{loading ? "Publicando sus Servicios" : "Publicar mis Servicios"}</button>
