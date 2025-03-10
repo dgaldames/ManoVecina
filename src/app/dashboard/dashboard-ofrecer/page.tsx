@@ -34,8 +34,8 @@ export default function OfrecerPage(){
         }
     }, [nombre, telefono, nom_serv, tarifa, disponibilidad, descripcion, experiencia])
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { id, value } = e.target;
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => { 
+        const { id, value } = e.target; // Se destructura para obtener el id y el valor del e.target, en este caso, del input.
 
         if (id === "telefono" && value.length > 9) return;
         if (id === "nom_serv" && value.length > 50) return;
@@ -44,13 +44,13 @@ export default function OfrecerPage(){
         if (id === "descripcion" && value.length > 250) return;
         if (id === "experiencia" && value.length > 250) return;
 
-        setFormData((prev) => ({
+        setFormData((prev) => ({ // Se preserva el estado anterior y se actualiza el valor del input modificado.
             ...prev,
             [id]: value
         }));
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => { //Los "e", hacen referencia evento que general el usuario.
         e.preventDefault();
 
         if(nom_serv){
@@ -67,13 +67,13 @@ export default function OfrecerPage(){
 
         console.log("FormData antes de enviar:", formData); // Verifica si los datos están llenos
 
-        // Convertir formData en FormData()
-        const data = new FormData();
-        Object.entries(formData).forEach(([key, value]) => {
+        
+        const data = new FormData();                            //Ahora data contiene los mismos datos que formData
+        Object.entries(formData).forEach(([key, value]) => {    //Pero en un formato adecuado para enviarlo en una petición HTTP.
             data.append(key, value);
         });
 
-        const response = await insertService(data);
+        const response = await insertService(data); //Enviamos los datos al backend con el formato adecuado.
 
         if (response.status === "success") {
             //Actualizamos el contexto
