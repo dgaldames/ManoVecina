@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from "react";
 import  Swal  from "sweetalert2"
-import { insertService } from "@/lib/auth-actions";
+import { insertService, getUserService } from "@/lib/auth-actions";
 import { redirect } from "next/navigation";
 import { useUser } from "@/app/context";
 
@@ -20,6 +20,19 @@ export default function OfrecerPage(){
         experiencia: "",
     });
 
+    useEffect(() => { //Al cargar la pagina intentamos traer el servicio de usuario.
+            async function fetchExistingService(){
+                const result = await getUserService()
+                console.log(result)
+                if(result.status === 'success' && result.data){
+                    //Actualizamos el contexto con los datos del servicio.
+                    setUserData(result.data)
+                }
+            }
+            fetchExistingService()
+    }, []) //Lo montamos solo una vez []
+
+    // Si el contexto ya tiene datos (es decir, ya existe un servicio) inicializamos el formulario con ellos.
     useEffect(() => {
         if(nom_serv){
             setFormData({
@@ -52,19 +65,6 @@ export default function OfrecerPage(){
 
     const handleSubmit = async (e: React.FormEvent) => { //Los "e", hacen referencia evento que general el usuario.
         e.preventDefault();
-
-
-        //CONDICION ELIMINADA DEBIDO A QUE SU LOGICA ERA MALA.
-        /* if(nom_serv){
-            Swal.fire({
-                icon:"warning",
-                title:"¡Ya has registrado un servicio!",
-                text:"Ya tienes un servicio registrado. Si deseas modificarlo, ve a la opción de editar.",
-                confirmButtonText:"Ok",
-            })
-            return;
-        } */
-
         setLoading(true);
 
         const data = new FormData();                            //Ahora data contiene los mismos datos que formData
@@ -74,10 +74,8 @@ export default function OfrecerPage(){
 
         const response = await insertService(data); //Enviamos los datos al backend con el formato adecuado.
 
-
-
         if (response.status === "success") {
-            //Actualizamos el contexto
+            //Actualizamos el contexto con lo registrado.
             setUserData(formData);
             Swal.fire({
                 icon: "success",
@@ -205,7 +203,7 @@ export default function OfrecerPage(){
                         {/* TODO HACER QUE AL PRESIONAR CAMBIE EL COLOR CUANDO EL loading ES true */}
                         <button type="submit" className="text-white bg-vecino rounded-lg hover:bg-orange-700 focus:ring-2  dark:focus:ring-white focus:ring-darkbg focus:outline-none text-lg w-full lg:w-auto px-5 py-2.5 text-center transform hover:scale-105 hover:ease-out transition duration-300"
                         disabled={loading}
-                        >{loading ? "Publicando sus Servicios" : "Publicar mis Servicios"}</button>
+                        >{loading ? "Publicando sus Servicios..." : "Publicar mis Servicios"}</button>
                     </div>
                 </form>
             </div>

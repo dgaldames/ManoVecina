@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useState, ReactNode, useContext, useEffect } from "react";
+import React, { createContext, useState, ReactNode, useContext } from "react";
 
 type UserData = { //Tipamos los datos del usuario.
     nombre: string
@@ -35,7 +35,7 @@ export const UserProvider = ({ children }: Props) => { //UserProvider es el comp
 
     const [userData, setUserDataState] = useState<UserData>(defaultUserData); //Para manejar el estado del usuario.
 
-    useEffect(() => {                                 //Busca si hay datos en el localStorage una vez y los carga
+/*     useEffect(() => {                                 //Busca si hay datos en el localStorage una vez y los carga
         const storedData = localStorage.getItem("userData");
         if(storedData){
             try{
@@ -44,11 +44,11 @@ export const UserProvider = ({ children }: Props) => { //UserProvider es el comp
                 console.error("Error parsing user data", e);
             }
         }
-    },[])
+    },[]) */
 
-    useEffect(() => { //Se guarda en el localStorage cada vez que se actualiza el estado del usuario.
+/*     useEffect(() => { //Se guarda en el localStorage cada vez que se actualiza el estado del usuario.
         localStorage.setItem("userData", JSON.stringify(userData));
-    }, [userData]);
+    }, [userData]); */
 
 
     const setUserData = (data: Partial<UserData>) => { //Actualiza los campos del usuario, sin modificar los que no se pasen.

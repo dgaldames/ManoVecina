@@ -219,3 +219,28 @@ export async function insertService(formData: FormData){
     }
     return { status: 'success'}
 }
+
+
+//TODO
+//No me guarda los datos ingresados dependiendo de la sesion
+//Solo quedan guardados a traves del localStorage, pero se mantiene a traves de las sesiones
+export async function getUserService(){
+    const supabase = await createClient()
+    
+    const { data: {user}, error: userError } = await supabase.auth.getUser()
+    if(userError || !user){
+        return { status: 'error', message: 'Usuario no encontrado' } //Problablemente nunca se ejecute.
+    }
+
+    const { data: service, error } = await supabase
+        .from('servicios_persona')
+        .select('*')
+        .eq('user_id', user.id)
+        .maybeSingle()
+
+    if(error){
+        return { status: "error", message: error.message, data: null }
+    }
+
+    return { status: 'success', data: service }
+}
