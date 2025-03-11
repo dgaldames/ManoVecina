@@ -168,6 +168,13 @@ export async function resetPassword(formData: FormData, code: string) {
 
 export async function insertService(formData: FormData){
     const supabase = await createClient()
+
+    const { data: {user}, error: userError } = await supabase.auth.getUser()
+
+    if(userError || !user){
+        return { status: 'error', message: 'Usuario no encontrado' } //Esto nunca deberia ejecutarse LOL.
+    }
+
     //Se extraen los valores del FormData o del formulario.
     const nombre = formData.get('nombre') as string
     const telefono = formData.get('telefono') as string
@@ -182,6 +189,7 @@ export async function insertService(formData: FormData){
     }
     //Creamos un objeto con los valores obtenidos del formulario.
     const newService = {
+        user_id: user.id, //"user_id" es el campo de la BBDD, lo ligamos a la id del usuario.
         nombre,
         telefono,
         nom_serv,
@@ -190,7 +198,18 @@ export async function insertService(formData: FormData){
         descripcion,
         experiencia
     }
-    //Lo insertamos en la tabla 'servicios_persona'
+
+    const { data:existingService } = await supabase
+        .from('servicios_persona')
+        .select('id')
+        .eq('user_id', user.id)
+        .single();
+
+    if(existingService){
+        return { status: 'error', message: 'Solo puedes registrar un servicio. Edita el actual si deseas cambiarlo.' }
+    }
+
+    //Insertamos el servicio en la tabla 'servicios_persona'
     const { error } = await supabase  //Siempre en estas sentencias se devuelve un data y un error, en este caso
         .from('servicios_persona')    //Nosotros rescatamos el error.
         .insert([newService])         //Se inserta como un array pq asi lo espera Supabase.

@@ -35,7 +35,7 @@ export const UserProvider = ({ children }: Props) => { //UserProvider es el comp
 
     const [userData, setUserDataState] = useState<UserData>(defaultUserData); //Para manejar el estado del usuario.
 
-    useEffect(() => {                                           //Busca si hay datos en el localStorage una vez y los carga
+    useEffect(() => {                                 //Busca si hay datos en el localStorage una vez y los carga
         const storedData = localStorage.getItem("userData");
         if(storedData){
             try{

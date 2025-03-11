@@ -53,7 +53,9 @@ export default function OfrecerPage(){
     const handleSubmit = async (e: React.FormEvent) => { //Los "e", hacen referencia evento que general el usuario.
         e.preventDefault();
 
-        if(nom_serv){
+
+        //CONDICION ELIMINADA DEBIDO A QUE SU LOGICA ERA MALA.
+        /* if(nom_serv){
             Swal.fire({
                 icon:"warning",
                 title:"¡Ya has registrado un servicio!",
@@ -61,19 +63,18 @@ export default function OfrecerPage(){
                 confirmButtonText:"Ok",
             })
             return;
-        }
+        } */
 
         setLoading(true);
 
-        console.log("FormData antes de enviar:", formData); // Verifica si los datos están llenos
-
-        
         const data = new FormData();                            //Ahora data contiene los mismos datos que formData
         Object.entries(formData).forEach(([key, value]) => {    //Pero en un formato adecuado para enviarlo en una petición HTTP.
             data.append(key, value);
         });
 
         const response = await insertService(data); //Enviamos los datos al backend con el formato adecuado.
+
+
 
         if (response.status === "success") {
             //Actualizamos el contexto
