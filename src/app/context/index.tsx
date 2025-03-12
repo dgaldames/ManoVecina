@@ -1,6 +1,7 @@
 'use client'
 
-import React, { createContext, useState, ReactNode, useContext } from "react";
+import React, { createContext, useState, ReactNode, useContext, useEffect } from "react";
+import { getUserService } from "@/lib/auth-actions";
 
 type UserData = { //Tipamos los datos del usuario.
     nombre: string
@@ -21,35 +22,31 @@ const UserContext = createContext<UserContextType | undefined>(undefined); // Se
 type Props = {
     children: ReactNode;
 };
+const defaultUserData: UserData = { //Se encarga de manejar y distribuir los datos del usuario.
+    nombre: "",
+    telefono: "",
+    nom_serv: "",
+    tarifa: "",
+    disponibilidad: "",
+    descripcion: "",
+    experiencia: "",
+};
 
 export const UserProvider = ({ children }: Props) => { //UserProvider es el componente que provee el contexto.
-    const defaultUserData: UserData = {                //Se encarga de manejar y distribuir los datos del usuario.
-        nombre: "",
-        telefono: "",
-        nom_serv: "",
-        tarifa: "",
-        disponibilidad: "",
-        descripcion: "",
-        experiencia: "",
-    };
-
     const [userData, setUserDataState] = useState<UserData>(defaultUserData); //Para manejar el estado del usuario.
 
-/*     useEffect(() => {                                 //Busca si hay datos en el localStorage una vez y los carga
-        const storedData = localStorage.getItem("userData");
-        if(storedData){
-            try{
-                setUserDataState(JSON.parse(storedData));
-            }catch(e){
-                console.error("Error parsing user data", e);
+    /*Con este useEffect obtenemos los datos del servicio del usuario de la BBDD.
+    De esta forma siempre consulta a la BBDD al montar el contexto.*/
+
+    useEffect(() => {
+        async function fetchUserData() {
+            const result = await getUserService();
+            if (result.status === "success" && result.data) {
+                setUserDataState(prev => ({ ...prev, ...result.data }));
             }
         }
-    },[]) */
-
-/*     useEffect(() => { //Se guarda en el localStorage cada vez que se actualiza el estado del usuario.
-        localStorage.setItem("userData", JSON.stringify(userData));
-    }, [userData]); */
-
+        fetchUserData();
+    }, []);
 
     const setUserData = (data: Partial<UserData>) => { //Actualiza los campos del usuario, sin modificar los que no se pasen.
         setUserDataState(prev => ({
