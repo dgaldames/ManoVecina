@@ -293,3 +293,34 @@ export async function updateService(formData: FormData){
 
     return { status: 'success' }
 }
+
+export async function deleteService(){
+    const supabase = await createClient()
+
+    const { data: {user}, error: userError } = await supabase.auth.getUser()
+    if(userError || !user){
+        return { status: 'error', message: 'Usuario no encontrado' }
+    }
+
+    const { data: existingService } = await supabase
+        .from('servicios_persona')
+        .select('id')
+        .eq('user_id', user.id)
+        .single()
+
+    if(!existingService){
+        return { status: 'error', message: 'No se encontro el servicio' }
+    }
+
+    const { error } = await supabase
+        .from('servicios_persona')
+        .delete()
+        .eq('id', existingService.id)
+
+    if(error){
+        return { status: error.message }
+    }
+    
+    return { status: 'success' }
+    
+}

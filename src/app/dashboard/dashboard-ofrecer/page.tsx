@@ -2,13 +2,14 @@
 import { useEffect, useState } from "react";
 import  Swal  from "sweetalert2"
 import { insertService/*  getUserService */ } from "@/lib/auth-actions";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useUser } from "@/app/context";
 
 
 export default function OfrecerPage(){
 
     const { setUserData, nombre, telefono, nom_serv, tarifa, disponibilidad, descripcion, experiencia } = useUser();
+    const router = useRouter()
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         nombre: "",
@@ -80,14 +81,15 @@ export default function OfrecerPage(){
         if (response.status === "success") {
             //Actualizamos el contexto con lo registrado.
             setUserData(formData);
-            Swal.fire({
+            await Swal.fire({
                 icon: "success",
                 title: "¡Servicio registrado!",
-                text: "Su servicio ha sido registrado correctamente. Lo redirigiremos a su perfil",
+                text: "Su servicio ha sido registrado correctamente. Lo redirigiremos a su perfil.",
                 confirmButtonText: "Ok",
                 confirmButtonColor: "#ff6c04",
+                timer:3000,
             });
-            return redirect("/dashboard/dashboard-my-profile")
+            router.push("/dashboard/dashboard-my-profile");
         } else {
             console.log("Respuesta del servidor:", response);
             Swal.fire({

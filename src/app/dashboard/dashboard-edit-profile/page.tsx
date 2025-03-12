@@ -1,15 +1,17 @@
 'use client'
 import { useEffect, useState, useRef } from "react";
 import  Swal  from "sweetalert2"
-import { updateService } from "@/lib/auth-actions";
-import { redirect } from "next/navigation";
+import { updateService, deleteService } from "@/lib/auth-actions";
+import { useRouter  } from "next/navigation";
 import { useUser } from "@/app/context";
 
 
 export default function EditPage(){
 
     const { setUserData, nombre, telefono, nom_serv, tarifa, disponibilidad, descripcion, experiencia } = useUser();
+    const router = useRouter();
     const [loading, setLoading] = useState(false);
+    const [loadingDelete, setLoadingDelete] = useState(false);
     const [formData, setFormData] = useState({
         nombre: "",
         telefono: "",
@@ -62,40 +64,70 @@ export default function EditPage(){
     };
 
 
-    const handleSubmit = async (e: React.FormEvent) => { //Los "e", hacen referencia evento que general el usuario.
-        e.preventDefault();
-        setLoading(true);
 
-        const data = new FormData();                            //Ahora data contiene los mismos datos que formData
-        Object.entries(formData).forEach(([key, value]) => {    //Pero en un formato adecuado para enviarlo en una petición HTTP.
-            data.append(key, value);
+const handleDeleteService = async () => {
+    const result = await Swal.fire({
+        title: "Eliminar Servicio",
+        text: "¿Estas seguro que deseas eliminar tu servicio?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Sí, Eliminar Servicio",
+        cancelButtonText: "Cancelar",
+        confirmButtonColor: "#ff6c04",
+    })
+    
+    if(result.isConfirmed){
+        setLoadingDelete(true)
+        await Swal.fire({
+            title: "Servicio Eliminado",
+            text: "Has eliminado tu servicio correctamente",
+            icon: "success",
+            confirmButtonColor: "#ff6c04",
+            timer: 3000,
+        })
+        await deleteService()
+        setUserData({}) //Ya que no se puede poner null, le ponemos un objeto vacío.
+        window.location.reload()            //Window.location for the win CTM, el unico que sirve.
+        window.location.href = "/dashboard"
+    }else{
+        setLoadingDelete(false);
+    }
+}
+
+const handleSubmit = async (e: React.FormEvent) => { //Los "e", hacen referencia evento que general el usuario.
+    e.preventDefault();
+    setLoading(true);
+
+    const data = new FormData();                            //Ahora data contiene los mismos datos que formData
+    Object.entries(formData).forEach(([key, value]) => {    //Pero en un formato adecuado para enviarlo en una petición HTTP.
+        data.append(key, value);
+    });
+
+    const response = await updateService(data); //Enviamos los datos al backend con el formato adecuado.
+
+    if (response.status === "success") {
+        //Actualizamos el contexto con lo registrado.
+        setUserData(formData);
+        await Swal.fire({
+            icon: "success",
+            title: "¡Servicio modificado!",
+            text: "Su servicio ha sido editado correctamente. Lo redirigiremos a su perfil.",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#ff6c04",
+            timer: 3000,
         });
-
-        const response = await updateService(data); //Enviamos los datos al backend con el formato adecuado.
-
-        if (response.status === "success") {
-            //Actualizamos el contexto con lo registrado.
-            setUserData(formData);
-            Swal.fire({
-                icon: "success",
-                title: "¡Servicio modificado!",
-                text: "Su servicio ha sido editado correctamente. Lo redirigiremos a su perfil",
-                confirmButtonText: "Ok",
-                confirmButtonColor: "#ff6c04",
-            });
-            return redirect("/dashboard/dashboard-my-profile")
-        } else {
-            console.log("Respuesta del servidor:", response);
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: response.message || "Ocurrió un error al modificar el servicio.",
-                confirmButtonColor: "#d33",
-            });
-        }
-
-        setLoading(false);
-    };
+        router.push('/dashboard/dashboard-my-profile')
+    } else {
+        console.log("Respuesta del servidor:", response);
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: response.message || "Ocurrió un error al modificar el servicio.",
+            confirmButtonColor: "#d33",
+        });
+    }
+    setLoading(false);
+}
 
     return(
             <div className="bg-white border p-5 border-gray-300 rounded-lg shadow dark:bg-gray-800 dark:border-gray-900 transition-all duration-200 ease-in-out">
@@ -207,6 +239,14 @@ export default function EditPage(){
                             disabled={loading || !isDirty}>
                             {loading ? "Modificando sus Servicios..." : "Editar mi Servicio"}
                         </button>
+                        <button
+                            type="button"
+                            onClick={handleDeleteService}
+                            className="text-white bg-vecino rounded-lg hover:bg-orange-700 focus:ring-2 dark:focus:ring-white focus:ring-darkbg focus:outline-none text-lg w-full lg:w-auto px-5 py-2.5 text-center transform hover:scale-105 hover:ease-out transition duration-300"
+                            >
+                            {loadingDelete ? "Eliminando su Servicio..." : "Eliminar mi Servicio"}
+                        </button>
+
                     </div>
                 </form>
             </div>
