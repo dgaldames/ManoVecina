@@ -244,3 +244,52 @@ export async function getUserService(){
 
     return { status: 'success', data: service }
 }
+
+export async function updateService(formData: FormData){
+    const supabase = await createClient()
+
+    const { data: {user}, error: userError } = await supabase.auth.getUser()
+    if(userError || !user){
+        return { status: 'error', message: 'Usuario no encontrado' } //Problablemente nunca se ejecute.
+    }
+
+    const nombre = formData.get('nombre') as string
+    const telefono = formData.get('telefono') as string
+    const nom_serv = formData.get('nom_serv') as string
+    const tarifa = formData.get('tarifa') as string
+    const disponibilidad = formData.get('disponibilidad') as string
+    const descripcion = formData.get('descripcion') as string
+    const experiencia = formData.get('experiencia') as string
+
+    const newService = {
+        user_id: user.id,
+        nombre,
+        telefono,
+        nom_serv,
+        tarifa,
+        disponibilidad,
+        descripcion,
+        experiencia
+    }
+
+    const { data: existingService } = await supabase
+        .from('servicios_persona')
+        .select('id')
+        .eq('user_id', user.id)
+        .single()
+
+    if(!existingService){
+        return { status: 'error', message: 'No se encontro el servicio' }
+    }
+
+    const { error } = await supabase
+        .from('servicios_persona')
+        .update(newService)
+        .eq('id', existingService.id)
+
+    if(error){
+        return { status: error.message }
+    }
+
+    return { status: 'success' }
+}

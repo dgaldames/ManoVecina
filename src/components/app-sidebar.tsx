@@ -16,6 +16,7 @@ import {
   ReceiptText,
   Contact,
   Wrench,
+  Pencil,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -77,10 +78,16 @@ const data = {
       icon: Contact,
     },
     {
+      title: "Editar Perfil",
+      url: "/dashboard/dashboard-edit-profile",
+      icon: Pencil,
+    },
+    {
       title: "Ayuda/Soporte",
       url: "/dashboard/dashboard-soporte",
       icon: Wrench,
-    },/* {
+    },
+    /* {
       title: "Cerrar Sesión",
       url: "#",
       icon: LogOut,
