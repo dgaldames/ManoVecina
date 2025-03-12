@@ -37,7 +37,6 @@ export const UserProvider = ({ children }: Props) => { //UserProvider es el comp
 
     /*Con este useEffect obtenemos los datos del servicio del usuario de la BBDD.
     De esta forma siempre consulta a la BBDD al montar el contexto.*/
-
     useEffect(() => {
         async function fetchUserData() {
             const result = await getUserService();

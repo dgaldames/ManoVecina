@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from "react";
 import  Swal  from "sweetalert2"
-import { insertService, getUserService } from "@/lib/auth-actions";
+import { insertService/*  getUserService */ } from "@/lib/auth-actions";
 import { redirect } from "next/navigation";
 import { useUser } from "@/app/context";
 
@@ -20,7 +20,9 @@ export default function OfrecerPage(){
         experiencia: "",
     });
 
-    useEffect(() => { //Al cargar la pagina intentamos traer el servicio de usuario.
+
+    //Ya no es necesario ya que lo montamos en el contexto 'index.tsx'
+    /* useEffect(() => { //Al cargar la pagina intentamos traer el servicio de usuario.
             async function fetchExistingService(){
                 const result = await getUserService()
                 console.log(result)
@@ -30,7 +32,7 @@ export default function OfrecerPage(){
                 }
             }
             fetchExistingService()
-    }, []) //Lo montamos solo una vez []
+    }, []) */ //Lo montamos solo una vez []
 
     // Si el contexto ya tiene datos (es decir, ya existe un servicio) inicializamos el formulario con ellos.
     useEffect(() => {
