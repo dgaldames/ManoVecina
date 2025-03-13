@@ -237,7 +237,7 @@ const handleSubmit = async (e: React.FormEvent) => { //Los "e", hacen referencia
                             type="submit"
                             className="text-white bg-vecino rounded-lg hover:bg-orange-700 focus:ring-2 dark:focus:ring-white focus:ring-darkbg focus:outline-none text-lg w-full lg:w-auto px-5 py-2.5 text-center transform hover:scale-105 hover:ease-out transition duration-300"
                             disabled={loading || !isDirty}>
-                            {loading ? "Modificando sus Servicios..." : "Editar mi Servicio"}
+                            {loading ? "Modificando sus Servicios..." : "Guardar Cambios"}
                         </button>
                         <button
                             type="button"
