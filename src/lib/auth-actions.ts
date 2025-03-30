@@ -327,7 +327,7 @@ export async function deleteService(){
 
 
 //Con esta funciona rescatamos todos los servicios registrados en la BBDD.
-export async function getAllServices(){
+/* export async function getAllServices(){
     const supabase = await createClient()
 
     const { data, error } = await supabase
@@ -339,4 +339,4 @@ export async function getAllServices(){
     }
 
     return { status: 'success', data }
-}
+} */

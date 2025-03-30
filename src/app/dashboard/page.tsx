@@ -1,20 +1,23 @@
+'use client'
 
-import React from "react"
+
+import { useEffect } from "react"
 import UserCard from "@/components/dashboard-components/user-card"
-import { getAllServices } from "@/lib/auth-actions"
+//import { getAllServices } from "@/lib/auth-actions"
+import { useServices } from "@/hooks/useServices"
 
-export default async function Page() {
+export default function Page() {
 
-    const servicesResult = await getAllServices();
-    let services = [];
-    if(servicesResult.status === 'success' && servicesResult.data){
-        services = servicesResult.data;
-    }
+    const { myServices, getServices} = useServices()
 
+
+    useEffect(() => {
+        getServices()
+    }, [])
 
     return (
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-            {services.map((service) => (
+            {myServices.map((service) => (
                 <UserCard
                     key={service.id}
                     userId={service.id}
