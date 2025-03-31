@@ -15,8 +15,10 @@ export default function Page() {
         getServices()
     }, [])
 
+    //ARREGLAR QUE LAS CARDS CUANDO APARECEN, SE GENERAN HACIA ABAJO Y NO HACIA AL
+
     return (
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+        <div className="grid auto-rows-min md:grid-cols-3 gap-4 p-4 pt-0">
             {myServices.map((service) => (
                 <UserCard
                     key={service.id}

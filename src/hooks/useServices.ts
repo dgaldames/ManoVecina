@@ -5,16 +5,21 @@ import { createClient } from "@/utils/supabase/client";
 
 export function useServices() {
 
-    /* interface Service {
+    interface Service {
         // Replace these fields with the actual structure of your 'servicios_persona' table
-        id: number;
-        name: string;
-        description: string;
+        id: string;
+        nombre: string;
+        telefono: string;
+        nom_serv: string;
+        tarifa: string;
+        disponibilidad: string;
+        descripcion: string;
+        experiencia: string;
     }
 
-    const [myServices, setMyServices] = useState<Service[]>([]); */
+    const [myServices, setMyServices] = useState<Service[]>([]); 
     
-    const [myServices, setMyServices] = useState<any[]>([]);
+    //const [myServices, setMyServices] = useState<any[]>([]);
 
     const supabase = createClient();
 
