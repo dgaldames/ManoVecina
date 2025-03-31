@@ -6,13 +6,12 @@ import Link from "next/link";
 export default function UserProfile({
     userName,
     userCell,
-    userMail,
     userService,
     userDescription,
     userSchedule,
     userPrice,
     userExperience,
-}:{userName: string, userCell: string, userMail: string, userService: string, userDescription: string, userSchedule: string, userPrice: string, userExperience: string}) {
+}:{userName: string, userCell: string, userService: string, userDescription: string, userSchedule: string, userPrice: string, userExperience: string}) {
     return (
         <div className="relative w-full p-5 bg-white border border-gray-300 rounded-lg shadow dark:bg-gray-800 dark:border-gray-900 transition-all duration-200 ease-in-out">
             {/* Ocupación Principal */}
@@ -35,10 +34,6 @@ export default function UserProfile({
                     <div className="flex flex-col lg:flex-row items-start gap-1 lg:gap-3">
                         <label className="dark:text-white text-lg font-semibold">Teléfono:</label>
                         <h3 className="dark:text-white text-lg">{userCell}</h3>
-                    </div>
-                    <div className="flex flex-col lg:flex-row items-start gap-1 lg:gap-3">
-                        <label className="dark:text-white text-lg font-semibold">Correo:</label>
-                        <h3 className="dark:text-white text-lg">{userMail}</h3>
                     </div>
                 </div>
             </div>

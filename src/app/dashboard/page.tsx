@@ -15,7 +15,7 @@ export default function Page() {
         getServices()
     }, [])
 
-    //ARREGLAR QUE LAS CARDS CUANDO APARECEN, SE GENERAN HACIA ABAJO Y NO HACIA AL
+    //REVISAR QUE CUANDO ESTOY EN CUENTAS DISTINTAS Y RECARGO LA PAGINA, SE CAMBIA DE CUENTA.
 
     return (
         <div className="grid auto-rows-min md:grid-cols-3 gap-4 p-4 pt-0">
@@ -28,11 +28,6 @@ export default function Page() {
                     userDetails={service.descripcion}
                 />
             ))}
-            {/* <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                <UserCard userName={"Diego Galdames"} userService={"Informatico"} userDetails="Experto en desarrollo web y gestion de proyectos"></UserCard>
-                <UserCard userName={"Diego Galdames"} userService={"Informatico"} userDetails="Experto en desarrollo web y gestion de proyectos"></UserCard>
-                <UserCard userName={"Diego Galdames"} userService={"Informatico"} userDetails="Experto en desarrollo web y gestion de proyectos"></UserCard>
-            </div> */}
         </div>
     )
 }
