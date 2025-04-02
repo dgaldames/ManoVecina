@@ -37,8 +37,13 @@ export default function DynamicProfilePage() {
 
 
     //Mejorar este mensaje de carga en un futuro.
-    if(!profile){
-        return <p>Cargando Perfil...</p>
+    if (!profile) {
+        return (
+            <div className="flex flex-col items-center justify-center h-full py-20">
+                <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-vecino dark:border-orange-500"></div>
+                <p className="mt-6 text-xl font-semibold text-gray-700 dark:text-gray-300">Cargando Perfil...</p>
+            </div>
+        );
     }
     
     return(
