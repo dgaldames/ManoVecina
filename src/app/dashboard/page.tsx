@@ -15,8 +15,6 @@ export default function Page() {
         getServices()
     }, [])
 
-    //REVISAR QUE CUANDO ESTOY EN CUENTAS DISTINTAS Y RECARGO LA PAGINA, SE CAMBIA DE CUENTA.
-
     return (
         <div className="grid auto-rows-min md:grid-cols-3 gap-4 p-4 pt-0">
             {myServices.map((service) => (
