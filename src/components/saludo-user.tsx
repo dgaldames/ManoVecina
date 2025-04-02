@@ -13,17 +13,17 @@ const UserGreetText = () => {
             } = await supabase.auth.getUser();
             
             if(user){
-                setUser({ id: user.id, email: user.email ?? "" });
-
                 const { data: serviceData, error } = await supabase
-                    .from("servicios_persona")
-                    .select("nombre")
-                    .eq("user_id", user.id) //Puede dar un error
-                    .single();
-
+                .from("servicios_persona")
+                .select("nombre")
+                .eq("user_id", user.id) //Puede dar un error
+                .single();
+                
                 if(!error && serviceData && serviceData.nombre){
                     setServiceName(serviceData.nombre);
                 }
+                
+                setUser({ id: user.id, email: user.email ?? "" });
             }
         };
         fetchUser();

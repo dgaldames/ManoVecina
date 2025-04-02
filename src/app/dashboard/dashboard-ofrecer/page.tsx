@@ -90,6 +90,7 @@ export default function OfrecerPage(){
                 timer:3000,
             });
             router.push("/dashboard/dashboard-my-profile");
+            window.location.reload();
         } else {
             console.log("Respuesta del servidor:", response);
             Swal.fire({
