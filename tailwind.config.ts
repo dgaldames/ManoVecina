@@ -11,12 +11,12 @@ export default {
 	"./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
 	],
 	theme: {
-		fontFamily: {
-			sans: [
-				'Gotham SSm A, sans-serif'
-			]
-		},
 		extend: {
+			fontFamily: {
+				sans: [
+					'Gotham SSm A, sans-serif'
+				]
+			},
 			backgroundImage: {
 				'login-background': "url('/login-imgs/background-login.svg')"
 			},

@@ -30,9 +30,13 @@ const UserGreetText = () => {
     }, []);
 
         if (user !== null) {
+            const greetingClass = serviceName ? "text-base" : "text-xs";
             return (
-                <p>Hola! &nbsp;
-                    <code>{serviceName ?? user.email}</code>
+                <p className={greetingClass}>
+                    Hola! &nbsp;
+                    <code className="font-medium, font-sans">
+                        {serviceName ?? user.email}
+                    </code>
                 </p>
             );
         }
