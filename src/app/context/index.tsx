@@ -11,6 +11,7 @@ type UserData = { //Tipamos los datos del usuario.
     disponibilidad: string
     descripcion: string
     experiencia: string
+    foto: string
 };
 
 type UserContextType = UserData & { //UserContextType es la estructura del contexto, que incluye los datos del usuario y la función para actualizarlos, la cual es opcional.
@@ -30,6 +31,7 @@ const defaultUserData: UserData = { //Se encarga de manejar y distribuir los dat
     disponibilidad: "",
     descripcion: "",
     experiencia: "",
+    foto: ""
 };
 
 export const UserProvider = ({ children }: Props) => { //UserProvider es el componente que provee el contexto.
