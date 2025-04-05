@@ -5,11 +5,14 @@ export default function UserCard ({userId, userName, userService, userDetails, u
     return(
         <div className="w-full max-w-lg pt-10 bg-white border border-gray-300 rounded-lg shadow dark:bg-gray-800 dark:border-gray-900 transition-all duration-200 ease-in-out">
             <div className="flex flex-col items-center pb-8">
-                <Image className="w-24 h-24 mb-3 rounded-full shadow-lg" 
-                alt="Bonnie image" 
-                src={userImage ? userImage :"/dashboard-imgs/kurisu.png"}
-                width={24}
-                height={24}/>
+            <Image 
+                className="w-24 h-24 rounded-full shadow-lg object-cover" 
+                alt="Foto de perfil" 
+                src={userImage ? userImage : "/dashboard-imgs/kurisu.png"}
+                width={96} // mayor resolución interna
+                height={96} // mayor resolución interna
+                quality={100} // calidad máxima
+/>
                 <h5 className="mb-2 text-xl font-medium text-gray-900 dark:text-white">{userName}</h5>
                 <span className="text-bs text-gray-600 dark:text-gray-400 mb-2">{userService}</span>
                 <p className="text-sm text-center text-gray-500 dark:text-gray-400">{userDetails}</p>

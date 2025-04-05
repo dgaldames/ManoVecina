@@ -29,13 +29,14 @@ export default function MyProfilePage() {
             <div className="absolute flex top-15 right-5 dark:bg-gray-900 bg-gray-100 px-4 py-4 rounded-lg">
                 <h3 className="font-medium dark:text-white xl:text-3xl lg:text-xl text-lg">{nom_serv}</h3>
             </div>
-            <div className="flex flex-col lg:flex-row items-center lg:items-start gap-5 xl:mt-0 mt-20">
+            <div className="flex flex-col lg:flex-row items-center lg:items-start gap-5 xl:mt-0 mt-20 object-cover">
                 <Image
                 className="w-32 h-32 lg:w-48 lg:h-48 mb-3 rounded-full shadow-lg"
                 alt="Bonnie image"
                 src={foto ? foto :"/dashboard-imgs/kurisu.png"}
-                width={42}
-                height={42}
+                width={128}
+                height={128}
+                quality={100}
                 />
                 <div className="flex flex-col items-start lg:ml-10 gap-y-5 bg-gray-100 dark:bg-gray-900 py-4 px-4 rounded-lg w-full lg:w-auto">
                     <div className="flex flex-col lg:flex-row items-start gap-1 lg:gap-3">
