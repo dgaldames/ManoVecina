@@ -243,6 +243,7 @@ export default function OfrecerPage(){
                         <button onClick={() => (window.location.href = "/dashboard/dashboard-edit-profile")} type="button" className="text-white bg-vecino rounded-lg hover:bg-orange-700 focus:ring-2  dark:focus:ring-white focus:ring-darkbg focus:outline-none text-lg w-full lg:w-auto px-5 py-2.5 text-center transform hover:scale-105 hover:ease-out transition duration-300"
                         >Quiero Editar mi Servicio</button>
                     </div>
+                    <p className="text-sm mt-2 ml-1 text-gray-600 dark:text-gray-400">Sube una imagen en formato PNG, JPG o JPEG. <br /> La imagen puede tardar unos minutos en actualizar.</p>
                 </form>
             </div>
     )

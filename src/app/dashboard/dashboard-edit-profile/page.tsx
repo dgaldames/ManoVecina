@@ -49,9 +49,9 @@ export default function EditPage(){
 
     // Cada vez que cambia el formulario, comparamos con el estado inicial para ver si hay cambios
     useEffect(() => {
-        const hasChanged = JSON.stringify(formData) !== JSON.stringify(initialFormData.current);
-        setIsDirty(hasChanged);
-    }, [formData]);
+        const formChanged = JSON.stringify(formData) !== JSON.stringify(initialFormData.current);
+        setIsDirty(formChanged || !!file);
+    }, [formData, file]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => { 
         const { id, value } = e.target; // Se destructura para obtener el id y el valor del e.target, en este caso, del input.
@@ -298,6 +298,7 @@ const handleSubmit = async (e: React.FormEvent) => { //Los "e", hacen referencia
                         </button>
 
                     </div>
+                    <p className="text-sm mt-2 ml-1 text-gray-600 dark:text-gray-400">Sube una imagen en formato PNG, JPG o JPEG. <br /> La imagen puede tardar unos minutos en actualizar.</p>
                 </form>
             </div>
     )
