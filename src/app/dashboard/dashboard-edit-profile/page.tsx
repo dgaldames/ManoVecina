@@ -4,6 +4,7 @@ import  Swal  from "sweetalert2"
 import { updateService, deleteService } from "@/lib/auth-actions";
 import { useRouter  } from "next/navigation";
 import { useUser } from "@/app/context";
+import { createClient } from "@/utils/supabase/client";
 
 
 export default function EditPage(){
@@ -21,6 +22,7 @@ export default function EditPage(){
         descripcion: "",
         experiencia: "",
     });
+    const [file, setFile] = useState<File | null>(null); // Estado para manejar el archivo de la foto.
     const [isDirty, setIsDirty] = useState(false)
     const initialFormData = useRef(formData);
 
@@ -63,7 +65,12 @@ export default function EditPage(){
         }));
     };
 
-
+        // Manejador para el input de archivo de la foto
+        const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+            if (e.target.files && e.target.files[0]) {
+                setFile(e.target.files[0]);
+            }
+        };
 
 const handleDeleteService = async () => {
     const result = await Swal.fire({
@@ -98,12 +105,50 @@ const handleSubmit = async (e: React.FormEvent) => { //Los "e", hacen referencia
     e.preventDefault();
     setLoading(true);
 
-    const data = new FormData();                            //Ahora data contiene los mismos datos que formData
-    Object.entries(formData).forEach(([key, value]) => {    //Pero en un formato adecuado para enviarlo en una petición HTTP.
-        data.append(key, value);
-    });
 
-    const response = await updateService(data); //Enviamos los datos al backend con el formato adecuado.
+    const supabase = createClient(); //Creamos el cliente de supabase para poder subir la foto.
+    let fotoUrl = ""; //Inicializamos la variable foto como vacia.
+
+    // Si se seleccionó una nueva imagen, se sube al bucket y se obtiene la URL
+    if(file){
+        const fileName = `${Date.now()}-${file.name}`;
+        const { data: uploadData, error: uploadError } = await supabase.storage
+            .from("pfpusuarios")
+            .upload(`perfil/${fileName}`, file);
+        if (uploadError) {
+            Swal.fire({
+                icon: "error",
+                title: "Error al subir la imagen",
+                text: uploadError.message,
+            });
+            setLoading(false);
+            return;
+        }
+        const { data: publicData } = supabase.storage
+            .from("pfpusuarios")
+            .getPublicUrl(uploadData.path);
+        if (!publicData.publicUrl) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "No se pudo obtener la URL de la imagen",
+            });
+            setLoading(false);
+            return;
+        }
+        fotoUrl = publicData.publicUrl;
+        console.log("URL de la imagen:", fotoUrl);
+    }
+
+    const dataPayload = new FormData();                            //Ahora data contiene los mismos datos que formData
+    Object.entries(formData).forEach(([key, value]) => {    //Pero en un formato adecuado para enviarlo en una petición HTTP.
+        dataPayload.append(key, value);
+    });
+    if(fotoUrl){  // Solo se agrega si se obtuvo una URL de imagen.
+        dataPayload.append("foto", fotoUrl);
+    }
+
+    const response = await updateService(dataPayload); //Enviamos los datos al backend con el formato adecuado.
 
     if (response.status === "success") {
         //Actualizamos el contexto con lo registrado.
@@ -231,6 +276,7 @@ const handleSubmit = async (e: React.FormEvent) => { //Los "e", hacen referencia
                         accept=".png,.jpg,.jpeg,.pdf"
                         className="hidden"
                         name="Archivo"
+                        onChange={handleFileChange} // Cambiamos el manejador de eventos para el input de archivo
                         />
                         {/* TODO HACER QUE AL PRESIONAR CAMBIE EL COLOR CUANDO EL loading ES true */}
                         <button

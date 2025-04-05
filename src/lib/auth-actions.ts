@@ -262,6 +262,7 @@ export async function updateService(formData: FormData){
     const disponibilidad = formData.get('disponibilidad') as string
     const descripcion = formData.get('descripcion') as string
     const experiencia = formData.get('experiencia') as string
+    const foto = formData.get('foto') as string
 
     const newService = {
         user_id: user.id,
@@ -271,7 +272,8 @@ export async function updateService(formData: FormData){
         tarifa,
         disponibilidad,
         descripcion,
-        experiencia
+        experiencia,
+        foto
     }
 
     const { data: existingService } = await supabase
