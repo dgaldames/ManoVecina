@@ -15,6 +15,7 @@ export function useServices() {
         disponibilidad: string;
         descripcion: string;
         experiencia: string;
+        foto:string
     }
 
     const [myServices, setMyServices] = useState<Service[]>([]); 
