@@ -5,6 +5,9 @@ import { updateService, deleteService } from "@/lib/auth-actions";
 import { useRouter  } from "next/navigation";
 import { useUser } from "@/app/context";
 import { createClient } from "@/utils/supabase/client";
+//import Image from "next/image";
+
+//TODO, VER ALGUNA FORMA DE MOSTRAR LA IMAGEN EN LOS CAMPOS DE EDITAR.
 
 
 export default function EditPage(){
@@ -37,6 +40,7 @@ export default function EditPage(){
                 disponibilidad,
                 descripcion,
                 experiencia,
+        
             };
             setFormData(data);
             initialFormData.current = data;
@@ -273,7 +277,7 @@ const handleSubmit = async (e: React.FormEvent) => { //Los "e", hacen referencia
                         <input
                         id="file-input"
                         type="file"
-                        accept=".png,.jpg,.jpeg,.pdf"
+                        accept=".png,.jpg,.jpeg"
                         className="hidden"
                         name="Archivo"
                         onChange={handleFileChange} // Cambiamos el manejador de eventos para el input de archivo

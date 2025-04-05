@@ -115,7 +115,7 @@ export default function OfrecerPage(){
                 text: "Su servicio ha sido registrado correctamente. Lo redirigiremos a su perfil.",
                 confirmButtonText: "Ok",
                 confirmButtonColor: "#ff6c04",
-                //timer:3000,
+                timer:3000,
             });
             router.push("/dashboard/dashboard-my-profile");
             window.location.reload();
@@ -231,7 +231,7 @@ export default function OfrecerPage(){
                         <input
                         id="file-input"
                         type="file"
-                        accept=".png,.jpg,.jpeg,.pdf"
+                        accept=".png,.jpg,.jpeg"
                         className="hidden"
                         name="Archivo"
                         onChange={handleFileChange}
