@@ -1,16 +1,18 @@
 'use client'
 import { useEffect, useState } from "react";
 import  Swal  from "sweetalert2"
-import { insertService/*  getUserService */ } from "@/lib/auth-actions";
+import { insertService,/*  getUserService */} from "@/lib/auth-actions";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/app/context";
+import { createClient } from "@/utils/supabase/client";
 
 
 export default function OfrecerPage(){
 
-    const { setUserData, nombre, telefono, nom_serv, tarifa, disponibilidad, descripcion, experiencia } = useUser();
+    const { setUserData, nombre, telefono, nom_serv, tarifa, disponibilidad, descripcion, experiencia} = useUser();
     const router = useRouter()
     const [loading, setLoading] = useState(false);
+    const [file, setFile] = useState<File | null>(null); // Estado para almacenar el archivo seleccionado.
     const [formData, setFormData] = useState({
         nombre: "",
         telefono: "",
@@ -19,21 +21,8 @@ export default function OfrecerPage(){
         disponibilidad: "",
         descripcion: "",
         experiencia: "",
+        
     });
-
-
-    //Ya no es necesario ya que lo montamos en el contexto 'index.tsx'
-    /* useEffect(() => { //Al cargar la pagina intentamos traer el servicio de usuario.
-            async function fetchExistingService(){
-                const result = await getUserService()
-                console.log(result)
-                if(result.status === 'success' && result.data){
-                    //Actualizamos el contexto con los datos del servicio.
-                    setUserData(result.data)
-                }
-            }
-            fetchExistingService()
-    }, []) */ //Lo montamos solo una vez []
 
     // Si el contexto ya tiene datos (es decir, ya existe un servicio) inicializamos el formulario con ellos.
     useEffect(() => {
@@ -66,18 +55,57 @@ export default function OfrecerPage(){
         }));
     };
 
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            setFile(e.target.files[0]);
+        }
+    };
 
     const handleSubmit = async (e: React.FormEvent) => { //Los "e", hacen referencia evento que general el usuario.
+        const supabase = createClient(); // Inicializa el cliente de Supabase.
         e.preventDefault();
         setLoading(true);
-
-        const data = new FormData();                            //Ahora data contiene los mismos datos que formData
-        Object.entries(formData).forEach(([key, value]) => {    //Pero en un formato adecuado para enviarlo en una petición HTTP.
-            data.append(key, value);
+        
+        let fotoUrl = "";
+        if(file){
+            const fileName = `${Date.now()}-${file.name}`;
+            const { data: uploadData, error: uploadError } = await supabase.storage
+                .from("pfpusuarios")
+                .upload(`perfil/${fileName}`, file);
+            if (uploadError) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error al subir la imagen",
+                    text: uploadError.message,
+                });
+                setLoading(false);
+                return;
+            }
+            const { data: publicData } = supabase.storage
+                .from("pfpusuarios")
+                .getPublicUrl(uploadData.path);
+            if (!publicData.publicUrl) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "No se pudo obtener la URL de la imagen",
+                });
+                setLoading(false);
+                return;
+            }
+            fotoUrl = publicData.publicUrl;
+            console.log("URL de la imagen:", fotoUrl);
+        }
+        
+        const formPayload = new FormData(); 
+        Object.entries(formData).forEach(([key, value]) => {
+            formPayload.append(key, value);
         });
-
-        const response = await insertService(data); //Enviamos los datos al backend con el formato adecuado.
-
+        if(fotoUrl){
+            formPayload.append("foto", fotoUrl);
+        }
+        
+        const response = await insertService(formPayload);
         if (response.status === "success") {
             //Actualizamos el contexto con lo registrado.
             setUserData(formData);
@@ -87,7 +115,7 @@ export default function OfrecerPage(){
                 text: "Su servicio ha sido registrado correctamente. Lo redirigiremos a su perfil.",
                 confirmButtonText: "Ok",
                 confirmButtonColor: "#ff6c04",
-                timer:3000,
+                //timer:3000,
             });
             router.push("/dashboard/dashboard-my-profile");
             window.location.reload();
@@ -130,7 +158,7 @@ export default function OfrecerPage(){
                         </div>
                         <div>
                             <label htmlFor="telefono" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Teléfono</label>
-                            <input disabled={!!telefono} value={formData.telefono} onChange={handleChange} type="tel" minLength={9} maxLength={9} pattern="[0-1-2-3-4-5-6-7-8-9]" id="telefono" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="912345678" required />
+                            <input disabled={!!telefono} value={formData.telefono} onChange={handleChange} type="tel" minLength={9} maxLength={9} pattern="[0-9]+" id="telefono" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="912345678" required />
                             <p
                                 className={`mt-1 text-sm ml-1 ${
                                     formData.telefono.length === 9 ? "text-vecino"
@@ -206,6 +234,7 @@ export default function OfrecerPage(){
                         accept=".png,.jpg,.jpeg,.pdf"
                         className="hidden"
                         name="Archivo"
+                        onChange={handleFileChange}
                         />
                         {/* TODO HACER QUE AL PRESIONAR CAMBIE EL COLOR CUANDO EL loading ES true */}
                         <button type="submit" className="text-white bg-vecino rounded-lg hover:bg-orange-700 focus:ring-2  dark:focus:ring-white focus:ring-darkbg focus:outline-none text-lg w-full lg:w-auto px-5 py-2.5 text-center transform hover:scale-105 hover:ease-out transition duration-300"
