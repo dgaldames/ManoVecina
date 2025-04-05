@@ -183,6 +183,7 @@ export async function insertService(formData: FormData){
     const disponibilidad = formData.get('disponibilidad') as string
     const descripcion = formData.get('descripcion') as string
     const experiencia = formData.get('experiencia') as string
+    const foto = formData.get('foto') as string
     //Vemos que no falte ningun campo obligatorio.
     if(!nombre || !telefono || !nom_serv || !tarifa || !disponibilidad || !descripcion){
         return { status: 'error', message: 'Todos los campos son requeridos' }
@@ -196,7 +197,8 @@ export async function insertService(formData: FormData){
         tarifa,
         disponibilidad,
         descripcion,
-        experiencia
+        experiencia,
+        foto
     }
 
     const { data:existingService } = await supabase
@@ -324,19 +326,3 @@ export async function deleteService(){
     return { status: 'success' }
     
 }
-
-
-//Con esta funciona rescatamos todos los servicios registrados en la BBDD.
-/* export async function getAllServices(){
-    const supabase = await createClient()
-
-    const { data, error } = await supabase
-        .from('servicios_persona')
-        .select('*')
-
-    if(error){
-        return { status: 'error', message: error.message }
-    }
-
-    return { status: 'success', data }
-} */
