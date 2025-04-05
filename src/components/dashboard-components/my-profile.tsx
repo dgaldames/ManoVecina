@@ -17,6 +17,7 @@ export default function MyProfilePage() {
         disponibilidad,
         descripcion,
         experiencia,
+        foto,
     } = useUser();
 
     return (
@@ -32,7 +33,7 @@ export default function MyProfilePage() {
                 <Image
                 className="w-32 h-32 lg:w-48 lg:h-48 mb-3 rounded-full shadow-lg"
                 alt="Bonnie image"
-                src={"/dashboard-imgs/kurisu.png"}
+                src={foto ? foto :"/dashboard-imgs/kurisu.png"}
                 width={42}
                 height={42}
                 />

@@ -15,7 +15,8 @@ export default function DynamicProfilePage() {
         tarifa: string,
         disponibilidad: string,
         descripcion: string,
-        experiencia: string
+        experiencia: string,
+        foto:string
     } | null>(null)
 
     useEffect(() => {
@@ -45,6 +46,7 @@ export default function DynamicProfilePage() {
             </div>
         );
     }
+    //const userImage = `https://ynhbwjmlrbicqklevxrn.supabase.co/storage/v1/object/public/pfpusuarios/pfp/${userId}`;
     
     return(
         <div>
@@ -58,6 +60,7 @@ export default function DynamicProfilePage() {
                 userSchedule={profile.disponibilidad}
                 userPrice={profile.tarifa}
                 userExperience={profile.experiencia}
+                userImage={profile.foto ? profile.foto : "/dashboard-imgs/kurisu.png"}
                 >
             </UserProfile>
         </div>

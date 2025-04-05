@@ -12,7 +12,8 @@ export default function UserProfile({
     userSchedule,
     userPrice,
     userExperience,
-}:{userName: string, userCell: string, userService: string, userDescription: string, userSchedule: string, userPrice: string, userExperience: string}) {
+    userImage,
+}:{userName: string, userCell: string, userService: string, userDescription: string, userSchedule: string, userPrice: string, userExperience: string, userImage: string}) {
     return (
         <div className="relative w-full p-5 bg-white border border-gray-300 rounded-lg shadow dark:bg-gray-800 dark:border-gray-900 transition-all duration-200 ease-in-out">
             {/* Ocupación Principal */}
@@ -23,7 +24,7 @@ export default function UserProfile({
                 <Image
                 className="w-32 h-32 lg:w-48 lg:h-48 mb-3 rounded-full shadow-lg"
                 alt="Bonnie image"
-                src={"/dashboard-imgs/kurisu.png"}
+                src={userImage ? userImage :"/dashboard-imgs/kurisu.png"}
                 width={42}
                 height={42}
                 />

@@ -1,13 +1,13 @@
 import Image from "next/image"
 import Link from "next/link"
 
-export default function UserCard ({userId, userName, userService, userDetails }:{userId: string, userName: string, userService: string, userDetails: string}) {
+export default function UserCard ({userId, userName, userService, userDetails, userImage }:{userId: string, userName: string, userService: string, userDetails: string, userImage: string}) {
     return(
         <div className="w-full max-w-lg pt-10 bg-white border border-gray-300 rounded-lg shadow dark:bg-gray-800 dark:border-gray-900 transition-all duration-200 ease-in-out">
             <div className="flex flex-col items-center pb-8">
                 <Image className="w-24 h-24 mb-3 rounded-full shadow-lg" 
                 alt="Bonnie image" 
-                src={"/dashboard-imgs/kurisu.png"}
+                src={userImage ? userImage :"/dashboard-imgs/kurisu.png"}
                 width={24}
                 height={24}/>
                 <h5 className="mb-2 text-xl font-medium text-gray-900 dark:text-white">{userName}</h5>
