@@ -24,7 +24,7 @@ export default function Page() {
                     userName={service.nombre}
                     userService={service.nom_serv}
                     userDetails={service.descripcion}
-                    userImage={service.foto ? service.foto : "/dashboard-imgs/kurisu.png"}
+                    userImage={service.foto ? service.foto : "/dashboard-imgs/User_pfp_3.jpg"}
                 />
             ))}
         </div>

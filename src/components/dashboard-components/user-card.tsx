@@ -8,12 +8,12 @@ export default function UserCard ({userId, userName, userService, userDetails, u
             <Image 
                 className="w-24 h-24 rounded-full shadow-lg object-cover" 
                 alt="Foto de perfil" 
-                src={userImage ? userImage : "/dashboard-imgs/kurisu.png"}
+                src={userImage ? userImage : "/dashboard-imgs/User_pfp_3.jpg"}
                 width={96} // mayor resolución interna
                 height={96} // mayor resolución interna
                 quality={100} // calidad máxima
 />
-                <h5 className="mb-2 text-xl font-medium text-gray-900 dark:text-white">{userName}</h5>
+                <h5 className="mb-2 mt-2 text-xl font-medium text-gray-900 dark:text-white">{userName}</h5>
                 <span className="text-bs text-gray-600 dark:text-gray-400 mb-2">{userService}</span>
                 <p className="text-sm text-center text-gray-500 dark:text-gray-400">{userDetails}</p>
 

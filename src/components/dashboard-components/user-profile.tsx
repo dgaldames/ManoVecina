@@ -24,7 +24,7 @@ export default function UserProfile({
                 <Image
                 className="w-32 h-32 lg:w-48 lg:h-48 mb-3 rounded-full shadow-lg"
                 alt="Bonnie image"
-                src={userImage ? userImage :"/dashboard-imgs/kurisu.png"}
+                src={userImage ? userImage :"/dashboard-imgs/User_pfp_3.jpg"}
                 width={128}
                 height={128}
                 quality={100}

@@ -40,7 +40,6 @@ export default function EditPage(){
                 disponibilidad,
                 descripcion,
                 experiencia,
-        
             };
             setFormData(data);
             initialFormData.current = data;

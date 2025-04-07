@@ -60,7 +60,7 @@ export default function DynamicProfilePage() {
                 userSchedule={profile.disponibilidad}
                 userPrice={profile.tarifa}
                 userExperience={profile.experiencia}
-                userImage={profile.foto ? profile.foto : "/dashboard-imgs/kurisu.png"}
+                userImage={profile.foto ? profile.foto : "/dashboard-imgs/User_pfp_3.jpg"}
                 >
             </UserProfile>
         </div>
