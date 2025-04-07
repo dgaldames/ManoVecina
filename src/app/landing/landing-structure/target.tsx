@@ -10,7 +10,7 @@ export default function Objetivo(){
                         Historia
                     </h1>
                     <p className="text-xl leading-relaxed text-gray-800">
-                    <strong>ManoVecina nació como una idea para mi tesis universitaria</strong>, pero tras ser rechazada, decidí retomarla tiempo después ya titulado como ingeniero en informática por la Universidad Bernardo O&apos;Higgins. Durante un periodo sin trabajo, con tiempo libre y ganas de crecer, opté por desarrollar esta plataforma con dos fines: ayudar a mi comunidad y seguir aprendiendo como profesional. <strong>ManoVecina es, y seguirá siendo, un servicio gratuito</strong> que busca conectar a vecinos con personas que ofrecen ayuda en tareas cotidianas. Si alguna vez te es útil y deseas apoyar el proyecto, <strong>tendrás la opción totalmente voluntaria de hacer una donación</strong>.
+                    <strong>ManoVecina nació como una idea para mi tesis universitaria</strong>, pero tras ser rechazada, decidí retomarla ya titulado como ingeniero en informática por la Universidad Bernardo O&apos;Higgins. Durante un periodo sin trabajo, con tiempo libre y ganas de crecer, opté por desarrollar esta plataforma con dos fines: ayudar a mi comunidad y seguir aprendiendo como profesional. <strong>ManoVecina es, y seguirá siendo, un servicio gratuito</strong> que busca conectar a vecinos con personas que ofrecen ayuda en tareas cotidianas. Si alguna vez te es útil y deseas apoyar el proyecto, <strong>tendrás la opción totalmente voluntaria de hacer una donación monetaria</strong>.
                     <span className="block mt-2 text-vecino font-semibold">
                         Donación voluntaria a Cuenta RUT: 21.088.563-3
                     </span>
@@ -18,13 +18,17 @@ export default function Objetivo(){
                 </div>
                 {/* Imagen */}
                 <div className="flex justify-center">
-                    <Image
-                        src={"/landing-imgs/target/banner-who.jpg"}
-                        alt="Imagen del Objetivo de ManoVecina"
-                        width={600}
-                        height={400}
-                        className="rounded-xl shadow-2xl"
-                    />
+                    <div className="relative transition-transform duration-300 hover:scale-105">
+                        <Image
+                            src={"/landing-imgs/target/historia-img.jpeg"}
+                            alt="Imagen del Objetivo de ManoVecina"
+                            width={400}
+                            height={400}
+                            className="rounded-xl shadow-2xl"
+                            /* placeholder="blur"
+                            blurDataURL={"/landing-imgs/target/historia-img-blur.jpeg"} // Asegurate de tener una versión pequeña como placeholder */
+                        />
+                    </div>
                 </div>
             </div>
         </main>

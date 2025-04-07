@@ -6,7 +6,7 @@ export default function Inicio(){
         <main className="mb-52 py-12 px-6">
             
             <div className="w-1/3 mx-auto">
-                <h1 className="md:text-6xl text-4xl text-center leading-tight font-semibold text-gray-900">Contrata y Ofrece Servicios con tus Vecinos</h1>
+                <h1 id='btn-registrar' className="md:text-6xl text-4xl text-center leading-tight font-semibold text-gray-900">Contrata y Ofrece Servicios con tus Vecinos</h1>
             </div>
 
             <div className="w-1/2 mx-auto mt-3 py-6 px-6 bg-gray-100 rounded-3xl">

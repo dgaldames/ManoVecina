@@ -8,7 +8,7 @@ export default function Contacto(){
             <div className="grid md:grid-cols-1 max-w-7xl mx-auto">
                 <div className="pb-8">
                     <h1 className="text-gray-800 md:text-5xl text-4xl font-bold pb-6">Contactanos</h1>
-                    <p className="text-gray-800 text-xl leading-relaxed">¿Tienes preguntas, sugerencias o problemas técnicos? Nos encantaría escuchar tus comentarios. Contáctanos a través de nuestro formulario o envíanos un mensaje directo por nuestras redes sociales. También puedes escribirnos a correo@manovecina.com. Estamos aquí para ayudarte a mejorar tu experiencia en ManoVecina.</p>
+                    <p className="text-gray-800 text-xl leading-relaxed">¿Tienes <strong>preguntas, sugerencias o problemas técnicos?</strong> Nos encantaría escuchar tus comentarios. Contáctanos a través de <strong>este formulario</strong> o envíanos un mensaje directo por nuestras <strong>redes sociales.</strong> Estamos aquí para ayudarte a mejorar tu experiencia en ManoVecina.</p>
                 </div>
 
                 <div>    

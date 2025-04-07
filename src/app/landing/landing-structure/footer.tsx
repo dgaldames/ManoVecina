@@ -38,7 +38,7 @@ export default function Footer(){
                     <div>
                         <ul>
                             <li className="py-5 grid items-center place-content-center">
-                                <a className="text-xl text-gray-900 hover:underline decoration-1 underline-offset-4 hover:text-vecino duration-200" href="#target">Objetivo</a>
+                                <a className="text-xl text-gray-900 hover:underline decoration-1 underline-offset-4 hover:text-vecino duration-200" href="#target">Historia</a>
                             </li>
                             <li className="py-5 grid items-center place-content-center">
                                 <a className="text-xl text-gray-900 hover:underline decoration-1 underline-offset-4 hover:text-vecino duration-200" href="#faq">FAQ</a>

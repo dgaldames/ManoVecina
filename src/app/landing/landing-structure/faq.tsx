@@ -12,29 +12,47 @@ export default function Faq(){
                     <Accordion type="single" collapsible>
                         <AccordionItem value="item-1">
                             <AccordionTrigger 
-                                className="text-3xl hover:underline decoration-2 underline-offset-8">Lorem ipsum 1?
+                                className="text-3xl hover:text-vecino duration-200">¿Cómo me registro en ManoVecina?
                             </AccordionTrigger>
                             <AccordionContent className="text-xl">
-                                dolor sit amet consectetur adipisicing elit. Quos ullam rem laboriosam tenetur ipsa, quas ipsum eum iste itaque dolore consequuntur excepturi sit hic, ad eligendi! Error inventore earum nam.
+                                Haz clic en el botón <strong> <a href="#btn-registrar"><span className="underline decoration-1 underline-offset-4 hover:text-vecino hover:decoration-transparent duration-200">Registrate de forma gratuita</span></a> </strong> para crear una cuenta, asegúrate de proporcionar una dirección de correo electrónico <strong>válida</strong>. Te llegara un <strong> correo de confirmación para activar tu cuenta. </strong>Una vez activada, deberas iniciar sesión y podrás crear tu perfil.
                             </AccordionContent>
                         </AccordionItem>
 
                         <AccordionItem value="item-2">
                             <AccordionTrigger 
-                                className="text-3xl hover:underline decoration-2 underline-offset-8">Lorem ipsum 2?
+                                className="text-3xl hover:text-vecino duration-200">¿Cómo ofrezco o contrato un servicio?
                             </AccordionTrigger>
 
                             <AccordionContent className="text-xl">
-                                dolor sit amet consectetur adipisicing elit. Quos ullam rem laboriosam tenetur ipsa, quas ipsum eum iste itaque dolore consequuntur excepturi sit hic, ad eligendi! Error inventore earum nam!?
+                                <strong>Una vez registrado podrás navegar </strong> por la plataforma y buscar servicios ofrecidos por otros usuarios. Si encuentras algo que te interese, puedes ponerte en contacto con el proveedor del servicio.
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-3">
                             <AccordionTrigger 
-                                className="text-3xl hover:underline decoration-2 underline-offset-8">Lorem ipsum 3?
+                                className="text-3xl hover:text-vecino duration-200">¿ManoVecina tiene algún costo?
                             </AccordionTrigger>
 
                             <AccordionContent className="text-xl">
-                                dolor sit amet consectetur adipisicing elit. Quos ullam rem laboriosam tenetur ipsa, quas ipsum eum iste itaque dolore consequuntur excepturi sit hic, ad eligendi! Error inventore earum nam!?
+                                Nop, <strong>ManoVecina es completamente gratuita para todos los usuarios. </strong> No cobramos comisiones por los servicios ofrecidos o contratados, cualquier persona puede ofrecer o buscar servicios sin pagar nada.
+                            </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-4">
+                            <AccordionTrigger 
+                                className="text-3xl hover:text-vecino duration-200">¿A quién está dirigida ManoVecina?
+                            </AccordionTrigger>
+
+                            <AccordionContent className="text-xl">
+                                A <strong>vecinos de cualquier edad </strong> que quieran ofrecer o contratar servicios de manera rápida y sencilla. Ya sea que sepas reparar cosas, cortar pasto o que necesites un servicio específico.
+                            </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-5">
+                            <AccordionTrigger 
+                                className="text-3xl hover:text-vecino duration-200">¿Como puedo aportar a ManoVecina?
+                            </AccordionTrigger>
+
+                            <AccordionContent className="text-xl">
+                                Si deseas apoyar el proyecto, puedes hacerlo de forma voluntaria a través de una donación monetaria a la cuenta RUT: <strong> <span className="text-vecino">21.088.563-3</span></strong>.
                             </AccordionContent>
                         </AccordionItem>
                     </Accordion>
