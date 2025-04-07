@@ -209,7 +209,7 @@ export default function OfrecerPage(){
                                             </p>
                     </div>
                     <p></p>
-                    <div className="mb-6">
+                    <div className="mb-4">
                         <label htmlFor="experiencia" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Experiencia de su Servicio (Opcional)</label>
                         <input disabled={!!experiencia} value={formData.experiencia} onChange={handleChange} type="text" id="experiencia" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cuento con mas de 10 anhos en el rubro..." />
                         <p className = {`text-sm mt-1 ml-1 ${formData.experiencia.length === 250 ? "text-vecino"
@@ -221,20 +221,21 @@ export default function OfrecerPage(){
                                         {formData.experiencia.length}/250 caracteres
                                             </p>
                     </div>
+                        <p className="text-sm font-medium mb-2 text-gray-900 dark:text-white">(Opcional. También puedes agregarla después)</p>
                     <div className="flex flex-col md:flex-row gap-5">
-                    <label
-                        htmlFor="file-input"
-                        className="text-white bg-vecino rounded-lg hover:bg-orange-700 focus:ring-2  dark:focus:ring-white focus:ring-darkbg focus:outline-none text-lg w-full lg:w-auto px-5 py-2.5 text-center transform hover:scale-105 hover:ease-out transition duration-300 cursor-pointer"
-                        >
-                        Agregar Foto de Perfil
+                        <label
+                            htmlFor="file-input"
+                            className="text-white bg-vecino rounded-lg hover:bg-orange-700 focus:ring-2  dark:focus:ring-white focus:ring-darkbg focus:outline-none text-lg w-full lg:w-auto px-5 py-2.5 text-center transform hover:scale-105 hover:ease-out transition duration-300 cursor-pointer"
+                            >
+                            Agregar Foto de Perfil
                         </label>
                         <input
-                        id="file-input"
-                        type="file"
-                        accept=".png,.jpg,.jpeg"
-                        className="hidden"
-                        name="Archivo"
-                        onChange={handleFileChange}
+                            id="file-input"
+                            type="file"
+                            accept=".png,.jpg,.jpeg"
+                            className="hidden"
+                            name="Archivo"
+                            onChange={handleFileChange}
                         />
                         {/* TODO HACER QUE AL PRESIONAR CAMBIE EL COLOR CUANDO EL loading ES true */}
                         <button type="submit" className="text-white bg-vecino rounded-lg hover:bg-orange-700 focus:ring-2  dark:focus:ring-white focus:ring-darkbg focus:outline-none text-lg w-full lg:w-auto px-5 py-2.5 text-center transform hover:scale-105 hover:ease-out transition duration-300"
