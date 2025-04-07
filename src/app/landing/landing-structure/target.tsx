@@ -11,7 +11,9 @@ export default function Objetivo(){
                     </h1>
                     <p className="text-xl leading-relaxed text-gray-800">
                     <strong>ManoVecina nació como una idea para mi tesis universitaria</strong>, pero tras ser rechazada, decidí retomarla tiempo después ya titulado como ingeniero en informática por la Universidad Bernardo O&apos;Higgins. Durante un periodo sin trabajo, con tiempo libre y ganas de crecer, opté por desarrollar esta plataforma con dos fines: ayudar a mi comunidad y seguir aprendiendo como profesional. <strong>ManoVecina es, y seguirá siendo, un servicio gratuito</strong> que busca conectar a vecinos con personas que ofrecen ayuda en tareas cotidianas. Si alguna vez te es útil y deseas apoyar el proyecto, <strong>tendrás la opción totalmente voluntaria de hacer una donación</strong>.
-                    {/* Ver el mejor metodo de donacion, problemente cuenta rut */}
+                    <span className="block mt-2 text-vecino font-semibold">
+                        Donación voluntaria a Cuenta RUT: 21.088.563-3
+                    </span>
                     </p>
                 </div>
                 {/* Imagen */}
