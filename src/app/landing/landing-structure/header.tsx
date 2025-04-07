@@ -55,9 +55,9 @@ export default function Header(){
                                 <ul className="flex flex-col gap-4 mt-4">
                                     <li className="py-4 flex justify-center"><a href="#" className="text-2xl font-semibold">Inicio</a></li>
                                     <div className="p-medio bg-vecino"></div>
-                                    <li className="py-4 flex justify-center"><a href="#target" className="text-2xl font-semibold">Objetivo</a></li>
+                                    <li className="py-4 flex justify-center"><a href="#target" className="text-2xl font-semibold">Historia</a></li> {/* ALOOOOO */}
                                     <div className="p-medio bg-vecino"></div>
-                                    <li className="py-4 flex justify-center"><a href="#funcionalidades" className="text-2xl font-semibold">Funcionalidades</a></li>
+                                    <li className="py-4 flex justify-center"><a href="#funcionalidades" className="text-2xl font-semibold">FuncionalidadesSS</a></li>
                                     <div className="p-medio bg-vecino"></div>
                                     <li className="py-4 flex justify-center"><a href="#faq" className="text-2xl font-semibold">FAQ</a></li>
                                     <div className="p-medio bg-vecino"></div>

@@ -7,10 +7,11 @@ export default function Objetivo(){
                 {/* Texto */}
                 <div>
                     <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-                        Nuestro Objetivo
+                        Historia
                     </h1>
                     <p className="text-xl leading-relaxed text-gray-800">
-                        ManoVecina tiene como objetivo conectar a la comunidad a través de una plataforma que facilita el acceso a servicios locales de confianza. Creemos en el poder de la colaboración entre vecinos y en la oportunidad de ofrecer soluciones rápidas y accesibles para quienes buscan ayuda en tareas como jardinería, reparaciones, paseos de mascotas y mucho más. Con ManoVecina, potenciamos la economía local y brindamos oportunidades laborales a quienes tienen habilidades que ofrecer.
+                    <strong>ManoVecina nació como una idea para mi tesis universitaria</strong>, pero tras ser rechazada, decidí retomarla tiempo después ya titulado como ingeniero en informática por la Universidad Bernardo O&apos;Higgins. Durante un periodo sin trabajo, con tiempo libre y ganas de crecer, opté por desarrollar esta plataforma con dos fines: ayudar a mi comunidad y seguir aprendiendo como profesional. <strong>ManoVecina es, y seguirá siendo, un servicio gratuito</strong> que busca conectar a vecinos con personas que ofrecen ayuda en tareas cotidianas. Si alguna vez te es útil y deseas apoyar el proyecto, <strong>tendrás la opción totalmente voluntaria de hacer una donación</strong>.
+                    {/* Ver el mejor metodo de donacion, problemente cuenta rut */}
                     </p>
                 </div>
                 {/* Imagen */}
