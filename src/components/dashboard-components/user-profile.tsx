@@ -79,11 +79,10 @@ export default function UserProfile({
             </div>
             <Separator orientation="vertical" className="hidden lg:block h-52 mx-10 bg-slate-500 dark:bg-white" />
 
-            {/* TODO ---- PONER EL CONTACTO PARA QUE VAYA A WHATSAPP */}
             <div className="flex flex-col items-center justify-center gap-3 w-full lg:w-1/3">
-                <Link href={`https://wa.me/+56${userCell}?text=Hola, estoy interesado/a en sus servicios...`} target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 hover:ease-out transition duration-300 inline-flex items-center justify-center px-10 py-6 text-3xl font-semibold text-center text-white bg-green-500 rounded-lg ring-1 hover:ring-darkbg dark:hover:ring-white hover:bg-green-600 focus:ring-2 focus:ring-darkbg dark:focus:ring-white focus:outline-none w-full lg:w-auto">
+                <Link href={`https://wa.me/+56${userCell}?text=Hola, estoy interesado/a en sus servicios...`} target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 hover:ease-out transition duration-300 inline-flex items-center justify-center px-10 py-6 text-3xl font-semibold text-center text-white bg-green-500 rounded-lg ring-1 hover:ring-darkbg dark:hover:ring-white hover:bg-green-600 focus:ring-2 focus:ring-darkbg dark:focus:ring-white focus:outline-none w-full lg:w-auto gap-2">
                     Contactar
-                    <SvgWhatsApp/>
+                    <SvgWhatsApp />
                 </Link>
             </div>
         </div>
