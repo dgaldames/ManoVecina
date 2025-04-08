@@ -30,6 +30,15 @@ export default function Faq(){
                         </AccordionItem>
                         <AccordionItem value="item-3">
                             <AccordionTrigger 
+                                className="text-3xl hover:text-vecino duration-200">¿Qué hago si olvide mi contraseña?
+                            </AccordionTrigger>
+
+                            <AccordionContent className="text-xl">
+                                Si olvidaste tu contraseña, puedes restablecerla haciendo clic en el enlace <strong> &ldquo;¿Olvidaste tu contraseña?&ldquo; </strong> en la página de inicio de sesión. Te enviaremos un correo electrónico con instrucciones para restablecerla.
+                            </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-4">
+                            <AccordionTrigger 
                                 className="text-3xl hover:text-vecino duration-200">¿ManoVecina tiene algún costo?
                             </AccordionTrigger>
 
@@ -37,7 +46,7 @@ export default function Faq(){
                                 Nop, <strong>ManoVecina es completamente gratuita para todos los usuarios. </strong> No cobramos comisiones por los servicios ofrecidos o contratados, cualquier persona puede ofrecer o buscar servicios sin pagar nada.
                             </AccordionContent>
                         </AccordionItem>
-                        <AccordionItem value="item-4">
+                        <AccordionItem value="item-5">
                             <AccordionTrigger 
                                 className="text-3xl hover:text-vecino duration-200">¿A quién está dirigida ManoVecina?
                             </AccordionTrigger>
@@ -46,9 +55,9 @@ export default function Faq(){
                                 A <strong>vecinos de cualquier edad </strong> que quieran ofrecer o contratar servicios de manera rápida y sencilla. Ya sea que sepas reparar cosas, cortar pasto o que necesites un servicio específico.
                             </AccordionContent>
                         </AccordionItem>
-                        <AccordionItem value="item-5">
+                        <AccordionItem value="item-6">
                             <AccordionTrigger 
-                                className="text-3xl hover:text-vecino duration-200">¿Como puedo aportar a ManoVecina?
+                                className="text-3xl hover:text-vecino duration-200">¿Cómo puedo aportar a ManoVecina?
                             </AccordionTrigger>
 
                             <AccordionContent className="text-xl">
