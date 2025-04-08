@@ -49,10 +49,11 @@ const data = {
   ], */
   navMain: [
     {
-      title: "Ofrecer Servicios",
-      url: "/dashboard/dashboard-ofrecer",
-      icon: BadgeDollarSign,
+      title: "Contratar Servicios",
+      url: "/dashboard",
+      icon:  ReceiptText,
       isActive: true,
+      
       /* items: [
         {
           title: "History",
@@ -68,9 +69,9 @@ const data = {
         },
       ], */
     },{
-      title: "Contratar Servicios",
-      url: "/dashboard",
-      icon:  ReceiptText,
+      title: "Ofrecer Servicios",
+      url: "/dashboard/dashboard-ofrecer",
+      icon: BadgeDollarSign,
       isActive: true,
     },{
       title: "Mi Perfil",

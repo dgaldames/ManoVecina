@@ -50,8 +50,8 @@ export default function DynamicProfilePage() {
     
     return(
         <div>
-            <h1 className="text-2xl font-bold mb-4">Perfil del Usuario</h1>
-            <p className="mb-2">ID del usuario: {userId}</p>
+            {/* <h1 className="text-2xl font-bold mb-4">Perfil del Usuario</h1>
+            <p className="mb-2">ID del usuario: {userId}</p> */}
             <UserProfile 
                 userName={profile.nombre}
                 userCell={profile.telefono}

@@ -41,7 +41,7 @@ export function NavMain({
 
   return (
     <SidebarGroup className="mt-5">
-      <SidebarGroupLabel className="text-sm">Funcionalidades</SidebarGroupLabel>
+      <SidebarGroupLabel className="text-base">Funcionalidades</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => {
           const isCurrent = pathname === item.url
