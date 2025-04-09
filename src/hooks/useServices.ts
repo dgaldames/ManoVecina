@@ -6,7 +6,6 @@ import { createClient } from "@/utils/supabase/client";
 export function useServices() {
 
     interface Service {
-        // Replace these fields with the actual structure of your 'servicios_persona' table
         id: string;
         nombre: string;
         telefono: string;

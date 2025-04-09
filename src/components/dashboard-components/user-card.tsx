@@ -15,7 +15,7 @@ export default function UserCard ({userId, userName, userService, userDetails, u
 />
                 <h5 className="mb-2 mt-2 text-xl font-medium text-gray-900 dark:text-white">{userName}</h5>
                 <span className="text-bs text-gray-600 dark:text-gray-400 mb-2">{userService}</span>
-                <p className="text-sm text-center text-gray-500 dark:text-gray-400">{userDetails}</p>
+                <p className="text-sm text-center text-gray-500 dark:text-gray-400 line-clamp-2">{userDetails}</p>
 
                 <div className="flex mt-4 md:mt-6">
                     <Link href={`/dashboard/dashboard-profile/${userId}`} className="transform hover:scale-105 hover:ease-out transition duration-300 inline-flex items-center px-4 py-2 text-lg font-medium text-center text-white bg-vecino rounded-lg hover:bg-orange-600 focus:ring-2  dark:focus:ring-white focus:ring-darkbg focus:outline-none">Ver Perfil</Link>
