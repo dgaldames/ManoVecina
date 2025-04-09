@@ -10,6 +10,7 @@ import { useState } from "react"
 import SvgLuna from "../../../public/dashboard-icons/moon-svg";
 import SvgSol from "../../../public/dashboard-icons/sun-svg";
 import { UserProvider } from "../context";
+import SearchBar from "@/components/dashboard-components/search-bar";
 
 
 
@@ -31,16 +32,8 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) 
                             <SidebarTrigger className="-ml-1 dark:bg-white" />
                             <Separator orientation="vertical" className="mr-2 h-8 dark:bg-white " />
                         </div>
-                        <div>
-                            <form action="#">
-                                <input 
-                                type="text" 
-                                placeholder="Buscar en Vecindario" 
-                                className="rounded-3xl md:w-96 w-52 border border-gray-300 p-3 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-800 hover:border-gray-400 transition-all duration-200 ease-in-out bg-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800 dark:placeholder-gray-400 dark:text-gray-200 dark:focus:ring-gray-200">
-                                    
-                                </input>
-                            </form>
-                        </div>
+                        
+                        <SearchBar/>
 
                         {darkMode ? (
                             <div className="mr-6">

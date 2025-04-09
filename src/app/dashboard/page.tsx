@@ -14,7 +14,7 @@ export default function Page() {
     useEffect(() => {
         getServices()
     }, [])
-
+    //TODO HACER UNA PAGINACION PARA QUE NO CARGUE TODOS LOS SERVICIOS A LA VEZ
     return (
         <div className="grid auto-rows-min md:grid-cols-3 gap-4 p-4 pt-0">
             {myServices.map((service) => (
