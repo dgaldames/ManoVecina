@@ -5,6 +5,66 @@ import {Accordion, AccordionContent, AccordionItem, AccordionTrigger, } from "@/
 export default function SupportPage() {
     return (
         <main className="bg-neutral-50 py-12 px-6 mb-5 rounded-xl dark:bg-gray-800" id="contacto-soporte">
+            <main className="mb-12 py-12 px-6 bg-neutral-100 rounded-xl dark:bg-gray-900 shadow-lg" id="faq-soporte">
+                <div className="max-w-7xl mx-auto grid md:grid-cols-2 grid-cols-1 md:gap-28 gap-12">
+                    <div>
+                        <h1 className="md:text-5xl text-4xl font-bold text-gray-800 dark:text-white pb-6">Preguntas Frecuentes</h1>
+                        <p className="text-xl leading-relaxed text-gray-800 dark:text-white">En este apartado podras encontrar preguntas frecuentes que te pueden surgir relacionadas a la plataforma y sus funcionalidades.</p>
+                    </div>
+                    <div>
+                        <Accordion type="single" collapsible>
+                            <AccordionItem value="item-1">
+                                <AccordionTrigger 
+                                    className="text-3xl dark:text-white dark:hover:text-vecino hover:text-vecino duration-200">¿Cómo ofrezco un servicio?
+                                </AccordionTrigger>
+                                <AccordionContent className="text-xl dark:text-white">
+                                    Ya registrado, dirigete a la barra lateral y selecciona la opción <strong>Ofrecer servicios</strong>. Completa el formulario con los detalles del servicio que deseas ofrecer y haz clic en <strong>Publicar mis Servicios</strong>. Tu servicio estará disponible para otros usuarios.
+                                </AccordionContent>
+                            </AccordionItem>
+
+                            <AccordionItem value="item-2">
+                                <AccordionTrigger 
+                                    className="text-3xl dark:text-white dark:hover:text-vecino hover:text-vecino duration-200">¿Cómo contrato un servicio?
+                                </AccordionTrigger>
+
+                                <AccordionContent className="text-xl dark:text-white">
+                                    En la barra lateral, selecciona la opción <strong>Contratar Servicios</strong>. Navega por los servicios disponibles y selecciona <strong>Ver Perfil</strong> en el que te interese. Puedes ver los detalles del servicio y contactar a la persona que lo ofrece.
+                                </AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem value="item-3">
+                                <AccordionTrigger 
+                                    className="text-3xl dark:text-white dark:hover:text-vecino hover:text-vecino duration-200">¿Cuántos servicios puedo ofrecer?
+                                </AccordionTrigger>
+
+                                <AccordionContent className="text-xl dark:text-white">
+                                    Solo se puede ofrecer <strong>un servicio por cuenta.</strong> Si deseas ofrecer más de uno, puedes crear una cuenta adicional. Sin embargo, te recomendamos que te enfoques en un solo servicio para maximizar tus oportunidades de éxito.
+                                </AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem value="item-4">
+                                <AccordionTrigger 
+                                    className="text-3xl dark:text-white dark:hover:text-vecino hover:text-vecino duration-200">¿Cómo edito mi perfil?
+                                </AccordionTrigger>
+
+                                <AccordionContent className="text-xl dark:text-white">
+                                    En la barra lateral, selecciona la opción <strong>Editar Perfil</strong>. Desde allí, puedes editar tu información personal o tu foto de perfil, luego haz clic en <strong>Guardar Cambios</strong>.
+                                </AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem value="item-5">
+                                <AccordionTrigger 
+                                    className="text-3xl dark:text-white dark:hover:text-vecino hover:text-vecino duration-200">¿Cómo elimino mi servicio?
+                                </AccordionTrigger>
+
+                                <AccordionContent className="text-xl dark:text-white">
+                                    En la barra lateral, selecciona la opción <strong>Editar Perfil</strong>. Desplázate hacia abajo y haz clic en <strong>Eliminar mis Servicios</strong>. Ten en cuenta que esta acción es irreversible y eliminará tu servicio de la plataforma.
+                                </AccordionContent>
+                            </AccordionItem>
+                        </Accordion>
+                    </div>
+                </div>
+            </main>
+
+            <Separator orientation="horizontal" className="h-min bg-slate-500 dark:bg-white my-10" />
+
             <div className="grid md:grid-cols-1 max-w-7xl mx-auto">
                 <div className="pb-8">
                     <h1 className="text-gray-800 md:text-5xl text-4xl font-bold pb-6 dark:text-white">Soporte</h1>
@@ -107,66 +167,6 @@ export default function SupportPage() {
                     </form>
                 </div>
             </div>
-
-            <Separator orientation="horizontal" className="h-min bg-slate-500 dark:bg-white my-10" />
-
-            <main className="mb-20 py-12 px-6 bg-neutral-100 rounded-xl dark:bg-gray-900 shadow-lg" id="faq-soporte">
-                <div className="max-w-7xl mx-auto grid md:grid-cols-2 grid-cols-1 md:gap-28 gap-12">
-                    <div>
-                        <h1 className="md:text-5xl text-4xl font-bold text-gray-800 dark:text-white pb-6">Preguntas Frecuentes</h1>
-                        <p className="text-xl leading-relaxed text-gray-800 dark:text-white">En este apartado podras encontrar preguntas frecuentes que te pueden surgir relacionadas a la plataforma y sus funcionalidades.</p>
-                    </div>
-                    <div>
-                        <Accordion type="single" collapsible>
-                            <AccordionItem value="item-1">
-                                <AccordionTrigger 
-                                    className="text-3xl dark:text-white dark:hover:text-vecino hover:text-vecino duration-200">¿Cómo ofrezco un servicio?
-                                </AccordionTrigger>
-                                <AccordionContent className="text-xl dark:text-white">
-                                    Ya registrado, dirigete a la barra lateral y selecciona la opción <strong>Ofrecer servicios</strong>. Completa el formulario con los detalles del servicio que deseas ofrecer y haz clic en <strong>Publicar mis Servicios</strong>. Tu servicio estará disponible para otros usuarios.
-                                </AccordionContent>
-                            </AccordionItem>
-
-                            <AccordionItem value="item-2">
-                                <AccordionTrigger 
-                                    className="text-3xl dark:text-white dark:hover:text-vecino hover:text-vecino duration-200">¿Cómo contrato un servicio?
-                                </AccordionTrigger>
-
-                                <AccordionContent className="text-xl dark:text-white">
-                                    En la barra lateral, selecciona la opción <strong>Contratar Servicios</strong>. Navega por los servicios disponibles y selecciona <strong>Ver Perfil</strong> en el que te interese. Puedes ver los detalles del servicio y contactar a la persona que lo ofrece.
-                                </AccordionContent>
-                            </AccordionItem>
-                            <AccordionItem value="item-3">
-                                <AccordionTrigger 
-                                    className="text-3xl dark:text-white dark:hover:text-vecino hover:text-vecino duration-200">¿Cuántos servicios puedo ofrecer?
-                                </AccordionTrigger>
-
-                                <AccordionContent className="text-xl dark:text-white">
-                                    Solo se puede ofrecer <strong>un servicio por cuenta.</strong> Si deseas ofrecer más de uno, puedes crear una cuenta adicional. Sin embargo, te recomendamos que te enfoques en un solo servicio para maximizar tus oportunidades de éxito.
-                                </AccordionContent>
-                            </AccordionItem>
-                            <AccordionItem value="item-4">
-                                <AccordionTrigger 
-                                    className="text-3xl dark:text-white dark:hover:text-vecino hover:text-vecino duration-200">¿Cómo edito mi perfil?
-                                </AccordionTrigger>
-
-                                <AccordionContent className="text-xl dark:text-white">
-                                    En la barra lateral, selecciona la opción <strong>Editar Perfil</strong>. Desde allí, puedes editar tu información personal o tu foto de perfil, luego haz clic en <strong>Guardar Cambios</strong>.
-                                </AccordionContent>
-                            </AccordionItem>
-                            <AccordionItem value="item-5">
-                                <AccordionTrigger 
-                                    className="text-3xl dark:text-white dark:hover:text-vecino hover:text-vecino duration-200">¿Cómo elimino mi servicio?
-                                </AccordionTrigger>
-
-                                <AccordionContent className="text-xl dark:text-white">
-                                    En la barra lateral, selecciona la opción <strong>Editar Perfil</strong>. Desplázate hacia abajo y haz clic en <strong>Eliminar mis Servicios</strong>. Ten en cuenta que esta acción es irreversible y eliminará tu servicio de la plataforma.
-                                </AccordionContent>
-                            </AccordionItem>
-                        </Accordion>
-                    </div>
-                </div>
-            </main>
         </main>
 
     
