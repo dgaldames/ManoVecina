@@ -8,16 +8,28 @@ export default function SearchBar(){
     const [results, setResults] = useState([]);
     const containerRef = React.useRef<HTMLDivElement>(null);
 
-    const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        const res = await fetch(`/api/search?keyword=${encodeURIComponent(keyword)}`);
+    const fetchResults = async (searchTerm: string) => {
+        const res = await fetch(`/api/search?keyword=${encodeURIComponent(searchTerm)}`);
         const json = await res.json();
         if(json.status === 'success'){
             setResults(json.data);
         }
-    }
+    };
 
+    // useEffect para hacer debounce de la búsqueda
+    useEffect(() => {
+        const delayDebounce = setTimeout(() => {
+            if(keyword.trim()){
+                fetchResults(keyword);
+            } else {
+                setResults([]);
+            }
+        }, 200); // 200 ms de retardo
+
+        return () => clearTimeout(delayDebounce);
+    }, [keyword]);
+
+    // useEffect para cerrar la lista al hacer click fuera.
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if(containerRef.current && !containerRef.current.contains(event.target as Node)){
@@ -33,12 +45,10 @@ export default function SearchBar(){
 
     return(
         <div className="relative" ref={containerRef}>
-            <form onSubmit={handleSearch} action="#" className="gap-2 flex items-center justify-center md:justify-start">
-                {/* Contenedor del input para limitar la anchura de los resultados */}
                 <div className="relative">
                     <input 
                         type="text" 
-                        placeholder="Buscar en Vecindario" 
+                        placeholder="Buscar en Vecindario..." 
                         onChange={(e) => setKeyword(e.target.value)}
                         value={keyword}
                         name="search"
@@ -61,8 +71,6 @@ export default function SearchBar(){
                         </ul>
                     )}
                 </div>
-                <button type="submit" className="transform hover:scale-105 hover:ease-out transition duration-300 inline-flex items-center px-4 py-2 text-lg font-medium text-center text-white bg-vecino rounded-full hover:bg-orange-600 focus:ring-2 dark:focus:ring-white focus:ring-darkbg focus:outline-none">Buscar</button>
-            </form>
         </div>
     )
 }
