@@ -82,15 +82,15 @@ export default function Page() {
                 <button 
                     disabled={currentPage === 1} 
                     onClick={() => setCurrentPage((prev) => prev - 1)}
-                    className="px-4 py-2 bg-vecino text-white rounded-lg disabled:opacity-50"
+                    className="px-4 py-2 bg-vecino text-white rounded-lg disabled:opacity-50 text-lg transform hover:scale-105 hover:ease-out transition duration-300"
                 >
                     Anterior
                 </button>
-                <span>{currentPage} de {totalPages}</span>
+                <span className="dark:text-gray-100 text-lg">{currentPage} de {totalPages}</span>
                 <button 
                     disabled={currentPage === totalPages} 
                     onClick={() => setCurrentPage((prev) => prev + 1)}
-                    className="px-4 py-2 bg-vecino text-white rounded-lg disabled:opacity-50"
+                    className="px-4 py-2 bg-vecino text-white rounded-lg disabled:opacity-50 text-lg transform hover:scale-105 hover:ease-out transition duration-300"
                 >
                     Siguiente
                 </button>
